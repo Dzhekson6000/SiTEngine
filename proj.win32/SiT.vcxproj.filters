@@ -1,0 +1,207 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Classes">
+      <UniqueIdentifier>{f3de47c3-575f-4212-8c5b-b6b52cc2f57c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="win32">
+      <UniqueIdentifier>{26308af2-fec7-439d-bd75-7e1a1c51edf7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SiT">
+      <UniqueIdentifier>{61a33bfb-cfd4-4cf0-9e05-c6f5a3a2f5e0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SiT\external">
+      <UniqueIdentifier>{332a3ddd-5e2d-4841-9b19-44a6c8861106}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SiT\Geometry">
+      <UniqueIdentifier>{ac3bbe9a-9beb-4468-81e6-608ac2b869ce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SiT\Graphics">
+      <UniqueIdentifier>{d85c9652-74b7-425e-9576-eba08f1b62ff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SiT\Graphics\2d">
+      <UniqueIdentifier>{765d0244-4c55-4d57-8917-1e0b83f08999}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SiT\Resource">
+      <UniqueIdentifier>{728cffc2-6347-41ad-8de8-c54a6c5d3726}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SiT\Base">
+      <UniqueIdentifier>{6b54143b-5eca-47ec-bbc3-03045dbd886c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SiT\Graphics\Shader">
+      <UniqueIdentifier>{2227b99a-347a-4c3f-8be8-f9ed13a370f2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SiT\Graphics\Shader\Shaders">
+      <UniqueIdentifier>{ffaabbb5-2dcf-4491-8283-557da71d9d2d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SiT\Graphics\Render">
+      <UniqueIdentifier>{c68bef4f-8bc8-4b21-947f-399dc7fc1fbe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SiT\Graphics\Render\Command">
+      <UniqueIdentifier>{0523e48a-9f7e-4660-baaa-bcd0f00e060a}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="main.h">
+      <Filter>win32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\AppDelegate.h">
+      <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SiT\external\math_3d.h">
+      <Filter>SiT\external</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SiT\Geometry\Point.h">
+      <Filter>SiT\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SiT\Geometry\Rotate.h">
+      <Filter>SiT\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SiT\Geometry\Scale.h">
+      <Filter>SiT\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SiT\Geometry\Size.h">
+      <Filter>SiT\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SiT\Geometry\Vertex.h">
+      <Filter>SiT\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SiT\Graphics\GLView.h">
+      <Filter>SiT\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SiT\Graphics\2d\Sprite.h">
+      <Filter>SiT\Graphics\2d</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SiT\Resource\ResourceHandle.h">
+      <Filter>SiT\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SiT\Resource\ResourceManager.h">
+      <Filter>SiT\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SiT\Application.h">
+      <Filter>SiT</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SiT\Director.h">
+      <Filter>SiT</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SiT\Macros.h">
+      <Filter>SiT</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SiT\SiT.h">
+      <Filter>SiT</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SiT\Geometry\Geometry.h">
+      <Filter>SiT\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SiT\Base\Scene.h">
+      <Filter>SiT\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SiT\Base\Node.h">
+      <Filter>SiT\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SiT\Graphics\Shader\Shader.h">
+      <Filter>SiT\Graphics\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SiT\Graphics\Shader\ShaderManager.h">
+      <Filter>SiT\Graphics\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SiT\Graphics\Shader\Shaders.h">
+      <Filter>SiT\Graphics\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SiT\Graphics\Shader\Shaders\positionColorF.h">
+      <Filter>SiT\Graphics\Shader\Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SiT\Graphics\Shader\Shaders\positionColorV.h">
+      <Filter>SiT\Graphics\Shader\Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SiT\Graphics\Shader\Shaders\positionTextureF.h">
+      <Filter>SiT\Graphics\Shader\Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SiT\Graphics\Shader\Shaders\positionTextureV.h">
+      <Filter>SiT\Graphics\Shader\Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SiT\Base\Ref.h">
+      <Filter>SiT\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SiT\Base\PoolManager.h">
+      <Filter>SiT\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SiT\Graphics\Render\Renderer.h">
+      <Filter>SiT\Graphics\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SiT\Graphics\Render\Command\RenderCommand.h">
+      <Filter>SiT\Graphics\Render\Command</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SiT\Graphics\Render\Command\CustomCommand.h">
+      <Filter>SiT\Graphics\Render\Command</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>win32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\AppDelegate.cpp">
+      <Filter>Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SiT\external\math_3d.cpp">
+      <Filter>SiT\external</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SiT\Geometry\Rotate.cpp">
+      <Filter>SiT\Geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SiT\Geometry\Scale.cpp">
+      <Filter>SiT\Geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SiT\Graphics\GLView.cpp">
+      <Filter>SiT\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SiT\Graphics\2d\Sprite.cpp">
+      <Filter>SiT\Graphics\2d</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SiT\Resource\ResourceHandle.cpp">
+      <Filter>SiT\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SiT\Resource\ResourceManager.cpp">
+      <Filter>SiT\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SiT\Application.cpp">
+      <Filter>SiT</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SiT\Director.cpp">
+      <Filter>SiT</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SiT\Base\Scene.cpp">
+      <Filter>SiT\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SiT\Base\Node.cpp">
+      <Filter>SiT\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SiT\Graphics\Shader\Shader.cpp">
+      <Filter>SiT\Graphics\Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SiT\Graphics\Shader\ShaderManager.cpp">
+      <Filter>SiT\Graphics\Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SiT\Graphics\Shader\Shaders.cpp">
+      <Filter>SiT\Graphics\Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SiT\Base\Ref.cpp">
+      <Filter>SiT\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SiT\Base\PoolManager.cpp">
+      <Filter>SiT\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SiT\Graphics\Render\Renderer.cpp">
+      <Filter>SiT\Graphics\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SiT\Graphics\Render\Command\RenderCommand.cpp">
+      <Filter>SiT\Graphics\Render\Command</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SiT\Graphics\Render\Command\CustomCommand.cpp">
+      <Filter>SiT\Graphics\Render\Command</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SiT\Geometry\Size.cpp">
+      <Filter>SiT\Geometry</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

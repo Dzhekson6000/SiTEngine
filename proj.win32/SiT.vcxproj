@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{F7A5D3AC-3ED6-4158-BAD1-344487896364}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>SiT</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v110</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v110</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <LibraryPath>$(LibraryPath)</LibraryPath>
+    <ExecutablePath>$(ExecutablePath)</ExecutablePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>..;..\SiT\external\glfw3\include\win32;..\SiT;..\Classes;..\SiT\external\SOIL\include;..\SiT\external\glew\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <MultiProcessorCompilation>false</MultiProcessorCompilation>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>$(OutDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>glew32.lib;glfw3.lib;glfw3dll.lib;opengl32.lib;glu32.lib;SOIL.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="..\Classes\AppDelegate.h" />
+    <ClInclude Include="..\SiT\Application.h" />
+    <ClInclude Include="..\SiT\Base\Node.h" />
+    <ClInclude Include="..\SiT\Base\PoolManager.h" />
+    <ClInclude Include="..\SiT\Base\Ref.h" />
+    <ClInclude Include="..\SiT\Base\Scene.h" />
+    <ClInclude Include="..\SiT\Director.h" />
+    <ClInclude Include="..\SiT\external\math_3d.h" />
+    <ClInclude Include="..\SiT\Geometry\Geometry.h" />
+    <ClInclude Include="..\SiT\Geometry\Point.h" />
+    <ClInclude Include="..\SiT\Geometry\Rotate.h" />
+    <ClInclude Include="..\SiT\Geometry\Scale.h" />
+    <ClInclude Include="..\SiT\Geometry\Size.h" />
+    <ClInclude Include="..\SiT\Geometry\Vertex.h" />
+    <ClInclude Include="..\SiT\Graphics\2d\Sprite.h" />
+    <ClInclude Include="..\SiT\Graphics\GLView.h" />
+    <ClInclude Include="..\SiT\Graphics\Render\Command\CustomCommand.h" />
+    <ClInclude Include="..\SiT\Graphics\Render\Command\RenderCommand.h" />
+    <ClInclude Include="..\SiT\Graphics\Render\Renderer.h" />
+    <ClInclude Include="..\SiT\Graphics\Shader\Shader.h" />
+    <ClInclude Include="..\SiT\Graphics\Shader\ShaderManager.h" />
+    <ClInclude Include="..\SiT\Graphics\Shader\Shaders.h" />
+    <ClInclude Include="..\SiT\Graphics\Shader\Shaders\positionColorF.h" />
+    <ClInclude Include="..\SiT\Graphics\Shader\Shaders\positionColorV.h" />
+    <ClInclude Include="..\SiT\Graphics\Shader\Shaders\positionTextureF.h" />
+    <ClInclude Include="..\SiT\Graphics\Shader\Shaders\positionTextureV.h" />
+    <ClInclude Include="..\SiT\Macros.h" />
+    <ClInclude Include="..\SiT\Resource\ResourceHandle.h" />
+    <ClInclude Include="..\SiT\Resource\ResourceManager.h" />
+    <ClInclude Include="..\SiT\SiT.h" />
+    <ClInclude Include="main.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\Classes\AppDelegate.cpp" />
+    <ClCompile Include="..\SiT\Application.cpp" />
+    <ClCompile Include="..\SiT\Base\Node.cpp" />
+    <ClCompile Include="..\SiT\Base\PoolManager.cpp" />
+    <ClCompile Include="..\SiT\Base\Ref.cpp" />
+    <ClCompile Include="..\SiT\Base\Scene.cpp" />
+    <ClCompile Include="..\SiT\Director.cpp" />
+    <ClCompile Include="..\SiT\external\math_3d.cpp" />
+    <ClCompile Include="..\SiT\Geometry\Rotate.cpp" />
+    <ClCompile Include="..\SiT\Geometry\Scale.cpp" />
+    <ClCompile Include="..\SiT\Geometry\Size.cpp" />
+    <ClCompile Include="..\SiT\Graphics\2d\Sprite.cpp" />
+    <ClCompile Include="..\SiT\Graphics\GLView.cpp" />
+    <ClCompile Include="..\SiT\Graphics\Render\Command\CustomCommand.cpp" />
+    <ClCompile Include="..\SiT\Graphics\Render\Command\RenderCommand.cpp" />
+    <ClCompile Include="..\SiT\Graphics\Render\Renderer.cpp" />
+    <ClCompile Include="..\SiT\Graphics\Shader\Shader.cpp" />
+    <ClCompile Include="..\SiT\Graphics\Shader\ShaderManager.cpp" />
+    <ClCompile Include="..\SiT\Graphics\Shader\Shaders.cpp" />
+    <ClCompile Include="..\SiT\Resource\ResourceHandle.cpp" />
+    <ClCompile Include="..\SiT\Resource\ResourceManager.cpp" />
+    <ClCompile Include="main.cpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
