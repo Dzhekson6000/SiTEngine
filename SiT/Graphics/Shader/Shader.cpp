@@ -5,7 +5,7 @@ NS_SIT_BEGIN
 const char* Shader::SHADER_NAME_POSITION_COLOR = "ShaderPositionColor";
 const char* Shader::SHADER_NAME_POSITION_TEXTURE = "ShaderPositionTexture";
 
-const char* Shader::UNIFORM_NAME_MVP_MATRIX = "MVMatrix";
+const char* Shader::UNIFORM_NAME_MVP_MATRIX = "MVPMatrix";
 const char* Shader::UNIFORM_NAME_SAMPLER	= "u_Texture0";
 
 const char* Shader::ATTRIBUTE_NAME_COLOR = "a_color";
@@ -63,11 +63,15 @@ bool Shader::compileShader(GLuint * shader, GLenum type, const GLchar* source)
 	}
 
 	const GLchar *sources[] = {
+		"#version 120\n",
+		(type == GL_VERTEX_SHADER ? "precision highp float;\n" : "precision mediump float;\n"),
 		"uniform mat4 MVPMatrix;\n",
 		source,
 	};
 
 	*shader = glCreateShader(type);
+
+	GLint lengths = strlen(source);
 	glShaderSource(*shader, sizeof(sources)/sizeof(*sources), sources, nullptr);
 	glCompileShader(*shader);
 
@@ -80,7 +84,7 @@ bool Shader::compileShader(GLuint * shader, GLenum type, const GLchar* source)
 		GLchar* src = (GLchar *)malloc(sizeof(GLchar) * length);
 
 		glGetShaderSource(*shader, length, nullptr, src);
-		LOG("cocos2d: ERROR: Failed to compile shader:\n%s", src);
+		LOG("ERROR: Failed to compile shader:\n%s", src);
 
 		free(src);
 		abort();
@@ -95,7 +99,8 @@ GLint Shader::getAttribLocation(const char* attributeName) const
 
 GLint Shader::getUniformLocation(const char* attributeName) const
 {
-	return glGetUniformLocation(_shader, attributeName);
+	GLint n = glGetUniformLocation(_shader, attributeName);
+	return n;
 }
 
 void Shader::bindAttribLocation(const char* attributeName, GLuint index) const
@@ -232,7 +237,7 @@ void Shader::setUniformLocationWithMatrix3fv(GLint location, const GLfloat* matr
 
 void Shader::setUniformLocationWithMatrix4fv(GLint location, const GLfloat* matrixArray, unsigned int numberOfMatrices)
 {
-	glUniformMatrix4fv( (GLint)location, (GLsizei)numberOfMatrices, GL_FALSE, matrixArray);
+	glUniformMatrix4fv( (GLint)location, (GLsizei)numberOfMatrices, GL_TRUE, matrixArray);
 }
 
 void Shader::reset()

@@ -3,7 +3,7 @@
 NS_SIT_BEGIN
 
 ResourceHandle::ResourceHandle( Resource resource )
-:_resource(resource), _buffer(NULL), _size(0), _width(0), _height(0)
+:_resource(resource), _width(0), _height(0)
 {
 }
 
@@ -11,27 +11,6 @@ GLuint* ResourceHandle::getTextureId()
 {
 	return &_textureId;
 }
-
-unsigned char* ResourceHandle::getBuffer()
-{
-	return _buffer;
-}
-
-void ResourceHandle::setBuffer( unsigned char* buffer )
-{
-	_buffer = buffer;
-}
-
-int ResourceHandle::getSize()
-{
-	return _size;
-}
-
-void ResourceHandle::setSize( int size )
-{
-	_size = size;
-}
-
 unsigned int ResourceHandle::getWidth()
 {
 	return _width;

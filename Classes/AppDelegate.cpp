@@ -21,5 +21,11 @@ bool AppDelegate::applicationLaunching()
 
 	director->setFPS(1.0/60.0);
 
+	Scene* scene = Scene::create();
+	Sprite * sprite = Sprite::create("1.bmp");
+	scene->addChild(sprite);
+
+	director->runScene(scene);
+
 	return true;
 }

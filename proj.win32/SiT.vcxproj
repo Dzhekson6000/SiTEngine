@@ -107,8 +107,8 @@
     <ClInclude Include="..\SiT\Graphics\Shader\Shaders.h" />
     <ClInclude Include="..\SiT\Graphics\Shader\Shaders\positionColorF.h" />
     <ClInclude Include="..\SiT\Graphics\Shader\Shaders\positionColorV.h" />
-    <ClInclude Include="..\SiT\Graphics\Shader\Shaders\positionTextureF.h" />
     <ClInclude Include="..\SiT\Graphics\Shader\Shaders\positionTextureV.h" />
+    <ClInclude Include="..\SiT\Graphics\Shader\Shaders\positionTextureF.h" />
     <ClInclude Include="..\SiT\Macros.h" />
     <ClInclude Include="..\SiT\Resource\ResourceHandle.h" />
     <ClInclude Include="..\SiT\Resource\ResourceManager.h" />
@@ -135,6 +135,7 @@
     <ClCompile Include="..\SiT\Graphics\Shader\Shader.cpp" />
     <ClCompile Include="..\SiT\Graphics\Shader\ShaderManager.cpp" />
     <ClCompile Include="..\SiT\Graphics\Shader\Shaders.cpp" />
+    <ClCompile Include="..\SiT\Macros.cpp" />
     <ClCompile Include="..\SiT\Resource\ResourceHandle.cpp" />
     <ClCompile Include="..\SiT\Resource\ResourceManager.cpp" />
     <ClCompile Include="main.cpp" />

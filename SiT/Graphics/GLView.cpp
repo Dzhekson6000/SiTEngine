@@ -55,8 +55,7 @@ bool GLView::windowShouldClose()
 
 void GLView::swapBuffers()
 {
-	if(_mainWindow)
-		glfwSwapBuffers(_mainWindow);
+	if(_mainWindow)glfwSwapBuffers(_mainWindow);
 }
 
 void GLView::pollEvents()
@@ -69,8 +68,11 @@ void GLView::setFullScreen( bool isFullScreen )
 	if(_isFullScreen == isFullScreen) return;
 	_isFullScreen = isFullScreen;
 
-	glfwDestroyWindow(_mainWindow);
-	createWindow();
+	if(_mainWindow)
+	{
+		glfwDestroyWindow(_mainWindow);
+		createWindow();
+	}
 }
 
 const Size& GLView::getResolutionSize() const

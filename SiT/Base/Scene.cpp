@@ -34,7 +34,7 @@ bool Scene::init()
 	{
 		Director * director;
 		if(!(director = Director::getInstance())) break;
-		this->setContentSize(director->getWinSize());
+		this->setScreenSize(director->getWinSize());
 		ret = true;
 	} while (0);
 	return ret;

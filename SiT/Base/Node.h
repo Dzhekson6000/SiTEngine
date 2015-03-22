@@ -5,8 +5,8 @@
 #include "Ref.h"
 #include <vector>
 #include "Geometry/Geometry.h"
-#include "Graphics/Render/Renderer.h"
 #include "Base/PoolManager.h"
+#include "Graphics/Shader/ShaderManager.h"
 
 NS_SIT_BEGIN
 
@@ -18,11 +18,13 @@ protected:
 	Scale				_scale;
 	Point				_point;
 	Size				_size;
+	Size*				_screenSize;
 	Rotate				_rotate;
 	std::vector<Node*>	_children;
 	Node*				_parent;
 	int					_localZOrder;
 	bool				_visible;
+	Shader*				_shader;
 public:
 	static Node* create(void);
 
@@ -30,6 +32,7 @@ public:
 	virtual const Scale&	getScale() const;
 	virtual const Point&	getPosition() const;
 	virtual const Size&		getSize() const;
+	virtual const Size*		getScreenSize();
 	virtual const Rotate&	getRotation() const;
 	virtual const int		getLocalZOrder();
 	virtual const Node*		getParent() const;
@@ -38,7 +41,7 @@ public:
 	virtual void			setScale(const Scale &scale);
 	virtual void			setPosition(const Point &point);
 	virtual void			setSize(const Size &size);
-	virtual void			setContentSize(const Size &size);
+	virtual void			setScreenSize(Size* size);
 	virtual void			setRotation(const Rotate &rotate);
 	virtual void			setLocalZOrder(int localZOrder);
 	virtual void			setParent(Node* parent);

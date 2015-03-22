@@ -1,8 +1,9 @@
 #ifndef GLVIEW_H_
 #define GLVIEW_H_
+#include "GL/glew.h"
+#include "glfw3.h"
 #include "Base/Ref.h"
 #include <string>
-#include "Shader/Shader.h"
 #include "Geometry/Geometry.h"
 
 NS_SIT_BEGIN
@@ -19,7 +20,6 @@ private:
 	int _width;
 	int _height;
 	bool _isFullScreen;
-	Shader* _shader;
 	Size _resolutionSize;
 public:
 	static GLView* create(const std::string& viewName, int width, int height);

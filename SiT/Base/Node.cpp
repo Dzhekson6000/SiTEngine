@@ -3,7 +3,7 @@
 NS_SIT_BEGIN
 
 Node::Node():
-_parent(nullptr)
+_parent(nullptr),_screenSize(nullptr)
 {
 
 }
@@ -41,6 +41,15 @@ const Size& Node::getSize() const
 	return _size;
 }
 
+const Size* Node::getScreenSize()
+{
+	if(_screenSize == nullptr)
+	{
+		_screenSize = Director::getInstance()->getWinSize();
+	}
+	return _screenSize;
+}
+
 const Rotate& Node::getRotation() const
 {
 	return _rotate;
@@ -63,27 +72,27 @@ size_t Node::getChildrenCount() const
 
 void Node::setScale( const Scale &scale )
 {
-
+	_scale = scale;
 }
 
 void Node::setPosition( const Point &point )
 {
-
+	_point = point;
 }
 
 void Node::setSize( const Size &size )
 {
-
+	_size = size;
 }
 
-void Node::setContentSize( const Size &size )
+void Node::setScreenSize(Size* size )
 {
-
+	_screenSize = size;
 }
 
 void Node::setRotation( const Rotate &rotate )
 {
-
+	_rotate = rotate;
 }
 
 void Node::setLocalZOrder( int localZOrder )

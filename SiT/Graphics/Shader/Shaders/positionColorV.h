@@ -1,6 +1,6 @@
 "													\n\
 attribute vec4 a_position;							\n\
-uniform	vec4 u_color;								\n\							\n\
+uniform	vec4 u_color;								\n\
 													\n\
 #ifdef GL_ES										\n\
 	varying lowp vec4 v_fragmentColor;				\n\

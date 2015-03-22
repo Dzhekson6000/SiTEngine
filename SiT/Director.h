@@ -27,7 +27,7 @@ public:
 	void setOpenGLView(GLView *openGLView);
 
 	void runScene(Scene *scene);
-	const Size& getWinSize() const;
+	Size* getWinSize();
 
 
 	virtual ~Director();

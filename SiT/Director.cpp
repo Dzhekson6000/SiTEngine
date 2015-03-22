@@ -90,9 +90,9 @@ void Director::runScene(Scene *scene)
 	_runningScene = scene;
 }
 
-const Size& Director::getWinSize() const
+Size* Director::getWinSize()
 {
-	return _winSize;
+	return &_winSize;
 }
 
 NS_SIT_END

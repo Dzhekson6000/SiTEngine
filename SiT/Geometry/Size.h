@@ -15,6 +15,7 @@ public:
 	Size(int width, int height):_width(width),_height(height){}
 	int getWidth(){return _width;}
 	int getHeight(){return _height;}
+	bool operator==(const Size& size) const;
 
 	static const Size ZERO;
 };

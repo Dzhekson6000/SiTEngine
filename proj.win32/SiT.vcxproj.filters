@@ -114,12 +114,6 @@
     <ClInclude Include="..\SiT\Graphics\Shader\Shaders\positionColorV.h">
       <Filter>SiT\Graphics\Shader\Shaders</Filter>
     </ClInclude>
-    <ClInclude Include="..\SiT\Graphics\Shader\Shaders\positionTextureF.h">
-      <Filter>SiT\Graphics\Shader\Shaders</Filter>
-    </ClInclude>
-    <ClInclude Include="..\SiT\Graphics\Shader\Shaders\positionTextureV.h">
-      <Filter>SiT\Graphics\Shader\Shaders</Filter>
-    </ClInclude>
     <ClInclude Include="..\SiT\Base\Ref.h">
       <Filter>SiT\Base</Filter>
     </ClInclude>
@@ -134,6 +128,12 @@
     </ClInclude>
     <ClInclude Include="..\SiT\Graphics\Render\Command\CustomCommand.h">
       <Filter>SiT\Graphics\Render\Command</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SiT\Graphics\Shader\Shaders\positionTextureV.h">
+      <Filter>SiT\Graphics\Shader\Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SiT\Graphics\Shader\Shaders\positionTextureF.h">
+      <Filter>SiT\Graphics\Shader\Shaders</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -202,6 +202,9 @@
     </ClCompile>
     <ClCompile Include="..\SiT\Geometry\Size.cpp">
       <Filter>SiT\Geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SiT\Macros.cpp">
+      <Filter>SiT</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

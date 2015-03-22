@@ -19,16 +19,10 @@ class SIT_DLL ResourceHandle
 private:
 	Resource _resource;
 	GLuint _textureId;
-	unsigned char*	_buffer;
-	int				_size;
 	unsigned int _width, _height;
 public:
 	ResourceHandle(Resource resource);
 	GLuint* getTextureId();
-	unsigned char* getBuffer();
-	void setBuffer(unsigned char* buffer);
-	int getSize();
-	void setSize(int size);
 	unsigned int getWidth();
 	void setWidth(unsigned int width);
 	unsigned int getHeight();
