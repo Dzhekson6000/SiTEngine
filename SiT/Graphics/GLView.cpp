@@ -1,4 +1,5 @@
 #include "GLView.h"
+#include "Events/GLFWEventHandler.h"
 
 NS_SIT_BEGIN
 
@@ -28,6 +29,17 @@ bool GLView::init(const std::string& viewName, int width, int height)
 
 	createWindow();
 	glfwMakeContextCurrent(_mainWindow);
+
+	GLFWEventHandler::setEventsManager(EVENTSMANADGER());
+	glfwSetMouseButtonCallback(_mainWindow, GLFWEventHandler::onGLFWMouseCallBack);
+	glfwSetCursorPosCallback(_mainWindow, GLFWEventHandler::onGLFWMouseMoveCallBack);
+	glfwSetScrollCallback(_mainWindow, GLFWEventHandler::onGLFWMouseScrollCallback);
+	glfwSetCharCallback(_mainWindow, GLFWEventHandler::onGLFWCharCallback);
+	glfwSetKeyCallback(_mainWindow, GLFWEventHandler::onGLFWKeyCallback);
+	glfwSetWindowPosCallback(_mainWindow, GLFWEventHandler::onGLFWWindowPosCallback);
+	glfwSetFramebufferSizeCallback(_mainWindow, GLFWEventHandler::onGLFWframebuffersize);
+	glfwSetWindowSizeCallback(_mainWindow, GLFWEventHandler::onGLFWWindowSizeFunCallback);
+
 
 	const GLubyte* glVersion = glGetString(GL_VERSION);
 	if ( atof((const char*)glVersion) < 1.5 )return false;

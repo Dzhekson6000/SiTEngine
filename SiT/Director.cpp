@@ -30,7 +30,6 @@ bool Director::init()
 	_openGLView = nullptr;	
 	_winSize	= Size::ZERO;
 
-
 	return true;
 }
 
@@ -56,6 +55,7 @@ void Director::setOpenGLView( GLView *openGLView )
 
 		_winSize = _openGLView->getResolutionSize();
 	}
+
 }
 
 void Director::setFPS( double interval )

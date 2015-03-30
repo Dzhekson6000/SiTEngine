@@ -90,6 +90,10 @@
     <ClInclude Include="..\SiT\Base\Ref.h" />
     <ClInclude Include="..\SiT\Base\Scene.h" />
     <ClInclude Include="..\SiT\Director.h" />
+    <ClInclude Include="..\SiT\Events\Event.h" />
+    <ClInclude Include="..\SiT\Events\EventTouch.h" />
+    <ClInclude Include="..\SiT\Events\Events.h" />
+    <ClInclude Include="..\SiT\Events\GLFWEventHandler.h" />
     <ClInclude Include="..\SiT\external\math_3d.h" />
     <ClInclude Include="..\SiT\Geometry\Geometry.h" />
     <ClInclude Include="..\SiT\Geometry\Point.h" />
@@ -123,6 +127,10 @@
     <ClCompile Include="..\SiT\Base\Ref.cpp" />
     <ClCompile Include="..\SiT\Base\Scene.cpp" />
     <ClCompile Include="..\SiT\Director.cpp" />
+    <ClCompile Include="..\SiT\Events\Event.cpp" />
+    <ClCompile Include="..\SiT\Events\EventTouch.cpp" />
+    <ClCompile Include="..\SiT\Events\Events.cpp" />
+    <ClCompile Include="..\SiT\Events\GLFWEventHandler.cpp" />
     <ClCompile Include="..\SiT\external\math_3d.cpp" />
     <ClCompile Include="..\SiT\Geometry\Rotate.cpp" />
     <ClCompile Include="..\SiT\Geometry\Scale.cpp" />

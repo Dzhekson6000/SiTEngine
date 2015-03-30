@@ -4,6 +4,7 @@
 #include "Application.h"
 #include "Graphics/GLView.h"
 #include "Graphics/Render/Renderer.h"
+#include "Events/Events.h"
 
 NS_SIT_BEGIN
 
