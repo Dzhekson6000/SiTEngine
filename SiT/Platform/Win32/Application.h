@@ -13,7 +13,6 @@ class SIT_DLL Application
 private:
 	LARGE_INTEGER _interval;
 protected:
-	HINSTANCE           _instance;
 	static Application * _application;
 	virtual bool applicationLaunching(){ return false;}
 public:

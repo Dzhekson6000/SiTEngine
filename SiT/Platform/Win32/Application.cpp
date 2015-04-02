@@ -5,9 +5,7 @@ NS_SIT_BEGIN
 Application * Application::_application = nullptr;
 
 Application::Application()
-: _instance(nullptr)
 {
-	_instance    = GetModuleHandle(nullptr);
 	assert(!_application);
 	_application = this;
 	_interval.QuadPart = 0;
@@ -46,7 +44,7 @@ int Application::run()
 		{
 			nLast.QuadPart = nNow.QuadPart;
 
-			director->drawScene();
+			director->mainLoop();
 			glview->pollEvents();
 		}
 		else{

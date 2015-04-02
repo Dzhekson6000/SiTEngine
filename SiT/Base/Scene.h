@@ -15,8 +15,8 @@ protected:
 public:
 	static Scene *create();
 	virtual ~Scene();
-	virtual bool init() override;
-	virtual Node* getScene() override;
+	virtual bool init();
+	virtual Node* getScene();
 
 	using Node::addChild;
 };

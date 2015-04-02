@@ -14,7 +14,7 @@ bool AppDelegate::applicationLaunching()
 	auto director = Director::getInstance();
 	auto glview = director->getGLView();
 	if(!glview) {
-		glview = GLView::create("Test", 800, 600);
+		glview = GLViewImpl::create("Test", 800, 600);
 		//glview->setFullScreen(true);
 		director->setOpenGLView(glview);
 	}

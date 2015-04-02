@@ -43,6 +43,7 @@ void EventsManager::removeEvent( Event* event_ )
 		if(_events[i] = event_)
 		{
 			_events.erase(_events.begin()+i);
+			return;
 		}
 	}
 }

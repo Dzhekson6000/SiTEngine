@@ -1,9 +1,18 @@
 #ifndef DERECTOR_H_
 #define DERECTOR_H_
 
-#include "Application.h"
-#include "Graphics/GLView.h"
 #include "Graphics/Render/Renderer.h"
+
+#if TARGET_PLATFORM == PLATFORM_WIN32
+#include "Platform/Win32/Application.h"
+#include "Platform/Win32/GLViewImpl.h"
+#endif
+
+#if TARGET_PLATFORM == PLATFORM_ANDROID
+#include "Platform/Android/Application.h"
+#include "Platform/Android/GLViewImpl.h"
+#endif
+
 #include "Events/Events.h"
 
 NS_SIT_BEGIN
@@ -20,12 +29,12 @@ private:
 	Renderer _renderer;
 	Scene * _runningScene;
 protected:
-	GLView *_openGLView;
+	GLViewImpl *_openGLView;
 public:
 	static Director* getInstance();
-	inline GLView* getGLView() { return _openGLView; }
+	inline GLViewImpl* getGLView() { return _openGLView; }
 	Renderer* getRenderer();
-	void setOpenGLView(GLView *openGLView);
+	void setOpenGLView(GLViewImpl *openGLView);
 
 	void runScene(Scene *scene);
 	Size* getWinSize();

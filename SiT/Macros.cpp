@@ -1,7 +1,9 @@
-#include <Windows.h>
 #include <stdio.h>
 #include "Macros.h"
 
+
+#if TARGET_PLATFORM == PLATFORM_WIN32
+#include <Windows.h>
 
 void log(const char * format, ...)
 {
@@ -15,3 +17,6 @@ void log(const char * format, ...)
 	OutputDebugString(wszBuf);
 	va_end(args);
 }
+#endif
+
+

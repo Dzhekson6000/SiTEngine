@@ -15,7 +15,7 @@ Sprite* Sprite::create( const std::string& path )
 
 bool Sprite::init( const std::string& path)
 {
-	_image = ResourceManager::getInstance()->getHandle(&Resource(path));
+	_image = ResourceManager::getInstance()->getHandle(new Resource(path));
 
 	_shader = ShaderManager::getInstance()->getShader(Shader::SHADER_NAME_POSITION_TEXTURE);
 

@@ -44,7 +44,7 @@ Director::~Director(void)
 	}
 }
 
-void Director::setOpenGLView( GLView *openGLView )
+void Director::setOpenGLView( GLViewImpl *openGLView )
 {
 	if (_openGLView != openGLView)
 	{
@@ -67,15 +67,13 @@ void Director::setFPS( double interval )
 void Director::mainLoop()
 {
 	drawScene();
-	PoolManager::getInstance()->getCurrentPool()->clear();
+	//PoolManager::getInstance()->getCurrentPool()->clear();
 }
 
 void Director::drawScene()
 {
 	_openGLView->clear(0.0f,0.0f,0.0f);
-
 	if(_runningScene)_runningScene->visit(&_renderer);
-
 	_renderer.render();
 	if (_openGLView)_openGLView->swapBuffers();
 }

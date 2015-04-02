@@ -57,8 +57,8 @@ ResourceHandle* ResourceManager::loadHandle( Resource* resource )
 {
 	ResourceHandle* resourceHandle = new ResourceHandle(*resource);
 
-	int width, height;
-	unsigned char* buffer = SOIL_load_image(resource->_name.c_str(), &width, &height, 0, SOIL_LOAD_RGB);
+	int width = 0, height = 0;
+	unsigned char* buffer = 0/* = SOIL_load_image(resource->_name.c_str(), &width, &height, 0, SOIL_LOAD_RGB)*/;
 
 	resourceHandle->setWidth(width);
 	resourceHandle->setHeight(height);

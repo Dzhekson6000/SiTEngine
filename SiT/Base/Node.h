@@ -53,7 +53,7 @@ public:
 	virtual void	removeAllChildren();
 
 	virtual void	draw(Renderer *renderer);
-	virtual void	visit() final;
+	virtual void	visit();
 	virtual void	visit(Renderer *renderer);
 	virtual void	cleanup();
 

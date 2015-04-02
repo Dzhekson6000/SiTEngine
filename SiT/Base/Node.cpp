@@ -143,7 +143,6 @@ void Node::visit()
 void Node::visit(Renderer *renderer)
 {
 	if (!_visible)return;
-	
 	if(!_children.empty())
 	{
 		for(auto child:_children)

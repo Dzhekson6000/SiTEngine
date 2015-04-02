@@ -43,6 +43,7 @@
     <LinkIncremental>true</LinkIncremental>
     <LibraryPath>$(LibraryPath)</LibraryPath>
     <ExecutablePath>$(ExecutablePath)</ExecutablePath>
+    <IncludePath>$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -84,7 +85,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="..\Classes\AppDelegate.h" />
-    <ClInclude Include="..\SiT\Application.h" />
     <ClInclude Include="..\SiT\Base\Node.h" />
     <ClInclude Include="..\SiT\Base\PoolManager.h" />
     <ClInclude Include="..\SiT\Base\Ref.h" />
@@ -114,6 +114,9 @@
     <ClInclude Include="..\SiT\Graphics\Shader\Shaders\positionTextureV.h" />
     <ClInclude Include="..\SiT\Graphics\Shader\Shaders\positionTextureF.h" />
     <ClInclude Include="..\SiT\Macros.h" />
+    <ClInclude Include="..\SiT\Platform\MacrosPlatform.h" />
+    <ClInclude Include="..\SiT\Platform\Win32\Application.h" />
+    <ClInclude Include="..\SiT\Platform\Win32\GLViewImpl.h" />
     <ClInclude Include="..\SiT\Resource\ResourceHandle.h" />
     <ClInclude Include="..\SiT\Resource\ResourceManager.h" />
     <ClInclude Include="..\SiT\SiT.h" />
@@ -121,7 +124,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Classes\AppDelegate.cpp" />
-    <ClCompile Include="..\SiT\Application.cpp" />
     <ClCompile Include="..\SiT\Base\Node.cpp" />
     <ClCompile Include="..\SiT\Base\PoolManager.cpp" />
     <ClCompile Include="..\SiT\Base\Ref.cpp" />
@@ -144,6 +146,8 @@
     <ClCompile Include="..\SiT\Graphics\Shader\ShaderManager.cpp" />
     <ClCompile Include="..\SiT\Graphics\Shader\Shaders.cpp" />
     <ClCompile Include="..\SiT\Macros.cpp" />
+    <ClCompile Include="..\SiT\Platform\Win32\Application.cpp" />
+    <ClCompile Include="..\SiT\Platform\Win32\GLViewImpl.cpp" />
     <ClCompile Include="..\SiT\Resource\ResourceHandle.cpp" />
     <ClCompile Include="..\SiT\Resource\ResourceManager.cpp" />
     <ClCompile Include="main.cpp" />

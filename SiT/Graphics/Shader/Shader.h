@@ -1,9 +1,21 @@
 #ifndef SHADER_H_
 #define SHADER_H_
+
+#include "Base/Ref.h"
+
+#if TARGET_PLATFORM == PLATFORM_WIN32
 #include "GL/glew.h"
 #include "glfw3.h"
-#include "Base/Ref.h"
+#endif
+
+#if TARGET_PLATFORM == PLATFORM_ANDROID
+#include <GLES2/gl2.h>
+#include <GLES2/gl2ext.h>
+#endif
+
 #include <set>
+#include <cstring>
+#include <string>
 
 NS_SIT_BEGIN
 
@@ -11,6 +23,7 @@ class SIT_DLL Shader: public Ref
 {
 private:
 	bool compileShader(GLuint * shader, GLenum type, const GLchar* source);
+	std::string logForOpenGLShader(GLuint shader);
 public:
 	Shader();
 	~Shader();

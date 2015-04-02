@@ -54,6 +54,24 @@ bool Shader::initWithByteArrays(const GLchar* shaderByteArrayV, const GLchar* sh
 	return true;
 }
 
+std::string Shader::logForOpenGLShader(GLuint shader)
+{
+	std::string ret;
+	GLint logLength = 0, charsWritten = 0;
+
+	glGetShaderiv(shader, GL_INFO_LOG_LENGTH, &logLength);
+	if (logLength < 1)
+		return "";
+
+	char *logBytes = (char*)malloc(logLength + 1);
+	glGetShaderInfoLog(shader, logLength, &charsWritten, logBytes);
+	logBytes[logLength] = '\0';
+	ret = logBytes;
+
+	free(logBytes);
+	return ret;
+}
+
 bool Shader::compileShader(GLuint * shader, GLenum type, const GLchar* source)
 {
 	GLint status;
@@ -63,8 +81,12 @@ bool Shader::compileShader(GLuint * shader, GLenum type, const GLchar* source)
 	}
 
 	const GLchar *sources[] = {
-		"#version 120\n",
-		(type == GL_VERTEX_SHADER ? "precision highp float;\n" : "precision mediump float;\n"),
+		//"#version 120\n",
+#if TARGET_PLATFORM == PLATFORM_WIN32
+		(type == GL_VERTEX_SHADER ? "precision mediump float;\n precision mediump int;\n" : "precision mediump float;\n precision mediump int;\n"),
+#elif (TARGET_PLATFORM != PLATFORM_WIN32 && TARGET_PLATFORM != PLATFORM_LINUX && TARGET_PLATFORM != PLATFORM_MAC)
+		(type == GL_VERTEX_SHADER ? "precision highp float;\n precision highp int;\n" : "precision mediump float;\n precision mediump int;\n"),
+#endif
 		"uniform mat4 MVPMatrix;\n",
 		source,
 	};
@@ -86,11 +108,15 @@ bool Shader::compileShader(GLuint * shader, GLenum type, const GLchar* source)
 		glGetShaderSource(*shader, length, nullptr, src);
 		LOG("ERROR: Failed to compile shader:\n%s", src);
 
+		LOG("SiT: %s", logForOpenGLShader(*shader).c_str());
+
 		free(src);
-		abort();
+		//abort();
 	}
 	return (status == GL_TRUE);
 }
+
+
 
 GLint Shader::getAttribLocation(const char* attributeName) const
 {

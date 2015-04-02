@@ -43,6 +43,18 @@
     <Filter Include="SiT\Graphics\Events">
       <UniqueIdentifier>{8464ead0-83d6-4e4e-8d27-1e806557d48e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="SiT\Platform">
+      <UniqueIdentifier>{20cbc513-85e5-4a6c-9995-bb4a5177524e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SiT\Platform\Android">
+      <UniqueIdentifier>{8bb04f80-cc31-4bbc-9a0f-e409b81de87c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SiT\Platform\Android\cpp">
+      <UniqueIdentifier>{fe749911-bb8e-44f5-8f6f-4d8cc915713e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SiT\Platform\Win32">
+      <UniqueIdentifier>{4cb3e26a-3eee-4855-ab26-b5ebc41c7cdc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -80,9 +92,6 @@
     </ClInclude>
     <ClInclude Include="..\SiT\Resource\ResourceManager.h">
       <Filter>SiT\Resource</Filter>
-    </ClInclude>
-    <ClInclude Include="..\SiT\Application.h">
-      <Filter>SiT</Filter>
     </ClInclude>
     <ClInclude Include="..\SiT\Director.h">
       <Filter>SiT</Filter>
@@ -150,6 +159,15 @@
     <ClInclude Include="..\SiT\Events\EventTouch.h">
       <Filter>SiT\Graphics\Events</Filter>
     </ClInclude>
+    <ClInclude Include="..\SiT\Platform\MacrosPlatform.h">
+      <Filter>SiT\Platform</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SiT\Platform\Win32\Application.h">
+      <Filter>SiT\Platform\Win32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SiT\Platform\Win32\GLViewImpl.h">
+      <Filter>SiT\Platform\Win32</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -178,9 +196,6 @@
     </ClCompile>
     <ClCompile Include="..\SiT\Resource\ResourceManager.cpp">
       <Filter>SiT\Resource</Filter>
-    </ClCompile>
-    <ClCompile Include="..\SiT\Application.cpp">
-      <Filter>SiT</Filter>
     </ClCompile>
     <ClCompile Include="..\SiT\Director.cpp">
       <Filter>SiT</Filter>
@@ -232,6 +247,12 @@
     </ClCompile>
     <ClCompile Include="..\SiT\Events\EventTouch.cpp">
       <Filter>SiT\Graphics\Events</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SiT\Platform\Win32\Application.cpp">
+      <Filter>SiT\Platform\Win32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SiT\Platform\Win32\GLViewImpl.cpp">
+      <Filter>SiT\Platform\Win32</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
