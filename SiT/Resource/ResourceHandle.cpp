@@ -2,33 +2,14 @@
 
 NS_SIT_BEGIN
 
-ResourceHandle::ResourceHandle( Resource resource )
-:_resource(resource), _width(0), _height(0)
+ResourceHandle::ResourceHandle( Resource resource, Type	type)
+:_resource(resource), _type(type)
 {
 }
 
-GLuint* ResourceHandle::getTextureId()
+ResourceHandle::Type ResourceHandle::getType()
 {
-	return &_textureId;
-}
-unsigned int ResourceHandle::getWidth()
-{
-	return _width;
-}
-
-unsigned int ResourceHandle::getHeight()
-{
-	return _height;
-}
-
-void ResourceHandle::setWidth( unsigned int width )
-{
-	_width = width;
-}
-
-void ResourceHandle::setHeight( unsigned int height )
-{
-	_height = height;
+	return _type;
 }
 
 NS_SIT_END

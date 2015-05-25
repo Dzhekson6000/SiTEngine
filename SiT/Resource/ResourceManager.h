@@ -1,7 +1,7 @@
 #ifndef RESOURCEMANAGER_H_
 #define RESOURCEMANAGER_H_
 
-#include "Platform/MacrosPlatform.h"
+#include "Macros.h"
 
 #if TARGET_PLATFORM == PLATFORM_WIN32
 #include "GL/glew.h"
@@ -13,9 +13,9 @@
 #include <GLES2/gl2ext.h>
 #endif
 
-#include "ResourceHandle.h"
+#include "Texture.h"
+
 #include <map>
-//#include <SOIL.h>
 
 NS_SIT_BEGIN
 

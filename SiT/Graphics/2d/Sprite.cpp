@@ -54,9 +54,9 @@ bool Sprite::init( const std::string& path)
 const Matrix4f* Sprite::transform()
 {
 	Size screen = *getScreenSize();
-
-	float scaleX = (float)_image->getWidth()/(float)(screen.getWidth()/2) - 1;
-	float scaleY = (float)_image->getHeight()/(float)(screen.getHeight()/2) - 1;
+	Texture* i = (Texture*)_image;
+	float scaleX = (float)((Texture*)_image)->getWidth()/(float)(screen.getWidth()/2) - 1;
+	float scaleY = (float)((Texture*)_image)->getHeight()/(float)(screen.getHeight()/2) - 1;
 
 	Matrix4f scale, rotate, translation;
 	scale.InitScaleTransform(
@@ -67,8 +67,8 @@ const Matrix4f* Sprite::transform()
 	rotate.InitRotateTransform(_rotate.getX(), _rotate.getY(), _rotate.getZ());
 
 	translation.InitTranslationTransform(
-		_point.getX()/_image->getWidth(),
-		_point.getY()/_image->getHeight(),
+		_point.getX()/((Texture*)_image)->getWidth(),
+		_point.getY()/((Texture*)_image)->getHeight(),
 		_point.getZ()
 	);
 
@@ -87,8 +87,14 @@ void Sprite::onDraw()
 {
 	_shader->use();
 
+	if(((Texture*)_image)->getPremultipliedAlpha())
+	{
+		glEnable(GL_BLEND);
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	}
+
 	glActiveTexture(GL_TEXTURE0);
-	glBindTexture(GL_TEXTURE_2D, *(_image->getTextureId()));
+	glBindTexture(GL_TEXTURE_2D, *( ((Texture*)_image)->getTextureId()));
 	_shader->setUniformLocationWith1i(_shader->getUniformLocation(_shader->UNIFORM_NAME_SAMPLER), 0);
 	_shader->setUniformLocationWithMatrix4fv(_shader->getUniformLocation(_shader->UNIFORM_NAME_MVP_MATRIX), (const GLfloat*)transform(), 1);
 
@@ -96,6 +102,10 @@ void Sprite::onDraw()
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _IBO);
 	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 
+	if(((Texture*)_image)->getPremultipliedAlpha())
+	{
+		glDisable(GL_BLEND);
+	}
 }
 
 NS_SIT_END

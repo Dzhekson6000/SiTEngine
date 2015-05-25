@@ -168,6 +168,21 @@
     <ClInclude Include="..\SiT\Platform\Win32\GLViewImpl.h">
       <Filter>SiT\Platform\Win32</Filter>
     </ClInclude>
+    <ClInclude Include="..\SiT\Resource\Data.h">
+      <Filter>SiT\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SiT\Resource\FileUtils.h">
+      <Filter>SiT\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SiT\Resource\Image.h">
+      <Filter>SiT\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SiT\Resource\Texture.h">
+      <Filter>SiT\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SiT\Platform\Win32\FileUtilsImpl.h">
+      <Filter>SiT\Platform\Win32</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -252,6 +267,21 @@
       <Filter>SiT\Platform\Win32</Filter>
     </ClCompile>
     <ClCompile Include="..\SiT\Platform\Win32\GLViewImpl.cpp">
+      <Filter>SiT\Platform\Win32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SiT\Resource\Data.cpp">
+      <Filter>SiT\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SiT\Resource\FileUtils.cpp">
+      <Filter>SiT\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SiT\Resource\Image.cpp">
+      <Filter>SiT\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SiT\Resource\Texture.cpp">
+      <Filter>SiT\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SiT\Platform\Win32\FileUtilsImpl.cpp">
       <Filter>SiT\Platform\Win32</Filter>
     </ClCompile>
   </ItemGroup>

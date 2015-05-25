@@ -22,8 +22,9 @@ bool AppDelegate::applicationLaunching()
 	director->setFPS(1.0/60.0);
 
 	Scene* scene = Scene::create();
-	Sprite * sprite = Sprite::create("1.bmp");
-	scene->addChild(sprite);
+	Sprite * sprite2 = Sprite::create("2.png");
+	sprite2->setPosition(Point(-200,-200));
+	scene->addChild(sprite2);
 
 	director->runScene(scene);
 

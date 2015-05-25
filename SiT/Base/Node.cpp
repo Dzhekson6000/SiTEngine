@@ -2,8 +2,8 @@
 
 NS_SIT_BEGIN
 
-Node::Node():
-_parent(nullptr),_screenSize(nullptr)
+Node::Node() :
+_parent(nullptr), _screenSize(nullptr), _visible(true)
 {
 
 }

@@ -1,4 +1,5 @@
 #include "ResourceManager.h"
+#include "Image.h"
 
 NS_SIT_BEGIN
 
@@ -55,26 +56,11 @@ ResourceHandle* ResourceManager::findHandle( Resource* resource )
 
 ResourceHandle* ResourceManager::loadHandle( Resource* resource )
 {
-	ResourceHandle* resourceHandle = new ResourceHandle(*resource);
+	Image image;
+	image.initImageFile(resource->_name);
 
-	int width = 0, height = 0;
-	unsigned char* buffer = 0/* = SOIL_load_image(resource->_name.c_str(), &width, &height, 0, SOIL_LOAD_RGB)*/;
-
-	resourceHandle->setWidth(width);
-	resourceHandle->setHeight(height);
-
-	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
-
-	glGenTextures(1, resourceHandle->getTextureId());
-	glBindTexture(GL_TEXTURE_2D, *(resourceHandle->getTextureId()));
-
-	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, buffer);
+	ResourceHandle* resourceHandle = new Texture(*resource);
+	((Texture*) resourceHandle)->initImage(&image);
 
 	return resourceHandle;
 }
