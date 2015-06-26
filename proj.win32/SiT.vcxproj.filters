@@ -55,6 +55,9 @@
     <Filter Include="SiT\Platform\Win32">
       <UniqueIdentifier>{4cb3e26a-3eee-4855-ab26-b5ebc41c7cdc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="SiT\Graphics\2d\Label">
+      <UniqueIdentifier>{86faec2a-fb93-4583-9557-bfa3ecd8fc47}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -183,13 +186,25 @@
     <ClInclude Include="..\SiT\Platform\Win32\FileUtilsImpl.h">
       <Filter>SiT\Platform\Win32</Filter>
     </ClInclude>
+    <ClInclude Include="..\SiT\Graphics\2d\Label\Label.h">
+      <Filter>SiT\Graphics\2d\Label</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SiT\Graphics\Shader\Shaders\positionColorTextureF.h">
+      <Filter>SiT\Graphics\Shader\Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SiT\Graphics\Shader\Shaders\positionColorTextureV.h">
+      <Filter>SiT\Graphics\Shader\Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SiT\Geometry\Color.h">
+      <Filter>SiT\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SiT\Resource\FontAtlas.h">
+      <Filter>SiT\Resource</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>win32</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\AppDelegate.cpp">
-      <Filter>Classes</Filter>
     </ClCompile>
     <ClCompile Include="..\SiT\external\math_3d.cpp">
       <Filter>SiT\external</Filter>
@@ -283,6 +298,15 @@
     </ClCompile>
     <ClCompile Include="..\SiT\Platform\Win32\FileUtilsImpl.cpp">
       <Filter>SiT\Platform\Win32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SiT\Graphics\2d\Label\Label.cpp">
+      <Filter>SiT\Graphics\2d\Label</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\AppDelegate.cpp">
+      <Filter>Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SiT\Resource\FontAtlas.cpp">
+      <Filter>SiT\Resource</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

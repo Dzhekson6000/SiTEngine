@@ -83,21 +83,21 @@ bool Image::initJpgData( const unsigned char * data, size_t dataLen )
 
 	bool ret = false;
 	do 
-    {
+	{
 		cinfo.err = jpeg_std_error(&jerr.pub);
 		jerr.pub.error_exit = myErrorExit;
 		if (setjmp(jerr.setjmp_buffer))
-        {
+		{
 			jpeg_destroy_decompress(&cinfo);
 			break;
 		}
 
-        jpeg_create_decompress( &cinfo );
+		jpeg_create_decompress( &cinfo );
 
 #if (JPEG_LIB_VERSION >= 90)
-        jpeg_read_header(&cinfo, TRUE);
+		jpeg_read_header(&cinfo, TRUE);
 #else
-        jpeg_read_header(&cinfo, TRUE);
+		jpeg_read_header(&cinfo, TRUE);
 #endif
 
 		if (cinfo.jpeg_color_space == JCS_GRAYSCALE)
@@ -109,25 +109,25 @@ bool Image::initJpgData( const unsigned char * data, size_t dataLen )
 			_renderFormat = Texture::PixelFormat::RGB888;
 		}
 
-        jpeg_start_decompress( &cinfo );
+		jpeg_start_decompress( &cinfo );
 
-        _width  = cinfo.output_width;
-        _height = cinfo.output_height;
+		_width  = cinfo.output_width;
+		_height = cinfo.output_height;
 
-        _dataLen = cinfo.output_width*cinfo.output_height*cinfo.output_components;
-        _data = static_cast<unsigned char*>(malloc(_dataLen * sizeof(unsigned char)));
-        if(!_data)break;
+		_dataLen = cinfo.output_width*cinfo.output_height*cinfo.output_components;
+		_data = static_cast<unsigned char*>(malloc(_dataLen * sizeof(unsigned char)));
+		if(!_data)break;
 
-        while (cinfo.output_scanline < cinfo.output_height)
-        {
-            row_pointer[0] = _data + location;
-            location += cinfo.output_width*cinfo.output_components;
-            jpeg_read_scanlines(&cinfo, row_pointer, 1);
-        }
+		while (cinfo.output_scanline < cinfo.output_height)
+		{
+			row_pointer[0] = _data + location;
+			location += cinfo.output_width*cinfo.output_components;
+			jpeg_read_scanlines(&cinfo, row_pointer, 1);
+		}
 		jpeg_destroy_decompress( &cinfo );
-        ret = true;
-    } while (0);
-    return ret;
+		ret = true;
+	} while (0);
+	return ret;
 }
 
 

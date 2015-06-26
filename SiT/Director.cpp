@@ -72,7 +72,7 @@ void Director::mainLoop()
 
 void Director::drawScene()
 {
-	_openGLView->clear(0.0f,0.0f,0.0f);
+	_openGLView->clear(0.0f,0.0f,1.0f);
 	if(_runningScene)_runningScene->visit(&_renderer);
 	_renderer.render();
 	if (_openGLView)_openGLView->swapBuffers();

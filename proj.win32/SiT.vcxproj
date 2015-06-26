@@ -55,7 +55,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>..;..\SiT\external\glfw3\include\win32;..\SiT;..\Classes;..\SiT\external\SOIL\include;..\SiT\external\glew\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..;..\SiT\external\glfw3\include\win32;..\SiT;..\Classes;..\SiT\external\SOIL\include;..\SiT\external\glew\include;..\SiT\external\freetype\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>false</MultiProcessorCompilation>
     </ClCompile>
     <Link>
@@ -95,12 +95,14 @@
     <ClInclude Include="..\SiT\Events\Events.h" />
     <ClInclude Include="..\SiT\Events\GLFWEventHandler.h" />
     <ClInclude Include="..\SiT\external\math_3d.h" />
+    <ClInclude Include="..\SiT\Geometry\Color.h" />
     <ClInclude Include="..\SiT\Geometry\Geometry.h" />
     <ClInclude Include="..\SiT\Geometry\Point.h" />
     <ClInclude Include="..\SiT\Geometry\Rotate.h" />
     <ClInclude Include="..\SiT\Geometry\Scale.h" />
     <ClInclude Include="..\SiT\Geometry\Size.h" />
     <ClInclude Include="..\SiT\Geometry\Vertex.h" />
+    <ClInclude Include="..\SiT\Graphics\2d\Label\Label.h" />
     <ClInclude Include="..\SiT\Graphics\2d\Sprite.h" />
     <ClInclude Include="..\SiT\Graphics\GLView.h" />
     <ClInclude Include="..\SiT\Graphics\Render\Command\CustomCommand.h" />
@@ -109,6 +111,8 @@
     <ClInclude Include="..\SiT\Graphics\Shader\Shader.h" />
     <ClInclude Include="..\SiT\Graphics\Shader\ShaderManager.h" />
     <ClInclude Include="..\SiT\Graphics\Shader\Shaders.h" />
+    <ClInclude Include="..\SiT\Graphics\Shader\Shaders\positionColorTextureF.h" />
+    <ClInclude Include="..\SiT\Graphics\Shader\Shaders\positionColorTextureV.h" />
     <ClInclude Include="..\SiT\Graphics\Shader\Shaders\positionColorF.h" />
     <ClInclude Include="..\SiT\Graphics\Shader\Shaders\positionColorV.h" />
     <ClInclude Include="..\SiT\Graphics\Shader\Shaders\positionTextureV.h" />
@@ -120,6 +124,7 @@
     <ClInclude Include="..\SiT\Platform\Win32\GLViewImpl.h" />
     <ClInclude Include="..\SiT\Resource\Data.h" />
     <ClInclude Include="..\SiT\Resource\FileUtils.h" />
+    <ClInclude Include="..\SiT\Resource\FontAtlas.h" />
     <ClInclude Include="..\SiT\Resource\Image.h" />
     <ClInclude Include="..\SiT\Resource\ResourceHandle.h" />
     <ClInclude Include="..\SiT\Resource\ResourceManager.h" />
@@ -142,6 +147,7 @@
     <ClCompile Include="..\SiT\Geometry\Rotate.cpp" />
     <ClCompile Include="..\SiT\Geometry\Scale.cpp" />
     <ClCompile Include="..\SiT\Geometry\Size.cpp" />
+    <ClCompile Include="..\SiT\Graphics\2d\Label\Label.cpp" />
     <ClCompile Include="..\SiT\Graphics\2d\Sprite.cpp" />
     <ClCompile Include="..\SiT\Graphics\GLView.cpp" />
     <ClCompile Include="..\SiT\Graphics\Render\Command\CustomCommand.cpp" />
@@ -156,6 +162,7 @@
     <ClCompile Include="..\SiT\Platform\Win32\GLViewImpl.cpp" />
     <ClCompile Include="..\SiT\Resource\Data.cpp" />
     <ClCompile Include="..\SiT\Resource\FileUtils.cpp" />
+    <ClCompile Include="..\SiT\Resource\FontAtlas.cpp" />
     <ClCompile Include="..\SiT\Resource\Image.cpp" />
     <ClCompile Include="..\SiT\Resource\ResourceHandle.cpp" />
     <ClCompile Include="..\SiT\Resource\ResourceManager.cpp" />
