@@ -3,3 +3,4 @@
 #include "Size.h"
 #include "Rotate.h"
 #include "Scale.h"
+#include "Color.h"
