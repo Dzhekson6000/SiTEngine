@@ -44,7 +44,7 @@ unsigned char* Data::getBytes() const
 
 void Data::clear()
 {
-	free(_bytes);
+	if (!_bytes)free(_bytes);
 	_bytes = nullptr;
 	_size = 0;
 }
