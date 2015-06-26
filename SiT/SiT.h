@@ -5,6 +5,7 @@
 #include "Director.h"
 #include "Base/Scene.h"
 #include "Graphics/2d/Sprite.h"
+#include "Graphics/2d/Label/Label.h"
 
 #if TARGET_PLATFORM == PLATFORM_WIN32
 	#include "Platform/Win32/Application.h"
@@ -16,6 +17,7 @@
 	#pragma comment (lib, "libjpeg.lib")
 	#pragma comment (lib, "libpng.lib")
 	#pragma comment (lib, "libzlib.lib")
+	#pragma comment (lib, "freetype.lib")
 #endif
 
 #if TARGET_PLATFORM == PLATFORM_ANDROID

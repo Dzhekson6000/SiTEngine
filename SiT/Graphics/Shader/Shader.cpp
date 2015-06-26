@@ -4,9 +4,11 @@ NS_SIT_BEGIN
 
 const char* Shader::SHADER_NAME_POSITION_COLOR = "ShaderPositionColor";
 const char* Shader::SHADER_NAME_POSITION_TEXTURE = "ShaderPositionTexture";
+const char* Shader::SHADER_NAME_POSITION_COLOR_TEXTURE = "ShaderPositionColorTexture";
 
 const char* Shader::UNIFORM_NAME_MVP_MATRIX = "MVPMatrix";
 const char* Shader::UNIFORM_NAME_SAMPLER	= "u_Texture0";
+const char* Shader::UNIFORM_NAME_COLOR		= "u_color";
 
 const char* Shader::ATTRIBUTE_NAME_COLOR = "a_color";
 const char* Shader::ATTRIBUTE_NAME_POSITION = "a_position";
@@ -138,6 +140,7 @@ void Shader::updateUniforms()
 {
 	_uniforms[UNIFORM_MVP_MATRIX]	= glGetUniformLocation(_shader, UNIFORM_NAME_MVP_MATRIX);
 	_uniforms[UNIFORM_SAMPLER]		= glGetUniformLocation(_shader, UNIFORM_NAME_SAMPLER);
+	_uniforms[UNIFORM_COLOR]		= glGetUniformLocation(_shader, UNIFORM_NAME_COLOR);
 
 	this->use();
 

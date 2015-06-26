@@ -12,4 +12,9 @@ ResourceHandle::Type ResourceHandle::getType()
 	return _type;
 }
 
+Resource ResourceHandle::getResource()
+{
+	return _resource;
+}
+
 NS_SIT_END

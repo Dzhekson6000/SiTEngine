@@ -5,6 +5,7 @@ NS_SIT_BEGIN
 enum {
 	shaderTypePositionColor,
 	shaderTypePositionTexture,
+	shaderTypePositionColorTexture,
 	shaderType_MAX,
 };
 
@@ -50,12 +51,16 @@ bool ShaderManager::init()
 void ShaderManager::loadDefaultShaders()
 {
 	Shader* shader = new Shader();
-//	loadDefaultShader(shader, shaderTypePositionColor);
-//	_shaders.insert( std::make_pair( Shader::SHADER_NAME_POSITION_COLOR, shader ) );
+	loadDefaultShader(shader, shaderTypePositionColor);
+	_shaders.insert( std::make_pair( Shader::SHADER_NAME_POSITION_COLOR, shader ) );
 
-//	shader = new Shader();
+	shader = new Shader();
 	loadDefaultShader(shader, shaderTypePositionTexture);
 	_shaders.insert( std::make_pair( Shader::SHADER_NAME_POSITION_TEXTURE, shader ) );
+
+	shader = new Shader();
+	loadDefaultShader(shader, shaderTypePositionColorTexture);
+	_shaders.insert(std::make_pair(Shader::SHADER_NAME_POSITION_COLOR_TEXTURE, shader));
 }
 
 void ShaderManager::reloadDefaultShaders()
@@ -75,6 +80,14 @@ void ShaderManager::loadDefaultShader(Shader *shader, int type)
 		break;
 	case shaderTypePositionTexture:
 		shader->initWithByteArrays(positionTextureV, positionTextureF);
+
+		shader->bindAttribLocation(Shader::ATTRIBUTE_NAME_POSITION, Shader::VERTEX_ATTRIB_POSITION);
+		shader->bindAttribLocation(Shader::ATTRIBUTE_NAME_COLOR, Shader::VERTEX_ATTRIB_COLOR);
+		shader->bindAttribLocation(Shader::ATTRIBUTE_NAME_TEX_COORD, Shader::VERTEX_ATTRIB_TEX_COORDS);
+
+		break;
+	case shaderTypePositionColorTexture:
+		shader->initWithByteArrays(positionColorTextureV, positionColorTextureF);
 
 		shader->bindAttribLocation(Shader::ATTRIBUTE_NAME_POSITION, Shader::VERTEX_ATTRIB_POSITION);
 		shader->bindAttribLocation(Shader::ATTRIBUTE_NAME_COLOR, Shader::VERTEX_ATTRIB_COLOR);

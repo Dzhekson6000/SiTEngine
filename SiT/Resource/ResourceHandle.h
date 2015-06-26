@@ -19,7 +19,8 @@ public:
 	enum class Type
 	{
 		noType,
-		TEXTURE
+		TEXTURE,
+		FONT,
 	};
 private:
 	Resource	_resource;
@@ -27,6 +28,7 @@ private:
 public:
 	ResourceHandle(Resource resource, Type type);
 	Type getType();
+	Resource getResource();
 };
 
 NS_SIT_END

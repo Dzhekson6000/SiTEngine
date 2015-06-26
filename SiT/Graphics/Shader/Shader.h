@@ -31,6 +31,7 @@ public:
 	void use();
 	void updateUniforms();
 	void reset();
+	GLuint getShader(){ return _shader; }
 
 	bool initWithByteArrays(const GLchar* shaderByteArrayV, const GLchar* shaderByteArrayF);
 
@@ -47,9 +48,9 @@ public:
 	void setUniformLocationWith3iv(GLint location, GLint* ints, unsigned int numberOfArrays);
 	void setUniformLocationWith4iv(GLint location, GLint* ints, unsigned int numberOfArrays);
 	void setUniformLocationWith1f(GLint location, GLfloat f1);
-    void setUniformLocationWith2f(GLint location, GLfloat f1, GLfloat f2);
-    void setUniformLocationWith3f(GLint location, GLfloat f1, GLfloat f2, GLfloat f3);
-    void setUniformLocationWith4f(GLint location, GLfloat f1, GLfloat f2, GLfloat f3, GLfloat f4);
+	void setUniformLocationWith2f(GLint location, GLfloat f1, GLfloat f2);
+	void setUniformLocationWith3f(GLint location, GLfloat f1, GLfloat f2, GLfloat f3);
+	void setUniformLocationWith4f(GLint location, GLfloat f1, GLfloat f2, GLfloat f3, GLfloat f4);
 	void setUniformLocationWith2fv(GLint location, const GLfloat* floats, unsigned int numberOfArrays);
 	void setUniformLocationWith3fv(GLint location, const GLfloat* floats, unsigned int numberOfArrays);
 	void setUniformLocationWith4fv(GLint location, const GLfloat* floats, unsigned int numberOfArrays);
@@ -69,15 +70,18 @@ public:
 	{
 		UNIFORM_MVP_MATRIX,
 		UNIFORM_SAMPLER,
+		UNIFORM_COLOR,
 
 		UNIFORM_MAX,
 	};
 
 	static const char* SHADER_NAME_POSITION_COLOR;
 	static const char* SHADER_NAME_POSITION_TEXTURE;
+	static const char* SHADER_NAME_POSITION_COLOR_TEXTURE;
 
 	static const char* UNIFORM_NAME_MVP_MATRIX;
 	static const char* UNIFORM_NAME_SAMPLER;
+	static const char* UNIFORM_NAME_COLOR;
 
 	static const char* ATTRIBUTE_NAME_COLOR;
 	static const char* ATTRIBUTE_NAME_POSITION;

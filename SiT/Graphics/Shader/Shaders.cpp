@@ -14,4 +14,10 @@ const GLchar * positionTextureV =
 const GLchar * positionTextureF =
 #include "Shaders/positionTextureF.h"
 
+const GLchar * positionColorTextureV =
+#include "Shaders/positionColorTextureV.h"
+
+const GLchar * positionColorTextureF =
+#include "Shaders/positionColorTextureF.h"
+
 NS_SIT_END
