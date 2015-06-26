@@ -27,18 +27,14 @@ bool Sprite::init( const std::string& path)
 	_indices[5] = 0;
 
 	_vertices[0] = Vertex(Vector3f(-0.5f, -0.5f, 0.0f),Vector3f(1.0f, 1.0f, 1.0f),Vector2f(0.0f, 1.0f));
-	_vertices[1] = Vertex(Vector3f(0.5f,-0.5f, 0.0f),Vector3f(1.0f, 1.0f, 1.0f),Vector2f(1.0f, 1.0f));
-	_vertices[2] = Vertex(Vector3f(0.5f, 0.5f, 0.0f),Vector3f(1.0f, 1.0f, 1.0f),Vector2f(1.0f, 0.0f));
-	_vertices[3] = Vertex(Vector3f(-0.5f, 0.5f, 0.0f),Vector3f(1.0f, 1.0f, 1.0f),Vector2f(0.0f, 0.0f));
+	_vertices[1] = Vertex(Vector3f(0.5f, -0.5f, 0.0f), Vector3f(1.0f, 1.0f, 1.0f), Vector2f(1.0f, 1.0f));
+	_vertices[2] = Vertex(Vector3f(0.5f, 0.5f, 0.0f), Vector3f(1.0f, 1.0f, 1.0f), Vector2f(1.0f, 0.0f));
+	_vertices[3] = Vertex(Vector3f(-0.5f, 0.5f, 0.0f), Vector3f(1.0f, 1.0f, 1.0f), Vector2f(0.0f, 0.0f));
 
 
 	glGenBuffers(1, &_VBO);
 	glBindBuffer(GL_ARRAY_BUFFER, _VBO);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(_vertices), _vertices, GL_STATIC_DRAW);
-
-	glVertexAttribPointer(_shader->VERTEX_ATTRIB_POSITION, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), nullptr);
-	glVertexAttribPointer(_shader->VERTEX_ATTRIB_COLOR, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)offsetof(Vertex, color));
-	glVertexAttribPointer(_shader->VERTEX_ATTRIB_TEX_COORDS, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)offsetof(Vertex, uv));
 
 	glEnableVertexAttribArray(_shader->getAttribLocation(_shader->ATTRIBUTE_NAME_POSITION));
 	glEnableVertexAttribArray(_shader->getAttribLocation(_shader->ATTRIBUTE_NAME_COLOR));
@@ -47,7 +43,6 @@ bool Sprite::init( const std::string& path)
 	glGenBuffers(1, &_IBO);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _IBO);
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(_indices), _indices, GL_STATIC_DRAW);
-
 	return true;
 }
 
@@ -99,6 +94,11 @@ void Sprite::onDraw()
 	_shader->setUniformLocationWithMatrix4fv(_shader->getUniformLocation(_shader->UNIFORM_NAME_MVP_MATRIX), (const GLfloat*)transform(), 1);
 
 	glBindBuffer(GL_ARRAY_BUFFER, _VBO);
+
+	glVertexAttribPointer(_shader->VERTEX_ATTRIB_POSITION, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), nullptr);
+	glVertexAttribPointer(_shader->VERTEX_ATTRIB_COLOR, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)offsetof(Vertex, color));
+	glVertexAttribPointer(_shader->VERTEX_ATTRIB_TEX_COORDS, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)offsetof(Vertex, uv));
+
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _IBO);
 	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 
