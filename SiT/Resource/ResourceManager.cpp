@@ -56,13 +56,59 @@ ResourceHandle* ResourceManager::findHandle( Resource* resource )
 
 ResourceHandle* ResourceManager::loadHandle( Resource* resource )
 {
-	Image image;
-	image.initImageFile(resource->_name);
+	std::string ext = getExt(resource->_name);
+	if (ext.empty())return nullptr;
+	for (unsigned int i = 0; i < ext.size(); i++)
+	{
+		ext[i] = tolower(ext[i]);
+	}
+	
+	ResourceHandle::Type type;
 
-	ResourceHandle* resourceHandle = new Texture(*resource);
-	((Texture*) resourceHandle)->initImage(&image);
+	if (!strcmp(ext.c_str(), "png") || !strcmp(ext.c_str(), "jpg"))
+	{
+		type = ResourceHandle::Type::TEXTURE;
+	}
+	else if (!strcmp(ext.c_str(), "ttf"))
+	{
+		type = ResourceHandle::Type::FONT;
+	}
 
+	return loadHandleFromType(resource, type);
+}
+
+ResourceHandle* ResourceManager::loadHandleFromType(Resource* resource, ResourceHandle::Type type)
+{
+	ResourceHandle* resourceHandle = nullptr;
+
+	switch (type)
+	{
+	case ResourceHandle::Type::TEXTURE:
+	{
+		Image image;
+		image.initImageFile(resource->_name);
+
+		resourceHandle = new Texture(*resource);
+		((Texture*)resourceHandle)->initImage(&image);
+
+		break;
+	}
+	case ResourceHandle::Type::FONT:
+	{
+		resourceHandle = new FontAtlas(*resource);
+
+		break;
+	}
+	}
+
+	_resources.insert(std::make_pair(resource->_name, resourceHandle));
 	return resourceHandle;
+}
+
+std::string ResourceManager::getExt(const std::string& str) {
+	size_t pos = str.rfind('.');
+	if (pos <= 0) return "";
+	return str.substr(pos + 1, std::string::npos);
 }
 
 NS_SIT_END

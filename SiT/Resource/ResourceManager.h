@@ -14,6 +14,7 @@
 #endif
 
 #include "Texture.h"
+#include "FontAtlas.h"
 
 #include <map>
 
@@ -26,6 +27,8 @@ private:
 	std::map<std::string, ResourceHandle*> _resources;
 	ResourceHandle* findHandle(Resource* resource);
 	ResourceHandle* loadHandle(Resource* resource);
+	ResourceHandle* loadHandleFromType(Resource* resource, ResourceHandle::Type type);
+	std::string		getExt(const std::string& str);
 public:
 	ResourceManager();
 	virtual bool init();
