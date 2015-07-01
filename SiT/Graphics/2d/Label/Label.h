@@ -4,8 +4,7 @@
 #include "Base/Node.h"
 #include <string>
 
-#include "Platform/win32/FileUtilsImpl.h"
-#include "Resource/FontAtlas.h"
+#include "Resource/ResourceManager.h"
 
 
 
@@ -15,6 +14,8 @@ class SIT_DLL Label : public Node
 {
 public:
 	static Label* create();
+	static Label* create(std::string text);
+	static Label* create(std::string text, unsigned int sizeFont);
 
 	virtual ~Label();
 
@@ -25,18 +26,21 @@ public:
 protected:
 	
 private:
-	Label();
+	Label(std::string text, unsigned int sizeFont);
 	CustomCommand _customCommand;
 
 	FontAtlas * _font;
 	Color _color;
+	unsigned int sizeFont;
+	std::string _text;
 
-	void	drawChar(unsigned int char_);
+	void	drawChar(Point point, CharacterInfo* info);
+	const	Matrix4f* transform(Point point, CharacterInfo* info);
 
-	unsigned int _indices[6];
-	GLuint	_IBO;
-	Matrix4f _transformation;
-	const Matrix4f* transform(CharacterInfo* info);
+	unsigned int	_indices[6];
+	GLuint			_IBO;
+	Matrix4f		_transformation;
+	
 };
 
 

@@ -29,7 +29,7 @@ FontAtlas::FontAtlas(Resource resource) :ResourceHandle(resource, Type::FONT)
 		return;
 	}
 
-	FT_Set_Pixel_Sizes(_face, 0, 48);
+	FT_Set_Pixel_Sizes(_face, 0, DEFAULT_SIZE_FONT);
 	init();
 }
 
