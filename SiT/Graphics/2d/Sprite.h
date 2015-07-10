@@ -3,6 +3,7 @@
 
 #include "Base/Node.h"
 #include "Resource/ResourceManager.h"
+#include "Resource/Matrix/MatrixObject.h"
 
 NS_SIT_BEGIN
 
@@ -11,7 +12,7 @@ class SIT_DLL Sprite: public Node
 private:
 	Sprite(){};
 	ResourceHandle * _image;
-	Matrix4f _transformation;
+	Matrix<4, 4, float> _transformation;
 	CustomCommand _customCommand;
 
 	Vertex			_vertices[4];
@@ -23,7 +24,7 @@ public:
 	static Sprite* create(const std::string& path);
 	bool init(const std::string& path);
 
-	const Matrix4f* transform();
+	const Matrix<4, 4, float>* transform();
 
 	virtual void	draw(Renderer *renderer);
 	virtual void	onDraw();

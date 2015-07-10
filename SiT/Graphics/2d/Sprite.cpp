@@ -46,28 +46,30 @@ bool Sprite::init( const std::string& path)
 	return true;
 }
 
-const Matrix4f* Sprite::transform()
+const Matrix<4, 4, float>* Sprite::transform()
 {
 	Size screen = *getScreenSize();
 	Texture* i = (Texture*)_image;
 	float scaleX = (float)((Texture*)_image)->getWidth()/(float)(screen.getWidth()/2) - 1;
 	float scaleY = (float)((Texture*)_image)->getHeight()/(float)(screen.getHeight()/2) - 1;
 
-	Matrix4f scale, rotate, translation;
-	scale.InitScaleTransform(
+	MatrixObject scale, rotate, translation;
+	scale.initScaleTransform(
 		scaleX + _scale.getX(),
 		scaleY + _scale.getY(),
 		_scale.getZ()
 	);
-	rotate.InitRotateTransform(_rotate.getX(), _rotate.getY(), _rotate.getZ());
+	rotate.initRotateTransform(_rotate.getX(), _rotate.getY(), _rotate.getZ());
 
-	translation.InitTranslationTransform(
+	translation.initTranslationTransform(
 		_point.getX()/((Texture*)_image)->getWidth(),
 		_point.getY()/((Texture*)_image)->getHeight(),
 		_point.getZ()
 	);
 
-	_transformation = translation * rotate * scale;
+	Matrix<4, 4, float> m = translation * rotate * scale;
+
+	_transformation = m;
 	return &_transformation;
 }
 

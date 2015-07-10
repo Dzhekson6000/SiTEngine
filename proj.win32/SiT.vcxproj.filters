@@ -58,6 +58,9 @@
     <Filter Include="SiT\Graphics\2d\Label">
       <UniqueIdentifier>{86faec2a-fb93-4583-9557-bfa3ecd8fc47}</UniqueIdentifier>
     </Filter>
+    <Filter Include="SiT\Resource\Matrix">
+      <UniqueIdentifier>{a8dbb8cd-46d9-4283-acae-6a25fa6ba75e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -65,9 +68,6 @@
     </ClInclude>
     <ClInclude Include="..\Classes\AppDelegate.h">
       <Filter>Classes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\SiT\external\math_3d.h">
-      <Filter>SiT\external</Filter>
     </ClInclude>
     <ClInclude Include="..\SiT\Geometry\Point.h">
       <Filter>SiT\Geometry</Filter>
@@ -201,13 +201,19 @@
     <ClInclude Include="..\SiT\Resource\FontAtlas.h">
       <Filter>SiT\Resource</Filter>
     </ClInclude>
+    <ClInclude Include="..\SiT\Resource\Matrix\Matrix.h">
+      <Filter>SiT\Resource\Matrix</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SiT\Resource\Matrix\MatrixObject.h">
+      <Filter>SiT\Resource\Matrix</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SiT\external\math_3d.h">
+      <Filter>SiT\external</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>win32</Filter>
-    </ClCompile>
-    <ClCompile Include="..\SiT\external\math_3d.cpp">
-      <Filter>SiT\external</Filter>
     </ClCompile>
     <ClCompile Include="..\SiT\Geometry\Rotate.cpp">
       <Filter>SiT\Geometry</Filter>
@@ -307,6 +313,12 @@
     </ClCompile>
     <ClCompile Include="..\SiT\Resource\FontAtlas.cpp">
       <Filter>SiT\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SiT\Resource\Matrix\MatrixObject.cpp">
+      <Filter>SiT\Resource\Matrix</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SiT\external\math_3d.cpp">
+      <Filter>SiT\external</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -126,6 +126,8 @@
     <ClInclude Include="..\SiT\Resource\FileUtils.h" />
     <ClInclude Include="..\SiT\Resource\FontAtlas.h" />
     <ClInclude Include="..\SiT\Resource\Image.h" />
+    <ClInclude Include="..\SiT\Resource\Matrix\Matrix.h" />
+    <ClInclude Include="..\SiT\Resource\Matrix\MatrixObject.h" />
     <ClInclude Include="..\SiT\Resource\ResourceHandle.h" />
     <ClInclude Include="..\SiT\Resource\ResourceManager.h" />
     <ClInclude Include="..\SiT\Resource\Texture.h" />
@@ -164,6 +166,7 @@
     <ClCompile Include="..\SiT\Resource\FileUtils.cpp" />
     <ClCompile Include="..\SiT\Resource\FontAtlas.cpp" />
     <ClCompile Include="..\SiT\Resource\Image.cpp" />
+    <ClCompile Include="..\SiT\Resource\Matrix\MatrixObject.cpp" />
     <ClCompile Include="..\SiT\Resource\ResourceHandle.cpp" />
     <ClCompile Include="..\SiT\Resource\ResourceManager.cpp" />
     <ClCompile Include="..\SiT\Resource\Texture.cpp" />

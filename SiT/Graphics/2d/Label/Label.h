@@ -5,7 +5,7 @@
 #include <string>
 
 #include "Resource/ResourceManager.h"
-
+#include "Resource/Matrix/MatrixObject.h"
 
 
 NS_SIT_BEGIN
@@ -35,7 +35,7 @@ private:
 	std::string _text;
 
 	void	drawChar(Point point, CharacterInfo* info);
-	const	Matrix4f* transform(Point point, CharacterInfo* info);
+	Matrix<4,4,float> transform(Point point, CharacterInfo* info);
 
 	unsigned int	_indices[6];
 	GLuint			_IBO;

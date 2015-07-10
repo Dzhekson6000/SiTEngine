@@ -51,28 +51,28 @@ Label::Label(std::string text, unsigned int sizeFont)
 
 }
 
-const Matrix4f* Label::transform(Point point, CharacterInfo* info)
+
+Matrix<4, 4, float> Label::transform(Point point, CharacterInfo* info)
 {
 	Size screen = *getScreenSize();
-	float scaleX = (float)info->_width / (float)(screen.getWidth() / 2)-1;
-	float scaleY = (float)info->_height / (float)(screen.getHeight() / 2)-1;
+	float scaleX = (float)info->_width / (float)(screen.getWidth());
+	float scaleY = (float)info->_height / (float)(screen.getHeight());
 
-	Matrix4f scale, rotate, translation;
-	scale.InitScaleTransform(
-		scaleX + _scale.getX(),
-		scaleY + _scale.getY(),
+	MatrixObject scale, rotate, translation;
+	scale.initScaleTransform(
+		scaleX,
+		scaleY,
 		_scale.getZ()
 		);
-	rotate.InitRotateTransform(_rotate.getX(), _rotate.getY(), _rotate.getZ());
+	rotate.initRotateTransform(_rotate.getX(), _rotate.getY(), _rotate.getZ());
 
-	translation.InitTranslationTransform(
-		(point.getX() + _point.getX()) / (screen.getWidth() / 2),
-		(point.getY() + _point.getY()) / (screen.getHeight() / 2),
+	translation.initTranslationTransform(
+		point.getX() / screen.getWidth(),
+		point.getY() / screen.getHeight(),
 		point.getZ()
 	);
 
-	_transformation = translation * rotate * scale;
-	return &_transformation;
+	return translation * rotate * scale;
 }
 
 Label::~Label()
@@ -91,12 +91,16 @@ void Label::onDraw()
 		CharacterInfo* info = _font->getInfoChar(char_);
 
 		drawChar(
-			Point(offsetX + info->_left/2,
-			info->_top / 2),
+			Point(offsetX,
+			info->_height/2 - info->_top),
 		info);
 
 		offsetX += info->_advanceX;
 		offsetY += info->_advanceY;
+		if (offsetY != 0)
+		{
+			return;
+		}
 	}
 	
 }
@@ -120,7 +124,7 @@ void Label::drawChar(Point point, CharacterInfo* info)
 	glBindTexture(GL_TEXTURE_2D, *(_font->getTextureId()));
 	shader->setUniformLocationWith1i(shader->getUniformLocation(shader->UNIFORM_NAME_SAMPLER), 0);
 	shader->setUniformLocationWith4fv(shader->getUniformLocation(shader->UNIFORM_NAME_COLOR), (const GLfloat*) color, 1);
-	shader->setUniformLocationWithMatrix4fv(shader->getUniformLocation(shader->UNIFORM_NAME_MVP_MATRIX), (const GLfloat*)transform(point,info), 1);
+	shader->setUniformLocationWithMatrix4fv(shader->getUniformLocation(shader->UNIFORM_NAME_MVP_MATRIX), (const GLfloat*)&transform(point, info), 1);
 	
 	glBindBuffer(GL_ARRAY_BUFFER, info->_VBO);
 	glVertexAttribPointer(_shader->VERTEX_ATTRIB_POSITION, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), nullptr);
