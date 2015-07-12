@@ -32,7 +32,7 @@ public:
 	virtual const Scale&	getScale() const;
 	virtual const Point&	getPosition() const;
 	virtual const Size&		getSize() const;
-	virtual const Size*		getScreenSize();
+	virtual		Size*		getScreenSize();
 	virtual const Rotate&	getRotation() const;
 	virtual const int		getLocalZOrder();
 	virtual const Node*		getParent() const;

@@ -41,7 +41,7 @@ const Size& Node::getSize() const
 	return _size;
 }
 
-const Size* Node::getScreenSize()
+Size* Node::getScreenSize()
 {
 	if(_screenSize == nullptr)
 	{

@@ -26,10 +26,10 @@ bool Sprite::init( const std::string& path)
 	_indices[4] = 3;
 	_indices[5] = 0;
 
-	_vertices[0] = Vertex(Vector3f(-0.5f, -0.5f, 0.0f),Vector3f(1.0f, 1.0f, 1.0f),Vector2f(0.0f, 1.0f));
-	_vertices[1] = Vertex(Vector3f(0.5f, -0.5f, 0.0f), Vector3f(1.0f, 1.0f, 1.0f), Vector2f(1.0f, 1.0f));
-	_vertices[2] = Vertex(Vector3f(0.5f, 0.5f, 0.0f), Vector3f(1.0f, 1.0f, 1.0f), Vector2f(1.0f, 0.0f));
-	_vertices[3] = Vertex(Vector3f(-0.5f, 0.5f, 0.0f), Vector3f(1.0f, 1.0f, 1.0f), Vector2f(0.0f, 0.0f));
+	_vertices[0] = Vertex(Vector3f(-1.0f, -1.0f, 0.0f),Vector3f(1.0f, 1.0f, 1.0f),Vector2f(0.0f, 1.0f));
+	_vertices[1] = Vertex(Vector3f(1.0f, -1.0f, 0.0f), Vector3f(1.0f, 1.0f, 1.0f), Vector2f(1.0f, 1.0f));
+	_vertices[2] = Vertex(Vector3f(1.0f, 1.0f, 0.0f), Vector3f(1.0f, 1.0f, 1.0f), Vector2f(1.0f, 0.0f));
+	_vertices[3] = Vertex(Vector3f(-1.0f, 1.0f, 0.0f), Vector3f(1.0f, 1.0f, 1.0f), Vector2f(0.0f, 0.0f));
 
 
 	glGenBuffers(1, &_VBO);
@@ -48,28 +48,31 @@ bool Sprite::init( const std::string& path)
 
 const Matrix<4, 4, float>* Sprite::transform()
 {
-	Size screen = *getScreenSize();
-	Texture* i = (Texture*)_image;
-	float scaleX = (float)((Texture*)_image)->getWidth()/(float)(screen.getWidth()/2) - 1;
-	float scaleY = (float)((Texture*)_image)->getHeight()/(float)(screen.getHeight()/2) - 1;
+	Size* screen = getScreenSize();
+	float width = screen->getWidth();
+	float height = screen->getHeight();
+	float imageWidth = ((Texture*)_image)->getWidth();
+	float imageHeight = ((Texture*)_image)->getHeight();
+
+	float scaleX = imageWidth / width;
+	float scaleY = imageHeight / height;
 
 	MatrixObject scale, rotate, translation;
 	scale.initScaleTransform(
-		scaleX + _scale.getX(),
-		scaleY + _scale.getY(),
+		scaleX + _scale.getX() - 1.0f,
+		scaleY + _scale.getY() - 1.0f,
 		_scale.getZ()
 	);
-	rotate.initRotateTransform(_rotate.getX(), _rotate.getY(), _rotate.getZ());
+
+	rotate.initRotateTransform(_rotate.getX(), _rotate.getY(), _rotate.getZ());	
 
 	translation.initTranslationTransform(
-		_point.getX()/((Texture*)_image)->getWidth(),
-		_point.getY()/((Texture*)_image)->getHeight(),
+		((2 * _point.getX() - width) / imageWidth),
+		((2 * _point.getY() - height) / imageHeight),
 		_point.getZ()
 	);
 
-	Matrix<4, 4, float> m = translation * rotate * scale;
-
-	_transformation = m;
+	_transformation = translation * rotate * scale;
 	return &_transformation;
 }
 
