@@ -49,6 +49,7 @@ Label::Label(std::string text, unsigned int sizeFont)
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _IBO);
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(_indices), _indices, GL_STATIC_DRAW);
 
+	_shader = _font->getShader();
 }
 
 
@@ -88,6 +89,14 @@ Label::~Label()
 
 void Label::onDraw()
 {
+	_shader->use();
+
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_2D, *(_font->getTextureId()));
+
 	unsigned int offsetX = 0;
 	unsigned int offsetY = 0;
 
@@ -105,6 +114,7 @@ void Label::onDraw()
 		offsetY += info->_advanceY;
 	}
 	
+	glDisable(GL_BLEND);
 }
 
 void Label::setColor(Color color)
@@ -114,19 +124,11 @@ void Label::setColor(Color color)
 
 void Label::drawChar(Point point, CharacterInfo* info)
 {
-	Shader* shader = _font->getShader();
 	GLfloat color[4] = { _color._r, _color._g, _color._b, 1 };
 
-	shader->use();
-
-	glEnable(GL_BLEND);
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
-	glActiveTexture(GL_TEXTURE0);
-	glBindTexture(GL_TEXTURE_2D, *(_font->getTextureId()));
-	shader->setUniformLocationWith1i(shader->getUniformLocation(shader->UNIFORM_NAME_SAMPLER), 0);
-	shader->setUniformLocationWith4fv(shader->getUniformLocation(shader->UNIFORM_NAME_COLOR), (const GLfloat*) color, 1);
-	shader->setUniformLocationWithMatrix4fv(shader->getUniformLocation(shader->UNIFORM_NAME_MVP_MATRIX), (const GLfloat*)&transform(point, info), 1);
+	_shader->setUniformLocationWith1i(_shader->getUniformLocation(_shader->UNIFORM_NAME_SAMPLER), 0);
+	_shader->setUniformLocationWith4fv(_shader->getUniformLocation(_shader->UNIFORM_NAME_COLOR), (const GLfloat*) color, 1);
+	_shader->setUniformLocationWithMatrix4fv(_shader->getUniformLocation(_shader->UNIFORM_NAME_MVP_MATRIX), (const GLfloat*)&transform(point, info), 1);
 	
 	glBindBuffer(GL_ARRAY_BUFFER, info->_VBO);
 	glVertexAttribPointer(_shader->VERTEX_ATTRIB_POSITION, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), nullptr);
@@ -135,7 +137,6 @@ void Label::drawChar(Point point, CharacterInfo* info)
 
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _IBO);
 	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
-	glDisable(GL_BLEND);
 }
 
 void Label::draw(Renderer *renderer)
