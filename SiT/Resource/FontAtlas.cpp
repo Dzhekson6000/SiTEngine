@@ -57,7 +57,40 @@ void FontAtlas::init()
 
 void FontAtlas::resize()
 {
+	GLuint oldTexture = _texure;
+	int newWidth = _width;
+	int newHeight = _height;
 
+	int maxSize;
+	glGetIntegerv(GL_MAX_TEXTURE_SIZE, &maxSize);
+
+	if (_height < maxSize)
+	{
+		newHeight = maxSize-_height;
+		if (newHeight > DEFAULT_SIZE_TEXTURE){
+			newHeight = _height + DEFAULT_SIZE_TEXTURE;
+		}
+	}
+	else if (_width < maxSize)
+	{
+		newWidth = maxSize - _width;
+		if (newWidth > DEFAULT_SIZE_TEXTURE){
+			newWidth = _width + DEFAULT_SIZE_TEXTURE;
+		}
+	}
+	else
+	{
+		return;//error size texture
+	}
+
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_2D, _texure);
+
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_ALPHA, newWidth, newHeight, 0, GL_ALPHA, GL_UNSIGNED_BYTE, NULL);
+
+	_characters.clear();
+	_width = newWidth;
+	_height = newHeight;
 }
 
 CharacterInfo* FontAtlas::loadChar(unsigned int char_)
@@ -65,14 +98,12 @@ CharacterInfo* FontAtlas::loadChar(unsigned int char_)
 	_glyph = _face->glyph;
 
 	if (FT_Load_Char(_face, char_, FT_LOAD_RENDER))
-		return nullptr;
-
-
-	
+		return nullptr;	
 
 	if (_loadInfo._x + _glyph->bitmap.width > _width && _loadInfo._y + _glyph->bitmap.rows > _height)
 	{
 		resize();
+		return loadChar(char_);
 	} else
 	if (_loadInfo._x + _glyph->bitmap.width > _width)
 	{
@@ -101,13 +132,13 @@ CharacterInfo* FontAtlas::loadChar(unsigned int char_)
 	float charHeight = characterInfo->_height / _height;
 
 	Vertex vertices[4];
-	vertices[0] = Vertex(Vector3f(-0.5f, -0.5f, 0.0f), Vector3f(1.0f, 1.0f, 1.0f), 
+	vertices[0] = Vertex(Vector3f(-1.0f, -1.0f, 0.0f), Vector3f(1.0f, 1.0f, 1.0f),
 		Vector2f(charX, charY + charHeight));
-	vertices[1] = Vertex(Vector3f(0.5f, -0.5f, 0.0f), Vector3f(1.0f, 1.0f, 1.0f), 
+	vertices[1] = Vertex(Vector3f(1.0f, -1.0f, 0.0f), Vector3f(1.0f, 1.0f, 1.0f),
 		Vector2f(charX + charWidth, charY + charHeight));
-	vertices[2] = Vertex(Vector3f(0.5f, 0.5f, 0.0f), Vector3f(1.0f, 1.0f, 1.0f), 
+	vertices[2] = Vertex(Vector3f(1.0f, 1.0f, 0.0f), Vector3f(1.0f, 1.0f, 1.0f),
 		Vector2f(charX + charWidth, charY));
-	vertices[3] = Vertex(Vector3f(-0.5f, 0.5f, 0.0f), Vector3f(1.0f, 1.0f, 1.0f), 
+	vertices[3] = Vertex(Vector3f(-1.0f, 1.0f, 0.0f), Vector3f(1.0f, 1.0f, 1.0f),
 		Vector2f(charX, charY));
 
 	glGenBuffers(1, &characterInfo->_VBO);
