@@ -28,21 +28,14 @@
 NS_SIT_BEGIN
 
 struct CharacterInfo {
-	float _advanceX;
-	float _advanceY;
-
-	float _width;
-	float _height;
-
-	float _left;
-	float _top;
-
+	Point	advance;
+	Size	size;
+	Point	bearing;
+	Point	positionInTexture;
 	GLuint _VBO;
 
-	unsigned int _x;
-	unsigned int _y;
-	CharacterInfo(float ax, float ay, float bw, float bh, float bl, float bt, unsigned int x, unsigned int y)
-		:_advanceX(ax), _advanceY(ay), _width(bw), _height(bh), _left(bl), _top(bt), _x(x), _y(y)
+	CharacterInfo(float ax, float ay, unsigned int bw, unsigned int bh, float bl, float bt, unsigned int x, unsigned int y)
+		:advance(ax, ay), size(bw, bh), bearing(bl, bt), positionInTexture(x, y)
 	{}
 };
 

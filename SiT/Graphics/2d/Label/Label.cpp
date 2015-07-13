@@ -62,8 +62,8 @@ Matrix<4, 4, float> Label::transform(Point point, CharacterInfo* info)
 
 	float width = screen->getWidth();
 	float height = screen->getHeight();
-	float imageWidth = info->_width;
-	float imageHeight = info->_height;
+	float imageWidth = info->size.getWidth();
+	float imageHeight = info->size.getHeight();
 
 	float scaleX = imageWidth / width * scaleSizeFont;
 	float scaleY = imageHeight / height * scaleSizeFont;
@@ -110,12 +110,12 @@ void Label::onDraw()
 		CharacterInfo* info = _font->getInfoChar(char_);
 
 		drawChar(
-			Point(offsetX + info->_left + info->_width/2,
-			-info->_height/2 + info->_top),
+			Point(offsetX + info->bearing.getX() + info->size.getWidth() / 2,
+			-info->size.getHeight() / 2 + info->bearing.getY()),
 		info);
 
-		offsetX += info->_advanceX;
-		offsetY += info->_advanceY;
+		offsetX += info->advance.getX();
+		offsetY += info->advance.getY();
 	}
 	
 	glDisable(GL_BLEND);

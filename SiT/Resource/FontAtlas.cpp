@@ -140,10 +140,10 @@ CharacterInfo* FontAtlas::loadChar(unsigned int char_)
 		_loadInfo._y
 	);
 
-	float charX = (float)characterInfo->_x / _width;
-	float charY = (float)characterInfo->_y / _height;
-	float charWidth = characterInfo->_width/_width;
-	float charHeight = characterInfo->_height / _height;
+	float charX = (float)characterInfo->positionInTexture.getX() / _width;
+	float charY = (float)characterInfo->positionInTexture.getY() / _height;
+	float charWidth = (float)characterInfo->size.getWidth() / _width;
+	float charHeight = (float)characterInfo->size.getHeight() / _height;
 
 	Vertex vertices[4];
 	vertices[0] = Vertex(Vector3f(-1.0f, -1.0f, 0.0f), Vector3f(1.0f, 1.0f, 1.0f),
