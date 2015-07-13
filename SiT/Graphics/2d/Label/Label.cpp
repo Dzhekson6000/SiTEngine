@@ -33,7 +33,8 @@ Label* Label::create(std::string text, unsigned int sizeFont)
 	return ret;
 }
 
-Label::Label(std::string text, unsigned int sizeFont)
+Label::Label(std::string text, unsigned int sizeFont) :
+_sizeFont(sizeFont)
 {
 	_font = (FontAtlas *)ResourceManager::getInstance()->getHandle(new Resource("1.ttf"));
 	_text = text;
@@ -56,13 +57,16 @@ Label::Label(std::string text, unsigned int sizeFont)
 Matrix<4, 4, float> Label::transform(Point point, CharacterInfo* info)
 {
 	Size* screen = getScreenSize();
+
+	float scaleSizeFont = (float)_sizeFont / (float)_font->getSizeFont();
+
 	float width = screen->getWidth();
 	float height = screen->getHeight();
 	float imageWidth = info->_width;
 	float imageHeight = info->_height;
 
-	float scaleX = imageWidth / width;
-	float scaleY = imageHeight / height;
+	float scaleX = imageWidth / width * scaleSizeFont;
+	float scaleY = imageHeight / height * scaleSizeFont;
 
 	MatrixObject scale, rotate, translation;
 	scale.initScaleTransform(

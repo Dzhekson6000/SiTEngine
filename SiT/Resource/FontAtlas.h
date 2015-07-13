@@ -50,6 +50,7 @@ class FontAtlas : public ResourceHandle
 {
 public:
 	FontAtlas(Resource resource);
+	FontAtlas(Resource resource, unsigned int sizeFont);
 	void init();
 	void resize();
 	CharacterInfo* getInfoChar(unsigned int char_);
@@ -60,6 +61,7 @@ public:
 
 	unsigned int getWidth();
 	unsigned int getHeight();
+	unsigned int getSizeFont();
 private:
 
 	FT_Library _library;
@@ -71,6 +73,7 @@ private:
 	Shader*	_shader;
 	unsigned int _width;
 	unsigned int _height;
+	unsigned int _sizeFont;
 
 	std::map<unsigned int, CharacterInfo*> _characters;
 

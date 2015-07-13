@@ -31,7 +31,7 @@ private:
 
 	FontAtlas * _font;
 	Color _color;
-	unsigned int sizeFont;
+	unsigned int _sizeFont;
 	std::string _text;
 
 	void	drawChar(Point point, CharacterInfo* info);

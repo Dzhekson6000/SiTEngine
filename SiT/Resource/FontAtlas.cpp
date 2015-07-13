@@ -10,31 +10,38 @@
 
 NS_SIT_BEGIN
 
-FontAtlas::FontAtlas(Resource resource) :ResourceHandle(resource, Type::FONT)
+FontAtlas::FontAtlas(Resource resource) :ResourceHandle(resource, Type::FONT),
+_sizeFont(DEFAULT_SIZE_FONT),
+_width(DEFAULT_SIZE_TEXTURE),
+_height(DEFAULT_SIZE_TEXTURE)
 {
-	_width = _height = DEFAULT_SIZE_TEXTURE;
+	init();
+}
 
-	
+FontAtlas::FontAtlas(Resource resource, unsigned int sizeFont) :ResourceHandle(resource, Type::FONT),
+_sizeFont(sizeFont),
+_width(DEFAULT_SIZE_TEXTURE),
+_height(DEFAULT_SIZE_TEXTURE)
+{
+	init();
+}
+
+void FontAtlas::init()
+{
 	if (FT_Init_FreeType(&_library)) {
 		LOG("FT init error");
 		return;
 	}
 
-	data = FileUtils::getInstance()->getDataFromFile(resource._name);
-
-	
+	data = FileUtils::getInstance()->getDataFromFile(getResource()._name);
 
 	if (FT_New_Memory_Face(_library, data.getBytes(), data.getSize(), 0, &_face)) {
 		LOG("Could not font");
 		return;
 	}
 
-	FT_Set_Pixel_Sizes(_face, 0, DEFAULT_SIZE_FONT);
-	init();
-}
+	FT_Set_Pixel_Sizes(_face, 0, _sizeFont);
 
-void FontAtlas::init()
-{
 	_shader = ShaderManager::getInstance()->getShader(Shader::SHADER_NAME_POSITION_COLOR_TEXTURE);
 
 	glActiveTexture(GL_TEXTURE0);
@@ -54,6 +61,13 @@ void FontAtlas::init()
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_ALPHA, _width, _height, 0, GL_ALPHA, GL_UNSIGNED_BYTE, data);
 	delete[] data;
 }
+
+unsigned int FontAtlas::getSizeFont()
+{
+	return _sizeFont;
+}
+
+
 
 void FontAtlas::resize()
 {
