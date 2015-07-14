@@ -101,17 +101,24 @@ void Label::onDraw()
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, *(_font->getTextureId()));
 
-	unsigned int offsetX = 0;
-	unsigned int offsetY = 0;
+	int offsetX = 0;
+	int offsetY = 0;
 
 	for (unsigned int i = 0; i < _text.size(); i++)
 	{
 		unsigned int char_ = _text[i];
 		CharacterInfo* info = _font->getInfoChar(char_);
 
+		if (char_ == '\n')
+		{
+			offsetX = 0;
+			offsetY += _font->getLineSpacing();
+			continue;
+		}
+
 		drawChar(
 			Point(offsetX + info->bearing.getX() + info->size.getWidth() / 2,
-			-info->size.getHeight() / 2 + info->bearing.getY()),
+			-offsetY + (-info->size.getHeight() / 2 + info->bearing.getY())),
 		info);
 
 		offsetX += info->advance.getX();

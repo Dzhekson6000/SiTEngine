@@ -69,6 +69,11 @@ unsigned int FontAtlas::getSizeFont()
 
 
 
+unsigned int FontAtlas::getLineSpacing()
+{
+	return _face->glyph->metrics.vertAdvance >> 6;
+}
+
 void FontAtlas::resize()
 {
 	GLuint oldTexture = _texure;
