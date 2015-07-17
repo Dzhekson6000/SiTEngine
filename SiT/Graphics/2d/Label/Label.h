@@ -13,6 +13,14 @@ NS_SIT_BEGIN
 class SIT_DLL Label : public Node
 {
 public:
+
+	enum TextAlignmentHorizontal {
+		TEXT_ALIGN_LEFT,
+		TEXT_ALIGN_CENTER,
+		TEXT_ALIGN_RIGHT,
+		TEXT_ALIGN_MAX
+	};
+
 	static Label* create();
 	static Label* create(std::string text);
 	static Label* create(std::string text, unsigned int sizeFont);
@@ -22,6 +30,7 @@ public:
 	virtual void	draw(Renderer *renderer);
 	virtual void	onDraw();
 	void setColor(Color color);
+	void setAlignmentHorizontal(TextAlignmentHorizontal textAlignmentHorizontal);
 	void drawFont();
 protected:
 	
@@ -32,6 +41,7 @@ private:
 	FontAtlas * _font;
 	Color _color;
 	unsigned int _sizeFont;
+	TextAlignmentHorizontal _textAlignmentHorizontal;
 	std::string _text;
 
 	void	drawChar(Point point, CharacterInfo* info);

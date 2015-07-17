@@ -39,6 +39,8 @@ _sizeFont(sizeFont)
 	_font = (FontAtlas *)ResourceManager::getInstance()->getHandle(new Resource("1.ttf"));
 	_text = text;
 
+	_textAlignmentHorizontal = TEXT_ALIGN_LEFT;
+
 	_indices[0] = 0;
 	_indices[1] = 1;
 	_indices[2] = 2;
@@ -103,23 +105,61 @@ void Label::onDraw()
 
 	int offsetX = 0;
 	int offsetY = 0;
+	int widthLine = 0;
 
 	for (unsigned int i = 0; i < _text.size(); i++)
 	{
+		if (widthLine == 0)
+		{
+			for (unsigned int j = i; j < _text.size(); j++)
+			{
+				unsigned int char_ = _text[j];
+				CharacterInfo* info = _font->getInfoChar(char_);
+				if (char_ == '\n')
+				{
+					break;
+				}
+				widthLine += info->advance.getX();
+			}
+		}
+
 		unsigned int char_ = _text[i];
 		CharacterInfo* info = _font->getInfoChar(char_);
 
 		if (char_ == '\n')
 		{
+			widthLine = 0;
 			offsetX = 0;
 			offsetY += _font->getLineSpacing();
 			continue;
 		}
 
-		drawChar(
-			Point(offsetX + info->bearing.getX() + info->size.getWidth() / 2,
-			-offsetY + (-info->size.getHeight() / 2 + info->bearing.getY())),
-		info);
+		Point point;
+
+		switch (_textAlignmentHorizontal)
+		{
+		case SiT::Label::TEXT_ALIGN_LEFT:
+			point = Point(
+				offsetX + info->bearing.getX() + info->size.getWidth() / 2,
+				-offsetY + (-info->size.getHeight() / 2 + info->bearing.getY()));
+			break;
+		case SiT::Label::TEXT_ALIGN_CENTER:
+			point = Point(
+				offsetX + info->bearing.getX() + info->size.getWidth() / 2 - widthLine/2,
+				-offsetY + (-info->size.getHeight() / 2 + info->bearing.getY()));
+			break;
+		case SiT::Label::TEXT_ALIGN_RIGHT:
+			point = Point(
+				offsetX + info->bearing.getX() + info->size.getWidth() / 2 - widthLine,
+				-offsetY + (-info->size.getHeight() / 2 + info->bearing.getY()));
+			break;
+		case SiT::Label::TEXT_ALIGN_MAX:
+			break;
+		default:
+			break;
+		}
+
+		drawChar(point,info);
 
 		offsetX += info->advance.getX();
 		offsetY += info->advance.getY();
@@ -131,6 +171,11 @@ void Label::onDraw()
 void Label::setColor(Color color)
 {
 	_color = color;
+}
+
+void Label::setAlignmentHorizontal(TextAlignmentHorizontal textAlignmentHorizontal)
+{
+	_textAlignmentHorizontal = textAlignmentHorizontal;
 }
 
 void Label::drawChar(Point point, CharacterInfo* info)
