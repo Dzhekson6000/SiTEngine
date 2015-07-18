@@ -30,6 +30,8 @@ public:
 	virtual void	draw(Renderer *renderer);
 	virtual void	onDraw();
 	void setColor(Color color);
+	void setSize(unsigned int sizeFont);
+	void setText(std::string text);
 	void setAlignmentHorizontal(TextAlignmentHorizontal textAlignmentHorizontal);
 	void drawFont();
 protected:

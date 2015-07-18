@@ -173,6 +173,16 @@ void Label::setColor(Color color)
 	_color = color;
 }
 
+void Label::setSize(unsigned int sizeFont)
+{
+	_sizeFont = sizeFont;
+}
+
+void Label::setText(std::string text)
+{
+	_text = text;
+}
+
 void Label::setAlignmentHorizontal(TextAlignmentHorizontal textAlignmentHorizontal)
 {
 	_textAlignmentHorizontal = textAlignmentHorizontal;
