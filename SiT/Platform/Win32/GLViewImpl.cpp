@@ -49,6 +49,7 @@ bool GLViewImpl::init(const std::string& viewName, int width, int height)
 	glfwSetFramebufferSizeCallback(_mainWindow, GLFWEventHandler::onGLFWframebuffersize);
 	glfwSetWindowSizeCallback(_mainWindow, GLFWEventHandler::onGLFWWindowSizeFunCallback);
 
+	glfwSwapInterval(0);
 
 	const GLubyte* glVersion = glGetString(GL_VERSION);
 	if ( atof((const char*)glVersion) < 1.5 )return false;
