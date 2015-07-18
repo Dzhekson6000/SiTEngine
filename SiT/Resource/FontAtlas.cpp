@@ -151,14 +151,14 @@ CharacterInfo* FontAtlas::loadChar(unsigned int char_)
 	float charHeight = (float)characterInfo->size.getHeight() / _height;
 
 	Vertex vertices[4];
-	vertices[0] = Vertex(Vector3f(-1.0f, -1.0f, 0.0f), Vector3f(1.0f, 1.0f, 1.0f),
-		Vector2f(charX, charY + charHeight));
-	vertices[1] = Vertex(Vector3f(1.0f, -1.0f, 0.0f), Vector3f(1.0f, 1.0f, 1.0f),
-		Vector2f(charX + charWidth, charY + charHeight));
-	vertices[2] = Vertex(Vector3f(1.0f, 1.0f, 0.0f), Vector3f(1.0f, 1.0f, 1.0f),
-		Vector2f(charX + charWidth, charY));
-	vertices[3] = Vertex(Vector3f(-1.0f, 1.0f, 0.0f), Vector3f(1.0f, 1.0f, 1.0f),
-		Vector2f(charX, charY));
+	vertices[0] = Vertex(Vector(-1.0f, -1.0f, 0.0f), Vector(1.0f, 1.0f, 1.0f),
+		Vector(charX, charY + charHeight));
+	vertices[1] = Vertex(Vector(1.0f, -1.0f, 0.0f), Vector(1.0f, 1.0f, 1.0f),
+		Vector(charX + charWidth, charY + charHeight));
+	vertices[2] = Vertex(Vector(1.0f, 1.0f, 0.0f), Vector(1.0f, 1.0f, 1.0f),
+		Vector(charX + charWidth, charY));
+	vertices[3] = Vertex(Vector(-1.0f, 1.0f, 0.0f), Vector(1.0f, 1.0f, 1.0f),
+		Vector(charX, charY));
 
 	glGenBuffers(1, &characterInfo->_VBO);
 	glBindBuffer(GL_ARRAY_BUFFER, characterInfo->_VBO);

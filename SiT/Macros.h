@@ -29,6 +29,8 @@ void log(const char * format, ...);
 
 #define MAX_LOG_LENGTH 1000
 
+#define PI 3.14
+
 #define ToRadian(x) ((x) * PI / 180.0f)
 #define ToDegree(x) ((x) * 180.0f / PI)
 

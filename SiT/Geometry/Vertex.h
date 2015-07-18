@@ -1,15 +1,21 @@
 #ifndef VERTEX_H_
 #define VERTEX_H_
-#include "external/math_3d.h"
 
-struct Vertex
+#include "Vector.h"
+
+NS_SIT_BEGIN
+
+class SIT_DLL Vertex
 {
-	Vector3f position;
-	Vector3f color;
-	Vector2f uv;
+public:
+	Vector position;
+	Vector color;
+	Vector uv;
 
 	Vertex(){}
-	Vertex(Vector3f pos, Vector3f col, Vector2f texCoord): position(pos), color(col), uv(texCoord) {}
+	Vertex(Vector pos, Vector col, Vector texCoord): position(pos), color(col), uv(texCoord) {}
 };
+
+NS_SIT_END
 
 #endif  // GLVIEW_H_

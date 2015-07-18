@@ -207,8 +207,8 @@
     <ClInclude Include="..\SiT\Resource\Matrix\MatrixObject.h">
       <Filter>SiT\Resource\Matrix</Filter>
     </ClInclude>
-    <ClInclude Include="..\SiT\external\math_3d.h">
-      <Filter>SiT\external</Filter>
+    <ClInclude Include="..\SiT\Geometry\Vector.h">
+      <Filter>SiT\Geometry</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -316,9 +316,6 @@
     </ClCompile>
     <ClCompile Include="..\SiT\Resource\Matrix\MatrixObject.cpp">
       <Filter>SiT\Resource\Matrix</Filter>
-    </ClCompile>
-    <ClCompile Include="..\SiT\external\math_3d.cpp">
-      <Filter>SiT\external</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -49,7 +49,6 @@ private:
 
 	unsigned int	_indices[6];
 	GLuint			_IBO;
-	Matrix4f		_transformation;
 	
 };
 

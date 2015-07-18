@@ -94,13 +94,13 @@
     <ClInclude Include="..\SiT\Events\EventTouch.h" />
     <ClInclude Include="..\SiT\Events\Events.h" />
     <ClInclude Include="..\SiT\Events\GLFWEventHandler.h" />
-    <ClInclude Include="..\SiT\external\math_3d.h" />
     <ClInclude Include="..\SiT\Geometry\Color.h" />
     <ClInclude Include="..\SiT\Geometry\Geometry.h" />
     <ClInclude Include="..\SiT\Geometry\Point.h" />
     <ClInclude Include="..\SiT\Geometry\Rotate.h" />
     <ClInclude Include="..\SiT\Geometry\Scale.h" />
     <ClInclude Include="..\SiT\Geometry\Size.h" />
+    <ClInclude Include="..\SiT\Geometry\Vector.h" />
     <ClInclude Include="..\SiT\Geometry\Vertex.h" />
     <ClInclude Include="..\SiT\Graphics\2d\Label\Label.h" />
     <ClInclude Include="..\SiT\Graphics\2d\Sprite.h" />
@@ -145,7 +145,6 @@
     <ClCompile Include="..\SiT\Events\EventTouch.cpp" />
     <ClCompile Include="..\SiT\Events\Events.cpp" />
     <ClCompile Include="..\SiT\Events\GLFWEventHandler.cpp" />
-    <ClCompile Include="..\SiT\external\math_3d.cpp" />
     <ClCompile Include="..\SiT\Geometry\Rotate.cpp" />
     <ClCompile Include="..\SiT\Geometry\Scale.cpp" />
     <ClCompile Include="..\SiT\Geometry\Size.cpp" />

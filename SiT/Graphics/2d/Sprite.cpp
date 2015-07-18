@@ -26,10 +26,10 @@ bool Sprite::init( const std::string& path)
 	_indices[4] = 3;
 	_indices[5] = 0;
 
-	_vertices[0] = Vertex(Vector3f(-1.0f, -1.0f, 0.0f),Vector3f(1.0f, 1.0f, 1.0f),Vector2f(0.0f, 1.0f));
-	_vertices[1] = Vertex(Vector3f(1.0f, -1.0f, 0.0f), Vector3f(1.0f, 1.0f, 1.0f), Vector2f(1.0f, 1.0f));
-	_vertices[2] = Vertex(Vector3f(1.0f, 1.0f, 0.0f), Vector3f(1.0f, 1.0f, 1.0f), Vector2f(1.0f, 0.0f));
-	_vertices[3] = Vertex(Vector3f(-1.0f, 1.0f, 0.0f), Vector3f(1.0f, 1.0f, 1.0f), Vector2f(0.0f, 0.0f));
+	_vertices[0] = Vertex(Vector(-1.0f, -1.0f, 0.0f),Vector(1.0f, 1.0f, 1.0f),Vector(0.0f, 1.0f));
+	_vertices[1] = Vertex(Vector(1.0f, -1.0f, 0.0f), Vector(1.0f, 1.0f, 1.0f), Vector(1.0f, 1.0f));
+	_vertices[2] = Vertex(Vector(1.0f, 1.0f, 0.0f), Vector(1.0f, 1.0f, 1.0f), Vector(1.0f, 0.0f));
+	_vertices[3] = Vertex(Vector(-1.0f, 1.0f, 0.0f), Vector(1.0f, 1.0f, 1.0f), Vector(0.0f, 0.0f));
 
 
 	glGenBuffers(1, &_VBO);
