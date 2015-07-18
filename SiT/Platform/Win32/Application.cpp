@@ -8,7 +8,7 @@ Application::Application()
 {
 	assert(!_application);
 	_application = this;
-	_interval.QuadPart = 0;
+	_interval = 0;
 }
 
 Application::~Application()
@@ -20,12 +20,10 @@ Application::~Application()
 int Application::run()
 {
 
-	LARGE_INTEGER nFreq;
-	LARGE_INTEGER nLast;
-	LARGE_INTEGER nNow;
-
-	QueryPerformanceFrequency(&nFreq);
-	QueryPerformanceCounter(&nLast);
+	int frame = 0;
+	int dTime = 0;
+	int newTime = GetTickCount();
+	int oldTime = GetTickCount();
 
 	if (!applicationLaunching())
 	{
@@ -39,16 +37,23 @@ int Application::run()
 
 	while(!glview->windowShouldClose())
 	{
-		QueryPerformanceCounter(&nNow);
-		if (nNow.QuadPart - nLast.QuadPart > _interval.QuadPart)
+		newTime = GetTickCount();
+		dTime =  newTime - oldTime;
+		if (_interval == 0 || dTime >= _interval)
 		{
-			nLast.QuadPart = nNow.QuadPart;
+			if (dTime > 1000)
+			{
+				oldTime = newTime;
+				_fps = frame;
+				frame = 0;
+			}
+			frame++;
 
 			director->mainLoop();
 			glview->pollEvents();
 		}
 		else{
-			Sleep((int)(((double)_interval.QuadPart/(double)nFreq.QuadPart)*1000));
+			Sleep(_interval - dTime);
 		}
 	}
 
@@ -63,9 +68,7 @@ Application* Application::getInstance()
 
 void Application::setFPS(double interval)
 {
-	LARGE_INTEGER nFreq;
-	QueryPerformanceFrequency(&nFreq);
-	_interval.QuadPart = (LONGLONG)(interval * nFreq.QuadPart);
+	_interval = 1000*interval;
 }
 
 NS_SIT_END

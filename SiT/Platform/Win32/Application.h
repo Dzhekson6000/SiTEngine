@@ -11,7 +11,7 @@ NS_SIT_BEGIN
 class SIT_DLL Application
 {
 private:
-	LARGE_INTEGER _interval;
+	int _interval;
 protected:
 	static Application * _application;
 	virtual bool applicationLaunching(){ return false;}
@@ -21,6 +21,8 @@ public:
 	int run();
 	static Application* getInstance();
 	void setFPS(double interval);
+
+	int _fps;
 
 };
 
