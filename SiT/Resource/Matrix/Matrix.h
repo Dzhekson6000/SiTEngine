@@ -156,6 +156,114 @@ public:
 		memcpy(&_matrix, &other._matrix, sizeof(other._matrix));
 		return  ret;
 	}
+
+	float determinant()
+	{
+		float ret = 0;
+
+		Element **matrix = toArray();
+
+		ret = determinant(matrix, rangeX);
+
+		for (int i = 0; i < rangeX; i++)
+			free(matrix[i]);
+		free(matrix);
+
+		return ret;
+	}
+
+	Matrix inverse()
+	{
+		Matrix<rangeX, rangeY, Element>  ret;
+		if (determinant() == 0)
+		{
+			ret.initNull();
+		}
+		else
+		{
+			Element **matrix = toArray();
+			unsigned int n = _rangeX;
+
+
+			for (int i = 0; i < n; i++) {
+				for (int j = 0; j < n; j++) {
+					Element **minor = preMinor(matrix, n, i, j);
+
+					ret._matrix[i][j] = determinant(minor, n-1) * ((i + j) % 2 ? -1 : 1);
+
+					for (int i = 0; i < n - 1; i++)
+						free(minor[i]);
+					free(minor);
+				}
+			}
+
+			for (int i = 0; i < n; i++)
+				free(matrix[i]);
+			free(matrix);
+		}
+		
+		return ret;
+	}
+
+	Element** toArray()
+	{
+		Element **ret = (Element **)malloc(rangeX*sizeof(Element *));
+		for (unsigned int i = 0; i < rangeX; i++)
+		{
+			ret[i] = (Element *)malloc(rangeY*sizeof(Element));
+			for (unsigned int j = 0; j < rangeY; j++)
+				ret[i][j] = _matrix[i][j];
+		}
+
+		return ret;
+	}
+
+private:
+
+	Element **preMinor(Element **matrix, unsigned int n, unsigned int x, unsigned int y)
+	{
+		Element **ret = (Element **)malloc((n - 1)*sizeof(Element *));
+		for (int i = 0; i < n - 1; i++)
+			ret[i] = (Element *)malloc((n - 1)*sizeof(Element));
+
+		for (int i = 0, in = 0; i < n; i++) {
+			if (i != x){
+				for (int j = 0, jn = 0; j < n; j++) {
+					if (j != y) {
+						ret[in][jn++] = matrix[i][j];
+					}
+				}
+				in++;
+			}
+		}
+
+		return ret;
+	}
+
+	float determinant(Element **matrix, int n)
+	{
+		float ret = 0;
+
+		if (n == 1) {
+			ret = matrix[0][0];
+		}
+		else if (n == 2) {
+			ret = matrix[0][0] * matrix[1][1] - matrix[1][0] * matrix[0][1];
+		}
+		else
+		{
+			for (int y = 0; y < n; y++)
+			{
+				Element **minor = preMinor(matrix, n, 0, y);
+				ret += (y % 2 ? -1 : 1) * matrix[0][y] * determinant(minor, n - 1);
+
+				for (int i = 0; i < n - 1; i++)
+					free(minor[i]);
+				free(minor);
+			}
+		}
+		return(ret);
+	}
 };
 
 NS_SIT_END
