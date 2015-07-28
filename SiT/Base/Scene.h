@@ -17,6 +17,7 @@ public:
 	virtual ~Scene();
 	virtual bool init();
 	virtual Node* getScene();
+	const Matrix<4, 4, float>* transform();
 
 	using Node::addChild;
 };
