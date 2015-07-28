@@ -175,7 +175,8 @@ public:
 	Matrix inverse()
 	{
 		Matrix<rangeX, rangeY, Element>  ret;
-		if (determinant() == 0)
+		float det = determinant();
+		if (det == 0)
 		{
 			ret.initNull();
 		}
@@ -183,7 +184,6 @@ public:
 		{
 			Element **matrix = toArray();
 			unsigned int n = _rangeX;
-
 
 			for (int i = 0; i < n; i++) {
 				for (int j = 0; j < n; j++) {
@@ -200,6 +200,8 @@ public:
 			for (int i = 0; i < n; i++)
 				free(matrix[i]);
 			free(matrix);
+
+			ret = ret.transpose() * (1/det);
 		}
 		
 		return ret;
