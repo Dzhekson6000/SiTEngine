@@ -26,10 +26,20 @@ bool Sprite::init( const std::string& path)
 	_indices[4] = 3;
 	_indices[5] = 0;
 
-	_vertices[0] = Vertex(Vector(-1.0f, -1.0f, 0.0f),Vector(1.0f, 1.0f, 1.0f),Vector(0.0f, 1.0f));
-	_vertices[1] = Vertex(Vector(1.0f, -1.0f, 0.0f), Vector(1.0f, 1.0f, 1.0f), Vector(1.0f, 1.0f));
-	_vertices[2] = Vertex(Vector(1.0f, 1.0f, 0.0f), Vector(1.0f, 1.0f, 1.0f), Vector(1.0f, 0.0f));
-	_vertices[3] = Vertex(Vector(-1.0f, 1.0f, 0.0f), Vector(1.0f, 1.0f, 1.0f), Vector(0.0f, 0.0f));
+
+	Size* screen = getScreenSize();
+	float scaleX = ((Texture*)_image)->getWidth() / (float)screen->getWidth();
+	float scaleY = ((Texture*)_image)->getHeight() / (float)screen->getHeight();
+
+	float x = -scaleX;
+	float y = -scaleY;
+	float w = 2 * scaleX;
+	float h = 2 * scaleY;
+
+	_vertices[0] = Vertex(Vector(x, y, 0.0f),Vector(1.0f, 1.0f, 1.0f),Vector(0.0f, 1.0f));
+	_vertices[1] = Vertex(Vector(x+w, y, 0.0f), Vector(1.0f, 1.0f, 1.0f), Vector(1.0f, 1.0f));
+	_vertices[2] = Vertex(Vector(x+w, y+h, 0.0f), Vector(1.0f, 1.0f, 1.0f), Vector(1.0f, 0.0f));
+	_vertices[3] = Vertex(Vector(x, y+h, 0.0f), Vector(1.0f, 1.0f, 1.0f), Vector(0.0f, 0.0f));
 
 
 	glGenBuffers(1, &_VBO);
@@ -48,31 +58,24 @@ bool Sprite::init( const std::string& path)
 
 const Matrix<4, 4, float>* Sprite::transform()
 {
+	if (_isUpdated)return &_transformation;
 	Size* screen = getScreenSize();
-	float width = screen->getWidth();
-	float height = screen->getHeight();
-	float imageWidth = ((Texture*)_image)->getWidth();
-	float imageHeight = ((Texture*)_image)->getHeight();
-
-	float scaleX = imageWidth / width;
-	float scaleY = imageHeight / height;
 
 	MatrixObject scale, rotate, translation;
-	scale.initScaleTransform(
-		scaleX + _scale.getX() - 1.0f,
-		scaleY + _scale.getY() - 1.0f,
-		_scale.getZ()
-	);
-
-	rotate.initRotateTransform(_rotate.getX(), _rotate.getY(), _rotate.getZ());	
+	scale.initScaleTransform(_scale);
+	rotate.initRotateTransform(_rotate);
 
 	translation.initTranslationTransform(
-		((2 * _point.getX() - width) / imageWidth),
-		((2 * _point.getY() - height) / imageHeight),
+		_point.getX() / (screen->getWidth() / 2 * _parent->getAbsoluteScaleX()),
+		_point.getY() / (screen->getHeight() / 2 * _parent->getAbsoluteScaleY()),
 		_point.getZ()
 	);
 
-	_transformation = translation * rotate * scale;
+	_transformation = scale * rotate * translation * _parent->getTransformation();
+
+	_isUpdated = true;
+	Node::transform();
+
 	return &_transformation;
 }
 

@@ -3,7 +3,6 @@
 
 #include "Base/Node.h"
 #include "Resource/ResourceManager.h"
-#include "Resource/Matrix/MatrixObject.h"
 
 NS_SIT_BEGIN
 
@@ -12,7 +11,6 @@ class SIT_DLL Sprite: public Node
 private:
 	Sprite(){};
 	ResourceHandle * _image;
-	Matrix<4, 4, float> _transformation;
 	CustomCommand _customCommand;
 
 	Vertex			_vertices[4];

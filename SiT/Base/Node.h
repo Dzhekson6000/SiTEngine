@@ -7,13 +7,14 @@
 #include "Geometry/Geometry.h"
 #include "Base/PoolManager.h"
 #include "Graphics/Shader/ShaderManager.h"
+#include "Resource/Matrix/MatrixObject.h"
 
 NS_SIT_BEGIN
 
 class Node: public Ref
 {
 private:
-
+	
 protected:
 	Scale				_scale;
 	Point				_point;
@@ -25,6 +26,9 @@ protected:
 	int					_localZOrder;
 	bool				_visible;
 	Shader*				_shader;
+	Matrix<4, 4, float> _transformation;
+	bool				_isUpdated;
+
 public:
 	static Node* create(void);
 
@@ -37,6 +41,11 @@ public:
 	virtual const int		getLocalZOrder();
 	virtual const Node*		getParent() const;
 	virtual size_t			getChildrenCount() const;
+	virtual const Matrix<4, 4, float>* transform();
+	virtual Matrix<4, 4, float> getTransformation();
+
+	float					getAbsoluteScaleX();
+	float					getAbsoluteScaleY();
 
 	virtual void			setScale(const Scale &scale);
 	virtual void			setPosition(const Point &point);
