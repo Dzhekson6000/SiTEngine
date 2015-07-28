@@ -18,6 +18,9 @@ public:
 	float getX(){return _x;}
 	float getY(){return _y;}
 	float getZ(){return _z;}
+	void setX(float x){ _x = x; }
+	void setY(float y){ _y = y; }
+	void setZ(float z){ _z = z; }
 };
 
 NS_SIT_END

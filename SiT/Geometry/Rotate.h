@@ -16,6 +16,9 @@ public:
 	float getX(){return _rotateX;}
 	float getY(){return _rotateY;}
 	float getZ(){return _rotateZ;}
+	void setX(float rotateX){ _rotateX = rotateX; }
+	void setY(float rotateY){ _rotateY = rotateY; }
+	void setZ(float rotateZ){ _rotateZ = rotateZ; }
 };
 
 NS_SIT_END

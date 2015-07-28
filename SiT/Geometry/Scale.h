@@ -11,8 +11,8 @@ private:
 	float _scaleX,_scaleY,_scaleZ;
 public:
 	Scale():_scaleX(1.0),_scaleY(1.0),_scaleZ(1.0){}
-	Scale(float rotateX,float rotateY):_scaleX(rotateX),_scaleY(rotateY),_scaleZ(1.0){}
-	Scale(float rotateX,float rotateY, float rotateZ):_scaleX(rotateX),_scaleY(rotateY),_scaleZ(rotateZ){}
+	Scale(float scaleX, float scaleY) :_scaleX(scaleX), _scaleY(scaleY), _scaleZ(1.0){}
+	Scale(float scaleX, float scaleY, float scaleZ) :_scaleX(scaleX), _scaleY(scaleY), _scaleZ(scaleZ){}
 	float getX(){return _scaleX;}
 	float getY(){return _scaleY;}
 	float getZ(){return _scaleZ;}
