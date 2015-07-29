@@ -1,5 +1,6 @@
 #include "FontAtlas.h"
 
+#include "Director.h"
 
 #include <freetype.h>
 #include <ftglyph.h>
@@ -150,15 +151,20 @@ CharacterInfo* FontAtlas::loadChar(unsigned int char_)
 	float charWidth = (float)characterInfo->size.getWidth() / _width;
 	float charHeight = (float)characterInfo->size.getHeight() / _height;
 
+	Size* screen = Director::getInstance()->getWinSize();
+	float scaleX = characterInfo->size.getWidth() / (float)screen->getWidth();
+	float scaleY = characterInfo->size.getHeight() / (float)screen->getHeight();
+
 	Vertex vertices[4];
-	vertices[0] = Vertex(Vector(-1.0f, -1.0f, 0.0f), Vector(1.0f, 1.0f, 1.0f),
-		Vector(charX, charY + charHeight));
-	vertices[1] = Vertex(Vector(1.0f, -1.0f, 0.0f), Vector(1.0f, 1.0f, 1.0f),
-		Vector(charX + charWidth, charY + charHeight));
-	vertices[2] = Vertex(Vector(1.0f, 1.0f, 0.0f), Vector(1.0f, 1.0f, 1.0f),
-		Vector(charX + charWidth, charY));
-	vertices[3] = Vertex(Vector(-1.0f, 1.0f, 0.0f), Vector(1.0f, 1.0f, 1.0f),
-		Vector(charX, charY));
+	float x = -scaleX;
+	float y = -scaleY;
+	float w = 2 * scaleX;
+	float h = 2 * scaleY;
+
+	vertices[0] = Vertex(Vector(x, y, 0.0f), Vector(1.0f, 1.0f, 1.0f), Vector(charX, charY + charHeight));
+	vertices[1] = Vertex(Vector(x + w, y, 0.0f), Vector(1.0f, 1.0f, 1.0f), Vector(charX + charWidth, charY + charHeight));
+	vertices[2] = Vertex(Vector(x + w, y + h, 0.0f), Vector(1.0f, 1.0f, 1.0f), Vector(charX + charWidth, charY));
+	vertices[3] = Vertex(Vector(x, y + h, 0.0f), Vector(1.0f, 1.0f, 1.0f), Vector(charX, charY));
 
 	glGenBuffers(1, &characterInfo->_VBO);
 	glBindBuffer(GL_ARRAY_BUFFER, characterInfo->_VBO);

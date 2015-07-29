@@ -53,39 +53,54 @@ _sizeFont(sizeFont)
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(_indices), _indices, GL_STATIC_DRAW);
 
 	_shader = _font->getShader();
+
+	_transformCharacters = new Matrix<4, 4, float>[_text.size()];
 }
 
+const Matrix<4, 4, float>* Label::transform()
+{
+	if (_isUpdated)return &_transformation;
+	Size* screen = getScreenSize();
 
-Matrix<4, 4, float> Label::transform(Point point, CharacterInfo* info)
+	MatrixObject scale, rotate, translation;
+	scale.initScaleTransform(_scale);
+	rotate.initRotateTransform(_rotate);
+
+	translation.initTranslationTransform(
+		_point.getX() / (screen->getWidth() / 2 * _parent->getAbsoluteScaleX()),
+		_point.getY() / (screen->getHeight() / 2 * _parent->getAbsoluteScaleY()),
+		_point.getZ()
+		);
+
+	_transformation = scale * rotate * translation * _parent->getTransformation();
+
+	_isUpdated = true;
+	Node::transform();
+
+	return &_transformation;
+}
+
+Matrix<4, 4, float> Label::transformCharacter(Point point, CharacterInfo* info)
 {
 	Size* screen = getScreenSize();
 
 	float scaleSizeFont = (float)_sizeFont / (float)_font->getSizeFont();
 
-	float width = screen->getWidth();
-	float height = screen->getHeight();
-	float imageWidth = info->size.getWidth();
-	float imageHeight = info->size.getHeight();
-
-	float scaleX = imageWidth / width * scaleSizeFont;
-	float scaleY = imageHeight / height * scaleSizeFont;
-
-	MatrixObject scale, rotate, translation;
+	MatrixObject scale, translation;
 	scale.initScaleTransform(
-		scaleX + _scale.getX() - 1.0f,
-		scaleY + _scale.getY() - 1.0f,
+		scaleSizeFont,
+		scaleSizeFont,
 		_scale.getZ()
 		);
 
-	rotate.initRotateTransform(_rotate.getX(), _rotate.getY(), _rotate.getZ());
 
 	translation.initTranslationTransform(
-		((2 * (point.getX() + _point.getX()) - width) / imageWidth),
-		((2 * (point.getY() + _point.getY()) - height) / imageHeight),
+		point.getX() / (screen->getWidth() / 2 * _parent->getAbsoluteScaleX()),
+		point.getY() / (screen->getHeight() / 2 * _parent->getAbsoluteScaleY()),
 		point.getZ()
 	);
 
-	return translation * rotate * scale;
+	return translation * scale * *transform();
 }
 
 Label::~Label()
@@ -194,7 +209,7 @@ void Label::drawChar(Point point, CharacterInfo* info)
 
 	_shader->setUniformLocationWith1i(_shader->getUniformLocation(_shader->UNIFORM_NAME_SAMPLER), 0);
 	_shader->setUniformLocationWith4fv(_shader->getUniformLocation(_shader->UNIFORM_NAME_COLOR), (const GLfloat*) color, 1);
-	_shader->setUniformLocationWithMatrix4fv(_shader->getUniformLocation(_shader->UNIFORM_NAME_MVP_MATRIX), (const GLfloat*)&transform(point, info), 1);
+	_shader->setUniformLocationWithMatrix4fv(_shader->getUniformLocation(_shader->UNIFORM_NAME_MVP_MATRIX), (const GLfloat*)&transformCharacter(point, info), 1);
 	
 	glBindBuffer(GL_ARRAY_BUFFER, info->_VBO);
 	glVertexAttribPointer(_shader->VERTEX_ATTRIB_POSITION, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), nullptr);

@@ -47,7 +47,10 @@ private:
 	std::string _text;
 
 	void	drawChar(Point point, CharacterInfo* info);
-	Matrix<4,4,float> transform(Point point, CharacterInfo* info);
+
+	Matrix<4, 4, float>* _transformCharacters;
+	const Matrix<4, 4, float>* transform();
+	Matrix<4, 4, float> transformCharacter(Point point, CharacterInfo* info);
 
 	unsigned int	_indices[6];
 	GLuint			_IBO;
