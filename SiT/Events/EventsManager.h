@@ -1,9 +1,10 @@
 #ifndef EVENTS_H_
 #define EVENTS_H_
 
-#include "Macros.h"
 #include <vector>
 #include "EventTouch.h"
+#include "EventKeypress.h"
+#include "EventKeyboard.h"
 
 NS_SIT_BEGIN
 
@@ -27,6 +28,9 @@ public:
 	void eventTouchBegin(Point point);
 	void eventTouchMove(Point point);
 	void eventTouchEnd(Point point);
+
+	void eventKeypress(Key key, EventKeypress::EventType eventType);
+	void eventKeyboard(unsigned int character);
 };
 
 #define EVENTSMANADGER() EventsManager::getInstance()

@@ -1,5 +1,5 @@
 #include "GLViewImpl.h"
-#include "Events/GLFWEventHandler.h"
+#include "GLFWEventHandler.h"
 
 NS_SIT_BEGIN
 
@@ -39,12 +39,11 @@ bool GLViewImpl::init(const std::string& viewName, int width, int height)
 	createWindow();
 	glfwMakeContextCurrent(_mainWindow);
 
-	GLFWEventHandler::setEventsManager(EVENTSMANADGER());
 	glfwSetMouseButtonCallback(_mainWindow, GLFWEventHandler::onGLFWMouseCallBack);
 	glfwSetCursorPosCallback(_mainWindow, GLFWEventHandler::onGLFWMouseMoveCallBack);
-	glfwSetScrollCallback(_mainWindow, GLFWEventHandler::onGLFWMouseScrollCallback);
 	glfwSetCharCallback(_mainWindow, GLFWEventHandler::onGLFWCharCallback);
 	glfwSetKeyCallback(_mainWindow, GLFWEventHandler::onGLFWKeyCallback);
+
 	glfwSetWindowPosCallback(_mainWindow, GLFWEventHandler::onGLFWWindowPosCallback);
 	glfwSetFramebufferSizeCallback(_mainWindow, GLFWEventHandler::onGLFWframebuffersize);
 	glfwSetWindowSizeCallback(_mainWindow, GLFWEventHandler::onGLFWWindowSizeFunCallback);
@@ -73,6 +72,7 @@ void GLViewImpl::createWindow()
 	glEnable( GL_DEPTH_TEST);
 	glEnable( GL_LIGHTING);
 	glEnable( GL_LIGHT0);
+	glEnable(GL_CULL_FACE);
 }
 
 bool GLViewImpl::windowShouldClose()

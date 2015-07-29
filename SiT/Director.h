@@ -13,7 +13,7 @@
 #include "Platform/Android/GLViewImpl.h"
 #endif
 
-#include "Events/Events.h"
+#include "Events/EventsManager.h"
 
 NS_SIT_BEGIN
 

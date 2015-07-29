@@ -91,9 +91,10 @@
     <ClInclude Include="..\SiT\Base\Scene.h" />
     <ClInclude Include="..\SiT\Director.h" />
     <ClInclude Include="..\SiT\Events\Event.h" />
+    <ClInclude Include="..\SiT\Events\EventKeyboard.h" />
+    <ClInclude Include="..\SiT\Events\EventKeypress.h" />
     <ClInclude Include="..\SiT\Events\EventTouch.h" />
-    <ClInclude Include="..\SiT\Events\Events.h" />
-    <ClInclude Include="..\SiT\Events\GLFWEventHandler.h" />
+    <ClInclude Include="..\SiT\Events\EventsManager.h" />
     <ClInclude Include="..\SiT\Geometry\Color.h" />
     <ClInclude Include="..\SiT\Geometry\Geometry.h" />
     <ClInclude Include="..\SiT\Geometry\Point.h" />
@@ -121,11 +122,13 @@
     <ClInclude Include="..\SiT\Platform\MacrosPlatform.h" />
     <ClInclude Include="..\SiT\Platform\Win32\Application.h" />
     <ClInclude Include="..\SiT\Platform\Win32\FileUtilsImpl.h" />
+    <ClInclude Include="..\SiT\Platform\Win32\GLFWEventHandler.h" />
     <ClInclude Include="..\SiT\Platform\Win32\GLViewImpl.h" />
     <ClInclude Include="..\SiT\Resource\Data.h" />
     <ClInclude Include="..\SiT\Resource\FileUtils.h" />
     <ClInclude Include="..\SiT\Resource\FontAtlas.h" />
     <ClInclude Include="..\SiT\Resource\Image.h" />
+    <ClInclude Include="..\SiT\Resource\Keys.h" />
     <ClInclude Include="..\SiT\Resource\Matrix\Matrix.h" />
     <ClInclude Include="..\SiT\Resource\Matrix\MatrixObject.h" />
     <ClInclude Include="..\SiT\Resource\ResourceHandle.h" />
@@ -142,9 +145,10 @@
     <ClCompile Include="..\SiT\Base\Scene.cpp" />
     <ClCompile Include="..\SiT\Director.cpp" />
     <ClCompile Include="..\SiT\Events\Event.cpp" />
+    <ClCompile Include="..\SiT\Events\EventKeyboard.cpp" />
+    <ClCompile Include="..\SiT\Events\EventKeypress.cpp" />
     <ClCompile Include="..\SiT\Events\EventTouch.cpp" />
-    <ClCompile Include="..\SiT\Events\Events.cpp" />
-    <ClCompile Include="..\SiT\Events\GLFWEventHandler.cpp" />
+    <ClCompile Include="..\SiT\Events\EventsManager.cpp" />
     <ClCompile Include="..\SiT\Geometry\Rotate.cpp" />
     <ClCompile Include="..\SiT\Geometry\Scale.cpp" />
     <ClCompile Include="..\SiT\Geometry\Size.cpp" />
@@ -160,6 +164,7 @@
     <ClCompile Include="..\SiT\Macros.cpp" />
     <ClCompile Include="..\SiT\Platform\Win32\Application.cpp" />
     <ClCompile Include="..\SiT\Platform\Win32\FileUtilsImpl.cpp" />
+    <ClCompile Include="..\SiT\Platform\Win32\GLFWEventHandler.cpp" />
     <ClCompile Include="..\SiT\Platform\Win32\GLViewImpl.cpp" />
     <ClCompile Include="..\SiT\Resource\Data.cpp" />
     <ClCompile Include="..\SiT\Resource\FileUtils.cpp" />

@@ -9,20 +9,24 @@ NS_SIT_BEGIN
 class EventTouch: public Event
 {
 public:
-	enum class TouchEventType
+	enum class TouchEventType : unsigned int
 	{
 		TOUCH_NONE,
 		TOUCH_BEGIN,
 		TOUCH_MOVE,
-		TOUCH_END
+		TOUCH_END,
+		CURSOR_MOVE
 	};
+private:
+	std::function<void(Point)> _func;
+	TouchEventType _touchEventType;
+public:
 	
 	EventTouch(TouchEventType touchEventType);
+	EventTouch(TouchEventType touchEventType, std::function<void(Point)> func);
+	void setFunc(std::function<void(Point)> func);
 	TouchEventType getTouchEventType(){return _touchEventType; }
-	std::function<void(Point)> _func;
 	virtual void execute(Point point);
-private:
-	TouchEventType _touchEventType;
 };
 
 

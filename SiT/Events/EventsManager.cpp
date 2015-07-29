@@ -1,4 +1,4 @@
-#include "Events.h"
+#include "EventsManager.h"
 
 NS_SIT_BEGIN
 
@@ -67,6 +67,7 @@ void EventsManager::eventTouchBegin( Point point )
 	_mouseStatus = true;
 	for (auto e:_events)
 	{
+		EventTouch* a = (EventTouch*)e;
 		if(e->getType() == Event::Type::EVENT_TOUCH &&
 			((EventTouch*)e)->getTouchEventType() == EventTouch::TouchEventType::TOUCH_BEGIN)
 		{
@@ -80,7 +81,10 @@ void EventsManager::eventTouchMove( Point point )
 	for (auto e:_events)
 	{
 		if(e->getType() == Event::Type::EVENT_TOUCH &&
-			((EventTouch*)e)->getTouchEventType() == EventTouch::TouchEventType::TOUCH_MOVE)
+			(((EventTouch*)e)->getTouchEventType() == EventTouch::TouchEventType::TOUCH_MOVE && _mouseStatus
+			|| ((EventTouch*)e)->getTouchEventType() == EventTouch::TouchEventType::CURSOR_MOVE
+			)
+		)
 		{
 			((EventTouch*)e)->execute(point);
 		}
@@ -96,6 +100,28 @@ void EventsManager::eventTouchEnd( Point point )
 			((EventTouch*)e)->getTouchEventType() == EventTouch::TouchEventType::TOUCH_END)
 		{
 			((EventTouch*)e)->execute(point);
+		}
+	}
+}
+
+void EventsManager::eventKeypress(Key key, EventKeypress::EventType eventType)
+{
+	for (auto e : _events)
+	{
+		if (e->getType() == Event::Type::EVENT_KEYPRESS)
+		{
+			((EventKeypress*)e)->execute(key, eventType);
+		}
+	}
+}
+
+void EventsManager::eventKeyboard(unsigned int character)
+{
+	for (auto e : _events)
+	{
+		if (e->getType() == Event::Type::EVENT_KEYBOARD)
+		{
+			((EventKeyboard*)e)->execute(character);
 		}
 	}
 }

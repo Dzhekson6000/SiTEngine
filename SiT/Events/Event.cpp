@@ -3,18 +3,13 @@
 NS_SIT_BEGIN
 
 Event::Event(Type type):
-_type(type),
-_func(nullptr)
+_type(type)
 {
 
 }
 
 void Event::execute()
 {
-	if(_func)
-	{
-		_func();
-	}
 }
 
 NS_SIT_END

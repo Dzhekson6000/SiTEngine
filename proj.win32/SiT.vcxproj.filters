@@ -150,12 +150,6 @@
     <ClInclude Include="..\SiT\Graphics\Shader\Shaders\positionTextureF.h">
       <Filter>SiT\Graphics\Shader\Shaders</Filter>
     </ClInclude>
-    <ClInclude Include="..\SiT\Events\Events.h">
-      <Filter>SiT\Graphics\Events</Filter>
-    </ClInclude>
-    <ClInclude Include="..\SiT\Events\GLFWEventHandler.h">
-      <Filter>SiT\Graphics\Events</Filter>
-    </ClInclude>
     <ClInclude Include="..\SiT\Events\Event.h">
       <Filter>SiT\Graphics\Events</Filter>
     </ClInclude>
@@ -209,6 +203,21 @@
     </ClInclude>
     <ClInclude Include="..\SiT\Geometry\Vector.h">
       <Filter>SiT\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SiT\Events\EventsManager.h">
+      <Filter>SiT\Graphics\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SiT\Platform\Win32\GLFWEventHandler.h">
+      <Filter>SiT\Platform\Win32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SiT\Events\EventKeypress.h">
+      <Filter>SiT\Graphics\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SiT\Events\EventKeyboard.h">
+      <Filter>SiT\Graphics\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SiT\Resource\Keys.h">
+      <Filter>SiT\Resource</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -272,12 +281,6 @@
     <ClCompile Include="..\SiT\Macros.cpp">
       <Filter>SiT</Filter>
     </ClCompile>
-    <ClCompile Include="..\SiT\Events\Events.cpp">
-      <Filter>SiT\Graphics\Events</Filter>
-    </ClCompile>
-    <ClCompile Include="..\SiT\Events\GLFWEventHandler.cpp">
-      <Filter>SiT\Graphics\Events</Filter>
-    </ClCompile>
     <ClCompile Include="..\SiT\Events\Event.cpp">
       <Filter>SiT\Graphics\Events</Filter>
     </ClCompile>
@@ -316,6 +319,18 @@
     </ClCompile>
     <ClCompile Include="..\SiT\Resource\Matrix\MatrixObject.cpp">
       <Filter>SiT\Resource\Matrix</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SiT\Events\EventsManager.cpp">
+      <Filter>SiT\Graphics\Events</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SiT\Platform\Win32\GLFWEventHandler.cpp">
+      <Filter>SiT\Platform\Win32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SiT\Events\EventKeypress.cpp">
+      <Filter>SiT\Graphics\Events</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SiT\Events\EventKeyboard.cpp">
+      <Filter>SiT\Graphics\Events</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
