@@ -14,6 +14,7 @@
 #endif
 
 #include "Events/EventsManager.h"
+#include "Base/ScheduleManager.h"
 
 NS_SIT_BEGIN
 

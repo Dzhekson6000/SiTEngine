@@ -66,6 +66,7 @@ void Director::setFPS( double interval )
 
 void Director::mainLoop()
 {
+	SCHEDULE_MANADGER()->updateSchedules();
 	drawScene();
 	//PoolManager::getInstance()->getCurrentPool()->clear();
 }

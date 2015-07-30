@@ -219,6 +219,12 @@
     <ClInclude Include="..\SiT\Resource\Keys.h">
       <Filter>SiT\Resource</Filter>
     </ClInclude>
+    <ClInclude Include="..\SiT\Base\ScheduleManager.h">
+      <Filter>SiT\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SiT\Base\Schedule.h">
+      <Filter>SiT\Base</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -331,6 +337,12 @@
     </ClCompile>
     <ClCompile Include="..\SiT\Events\EventKeyboard.cpp">
       <Filter>SiT\Graphics\Events</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SiT\Base\ScheduleManager.cpp">
+      <Filter>SiT\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SiT\Base\Schedule.cpp">
+      <Filter>SiT\Base</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

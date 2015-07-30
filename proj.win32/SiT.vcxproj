@@ -89,6 +89,8 @@
     <ClInclude Include="..\SiT\Base\PoolManager.h" />
     <ClInclude Include="..\SiT\Base\Ref.h" />
     <ClInclude Include="..\SiT\Base\Scene.h" />
+    <ClInclude Include="..\SiT\Base\Schedule.h" />
+    <ClInclude Include="..\SiT\Base\ScheduleManager.h" />
     <ClInclude Include="..\SiT\Director.h" />
     <ClInclude Include="..\SiT\Events\Event.h" />
     <ClInclude Include="..\SiT\Events\EventKeyboard.h" />
@@ -143,6 +145,8 @@
     <ClCompile Include="..\SiT\Base\PoolManager.cpp" />
     <ClCompile Include="..\SiT\Base\Ref.cpp" />
     <ClCompile Include="..\SiT\Base\Scene.cpp" />
+    <ClCompile Include="..\SiT\Base\Schedule.cpp" />
+    <ClCompile Include="..\SiT\Base\ScheduleManager.cpp" />
     <ClCompile Include="..\SiT\Director.cpp" />
     <ClCompile Include="..\SiT\Events\Event.cpp" />
     <ClCompile Include="..\SiT\Events\EventKeyboard.cpp" />
