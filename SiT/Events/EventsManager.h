@@ -1,5 +1,5 @@
-#ifndef EVENTS_H_
-#define EVENTS_H_
+#ifndef EVENTS_MANAGER_H_
+#define EVENTS_MANAGER_H_
 
 #include <vector>
 #include "EventTouch.h"
@@ -33,9 +33,9 @@ public:
 	void eventKeyboard(unsigned int character);
 };
 
-#define EVENTSMANADGER() EventsManager::getInstance()
+#define EVENTS_MANADGER() EventsManager::getInstance()
 
 
 NS_SIT_END
 
-#endif  // EVENTS_H_
+#endif  // EVENTS_MANAGER_H_

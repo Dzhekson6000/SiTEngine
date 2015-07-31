@@ -16,11 +16,11 @@ void GLFWEventHandler::onGLFWMouseCallBack( GLFWwindow* window, int button, int 
 
 	if(GLFW_PRESS == action)
 	{
-		EVENTSMANADGER()->eventTouchBegin(point);
+		EVENTS_MANADGER()->eventTouchBegin(point);
 	}
 	else if(GLFW_RELEASE == action)
 	{
-		EVENTSMANADGER()->eventTouchEnd(point);
+		EVENTS_MANADGER()->eventTouchEnd(point);
 	}
 }
 
@@ -28,7 +28,7 @@ void GLFWEventHandler::onGLFWMouseMoveCallBack( GLFWwindow* window, double x, do
 {
 	Point point((float)x, (float)(Director::getInstance()->getWinSize()->getHeight() - y));
 
-	if(EVENTSMANADGER()->getMouseStatus())EVENTSMANADGER()->eventTouchMove(point);
+	if(EVENTS_MANADGER()->getMouseStatus())EVENTS_MANADGER()->eventTouchMove(point);
 }
 
 void GLFWEventHandler::onGLFWKeyCallback( GLFWwindow* window, int keyCode, int scancode, int action, int mods )
@@ -316,12 +316,12 @@ void GLFWEventHandler::onGLFWKeyCallback( GLFWwindow* window, int keyCode, int s
 			break;
 	}
 
-	EVENTSMANADGER()->eventKeypress(key, type);
+	EVENTS_MANADGER()->eventKeypress(key, type);
 }
 
 void GLFWEventHandler::onGLFWCharCallback( GLFWwindow* window, unsigned int character )
 {
-	EVENTSMANADGER()->eventKeyboard(character);
+	EVENTS_MANADGER()->eventKeyboard(character);
 }
 
 void GLFWEventHandler::onGLFWWindowPosCallback( GLFWwindow* windows, int x, int y )
