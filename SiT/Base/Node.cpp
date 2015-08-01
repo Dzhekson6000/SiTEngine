@@ -128,7 +128,6 @@ void Node::setRotation( const Rotate &rotate )
 void Node::setLocalZOrder( int localZOrder )
 {
 	_localZOrder = localZOrder;
-	_isUpdated = false;
 }
 
 void Node::setParent(Node* parent )
