@@ -1,5 +1,7 @@
 #include "Platform/MacrosPlatform.h"
 
+#define NULL 0
+
 #define NS_SIT_BEGIN                     namespace SiT {
 #define NS_SIT_END                       }
 #define USING_NS_SIT                     using namespace SiT;

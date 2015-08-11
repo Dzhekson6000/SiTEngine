@@ -61,6 +61,18 @@
     <Filter Include="SiT\Resource\Matrix">
       <UniqueIdentifier>{a8dbb8cd-46d9-4283-acae-6a25fa6ba75e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="SiT\Sound">
+      <UniqueIdentifier>{eb818adf-3152-4047-affd-98bf8f6f0ad2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SiT\Libs">
+      <UniqueIdentifier>{78356e1b-d03a-4df5-b7a0-550fb59b36c1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SiT\Libs\LibOpenAL">
+      <UniqueIdentifier>{2b5a2a22-f0e0-446e-af5a-e4a9301c4468}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SiT\Libs\LibWin32">
+      <UniqueIdentifier>{ddffabe1-957f-4e1f-8082-484c3ecb73bd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -225,6 +237,27 @@
     <ClInclude Include="..\SiT\Base\Schedule.h">
       <Filter>SiT\Base</Filter>
     </ClInclude>
+    <ClInclude Include="..\SiT\Sound\LoaderSound.h">
+      <Filter>SiT\Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SiT\Sound\SoundManager.h">
+      <Filter>SiT\Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SiT\Sound\SoundObject.h">
+      <Filter>SiT\Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SiT\Libs\SoundLib.h">
+      <Filter>SiT\Libs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SiT\Libs\LibWin32\LibWin32.h">
+      <Filter>SiT\Libs\LibWin32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SiT\Libs\LibOpenAL\LibOpenAL.h">
+      <Filter>SiT\Libs\LibOpenAL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SiT\Libs\LibOpenAL\SoundObjectOpenAL.h">
+      <Filter>SiT\Libs\LibOpenAL</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -343,6 +376,27 @@
     </ClCompile>
     <ClCompile Include="..\SiT\Base\Schedule.cpp">
       <Filter>SiT\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SiT\Sound\LoaderSound.cpp">
+      <Filter>SiT\Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SiT\Sound\SoundManager.cpp">
+      <Filter>SiT\Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SiT\Sound\SoundObject.cpp">
+      <Filter>SiT\Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SiT\Libs\SoundLib.cpp">
+      <Filter>SiT\Libs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SiT\Libs\LibWin32\LibWin32.cpp">
+      <Filter>SiT\Libs\LibWin32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SiT\Libs\LibOpenAL\LibOpenAL.cpp">
+      <Filter>SiT\Libs\LibOpenAL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SiT\Libs\LibOpenAL\SoundObjectOpenAL.cpp">
+      <Filter>SiT\Libs\LibOpenAL</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

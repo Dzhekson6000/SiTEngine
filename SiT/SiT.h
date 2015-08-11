@@ -18,6 +18,7 @@
 	#pragma comment (lib, "libpng.lib")
 	#pragma comment (lib, "libzlib.lib")
 	#pragma comment (lib, "freetype.lib")
+	#pragma comment (lib, "OpenAL32.lib")
 #endif
 
 #if TARGET_PLATFORM == PLATFORM_ANDROID

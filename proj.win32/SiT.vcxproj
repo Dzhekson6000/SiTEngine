@@ -55,7 +55,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>..;..\SiT\external\glfw3\include\win32;..\SiT;..\Classes;..\SiT\external\SOIL\include;..\SiT\external\glew\include;..\SiT\external\freetype\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..;..\SiT\external\glfw3\include\win32;..\SiT;..\Classes;..\SiT\external\SOIL\include;..\SiT\external\glew\include;..\SiT\external\freetype\include;..\SiT\external\openal\include\win32;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>false</MultiProcessorCompilation>
     </ClCompile>
     <Link>
@@ -120,6 +120,10 @@
     <ClInclude Include="..\SiT\Graphics\Shader\Shaders\positionColorV.h" />
     <ClInclude Include="..\SiT\Graphics\Shader\Shaders\positionTextureV.h" />
     <ClInclude Include="..\SiT\Graphics\Shader\Shaders\positionTextureF.h" />
+    <ClInclude Include="..\SiT\Libs\LibOpenAL\LibOpenAL.h" />
+    <ClInclude Include="..\SiT\Libs\LibOpenAL\SoundObjectOpenAL.h" />
+    <ClInclude Include="..\SiT\Libs\LibWin32\LibWin32.h" />
+    <ClInclude Include="..\SiT\Libs\SoundLib.h" />
     <ClInclude Include="..\SiT\Macros.h" />
     <ClInclude Include="..\SiT\Platform\MacrosPlatform.h" />
     <ClInclude Include="..\SiT\Platform\Win32\Application.h" />
@@ -137,6 +141,9 @@
     <ClInclude Include="..\SiT\Resource\ResourceManager.h" />
     <ClInclude Include="..\SiT\Resource\Texture.h" />
     <ClInclude Include="..\SiT\SiT.h" />
+    <ClInclude Include="..\SiT\Sound\LoaderSound.h" />
+    <ClInclude Include="..\SiT\Sound\SoundManager.h" />
+    <ClInclude Include="..\SiT\Sound\SoundObject.h" />
     <ClInclude Include="main.h" />
   </ItemGroup>
   <ItemGroup>
@@ -165,6 +172,10 @@
     <ClCompile Include="..\SiT\Graphics\Shader\Shader.cpp" />
     <ClCompile Include="..\SiT\Graphics\Shader\ShaderManager.cpp" />
     <ClCompile Include="..\SiT\Graphics\Shader\Shaders.cpp" />
+    <ClCompile Include="..\SiT\Libs\LibOpenAL\LibOpenAL.cpp" />
+    <ClCompile Include="..\SiT\Libs\LibOpenAL\SoundObjectOpenAL.cpp" />
+    <ClCompile Include="..\SiT\Libs\LibWin32\LibWin32.cpp" />
+    <ClCompile Include="..\SiT\Libs\SoundLib.cpp" />
     <ClCompile Include="..\SiT\Macros.cpp" />
     <ClCompile Include="..\SiT\Platform\Win32\Application.cpp" />
     <ClCompile Include="..\SiT\Platform\Win32\FileUtilsImpl.cpp" />
@@ -178,6 +189,9 @@
     <ClCompile Include="..\SiT\Resource\ResourceHandle.cpp" />
     <ClCompile Include="..\SiT\Resource\ResourceManager.cpp" />
     <ClCompile Include="..\SiT\Resource\Texture.cpp" />
+    <ClCompile Include="..\SiT\Sound\LoaderSound.cpp" />
+    <ClCompile Include="..\SiT\Sound\SoundManager.cpp" />
+    <ClCompile Include="..\SiT\Sound\SoundObject.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
