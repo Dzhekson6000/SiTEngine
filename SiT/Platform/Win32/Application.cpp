@@ -43,7 +43,6 @@ int Application::run()
 		{
 			if (dTime > 1000)
 			{
-				oldTime = newTime;
 				_fps = frame;
 				frame = 0;
 			}
@@ -51,6 +50,7 @@ int Application::run()
 
 			director->mainLoop();
 			glview->pollEvents();
+			oldTime = newTime;
 		}
 		else{
 			Sleep(_interval - dTime);
