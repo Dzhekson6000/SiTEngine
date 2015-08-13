@@ -46,7 +46,7 @@ const Point& Node::getPosition() const
 	return _point;
 }
 
-const Size& Node::getSize() const
+Size& Node::getSize()
 {
 	return _size;
 }
