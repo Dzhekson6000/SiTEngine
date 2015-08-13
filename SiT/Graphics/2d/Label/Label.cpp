@@ -2,9 +2,9 @@
 
 NS_SIT_BEGIN
 
-Label* Label::create()
+Label* Label::create(std::string pathFont)
 {
-	auto ret = new Label("", DEFAULT_SIZE_FONT);
+	auto ret = new Label("", pathFont, DEFAULT_SIZE_FONT);
 
 	if (ret)
 	{
@@ -14,18 +14,18 @@ Label* Label::create()
 	return ret;
 }
 
-Label* Label::create(std::string text)
+Label* Label::create(std::string text, std::string pathFont)
 {
-	auto ret = new Label(text, DEFAULT_SIZE_FONT);
+	auto ret = new Label(text, pathFont, DEFAULT_SIZE_FONT);
 	if (ret)
 	{
 		ret->autorelease();
 	}
 	return ret;
 }
-Label* Label::create(std::string text, unsigned int sizeFont)
+Label* Label::create(std::string text, std::string pathFont, unsigned int sizeFont)
 {
-	auto ret = new Label(text, sizeFont);
+	auto ret = new Label(text, pathFont, sizeFont);
 	if (ret)
 	{
 		ret->autorelease();
@@ -33,11 +33,10 @@ Label* Label::create(std::string text, unsigned int sizeFont)
 	return ret;
 }
 
-Label::Label(std::string text, unsigned int sizeFont) :
-_sizeFont(sizeFont)
+Label::Label(std::string text, std::string pathFont, unsigned int sizeFont) :
+_text(text), _pathFont(pathFont), _sizeFont(sizeFont)
 {
-	_font = (FontAtlas *)ResourceManager::getInstance()->getHandle(new Resource("1.ttf"));
-	_text = text;
+	_font = (FontAtlas *)ResourceManager::getInstance()->getHandle(new Resource(_pathFont));
 
 	_textAlignmentHorizontal = TEXT_ALIGN_LEFT;
 
@@ -120,7 +119,10 @@ void Label::onDraw()
 
 	int offsetX = 0;
 	int offsetY = 0;
+	int maxWidthLine = 0;
+	int heightLabel = 0;
 	int widthLine = 0;
+	int maxHeightLine = 0;
 
 	for (unsigned int i = 0; i < _text.size(); i++)
 	{
@@ -132,9 +134,12 @@ void Label::onDraw()
 				CharacterInfo* info = _font->getInfoChar(char_);
 				if (char_ == '\n')
 				{
+					heightLabel += maxHeightLine;
+					if (maxWidthLine < widthLine)maxWidthLine = widthLine;
 					break;
 				}
 				widthLine += info->advance.getX();
+				if (maxHeightLine < info->size.getHeight())maxHeightLine = info->size.getHeight();
 			}
 		}
 
@@ -144,6 +149,7 @@ void Label::onDraw()
 		if (char_ == '\n')
 		{
 			widthLine = 0;
+			maxHeightLine = 0;
 			offsetX = 0;
 			offsetY += _font->getLineSpacing();
 			continue;
@@ -179,6 +185,9 @@ void Label::onDraw()
 		offsetX += info->advance.getX();
 		offsetY += info->advance.getY();
 	}
+
+	_size.setWidth(maxWidthLine);
+	_size.setHeight(heightLabel);
 	
 	glDisable(GL_BLEND);
 }
@@ -205,7 +214,7 @@ void Label::setAlignmentHorizontal(TextAlignmentHorizontal textAlignmentHorizont
 
 void Label::drawChar(Point point, CharacterInfo* info)
 {
-	GLfloat color[4] = { _color._r, _color._g, _color._b, 1 };
+	GLfloat color[4] = { _color.getR(), _color.getG(), _color.getB(), 1 };
 
 	_shader->setUniformLocationWith1i(_shader->getUniformLocation(_shader->UNIFORM_NAME_SAMPLER), 0);
 	_shader->setUniformLocationWith4fv(_shader->getUniformLocation(_shader->UNIFORM_NAME_COLOR), (const GLfloat*) color, 1);

@@ -21,9 +21,9 @@ public:
 		TEXT_ALIGN_MAX
 	};
 
-	static Label* create();
-	static Label* create(std::string text);
-	static Label* create(std::string text, unsigned int sizeFont);
+	static Label* create(std::string pathFont);
+	static Label* create(std::string text, std::string pathFont);
+	static Label* create(std::string text, std::string pathFont, unsigned int sizeFont);
 
 	virtual ~Label();
 
@@ -37,7 +37,7 @@ public:
 protected:
 	
 private:
-	Label(std::string text, unsigned int sizeFont);
+	Label(std::string text, std::string pathFont, unsigned int sizeFont);
 	CustomCommand _customCommand;
 
 	FontAtlas * _font;
@@ -45,6 +45,7 @@ private:
 	unsigned int _sizeFont;
 	TextAlignmentHorizontal _textAlignmentHorizontal;
 	std::string _text;
+	std::string _pathFont;
 
 	void	drawChar(Point point, CharacterInfo* info);
 
