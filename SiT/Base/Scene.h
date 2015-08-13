@@ -9,11 +9,10 @@ NS_SIT_BEGIN
 class SIT_DLL Scene: public Node
 {
 private:
-	Scene();
 protected:
 
 public:
-	static Scene *create();
+	Scene();
 	virtual ~Scene();
 	virtual bool init();
 	virtual Node* getScene();

@@ -7,21 +7,6 @@ Scene::Scene()
 
 }
 
-Scene * Scene::create()
-{
-	Scene *ret = new Scene();
-	if (ret && ret->init())
-	{
-		ret->autorelease();
-		return ret;
-	}
-	else
-	{
-		delete ret;
-		return nullptr;
-	}
-}
-
 Scene::~Scene()
 {
 
