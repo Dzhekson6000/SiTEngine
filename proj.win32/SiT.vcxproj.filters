@@ -70,9 +70,6 @@
     <Filter Include="SiT\Libs\LibOpenAL">
       <UniqueIdentifier>{2b5a2a22-f0e0-446e-af5a-e4a9301c4468}</UniqueIdentifier>
     </Filter>
-    <Filter Include="SiT\Libs\LibWin32">
-      <UniqueIdentifier>{ddffabe1-957f-4e1f-8082-484c3ecb73bd}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -249,9 +246,6 @@
     <ClInclude Include="..\SiT\Libs\SoundLib.h">
       <Filter>SiT\Libs</Filter>
     </ClInclude>
-    <ClInclude Include="..\SiT\Libs\LibWin32\LibWin32.h">
-      <Filter>SiT\Libs\LibWin32</Filter>
-    </ClInclude>
     <ClInclude Include="..\SiT\Libs\LibOpenAL\LibOpenAL.h">
       <Filter>SiT\Libs\LibOpenAL</Filter>
     </ClInclude>
@@ -389,14 +383,14 @@
     <ClCompile Include="..\SiT\Libs\SoundLib.cpp">
       <Filter>SiT\Libs</Filter>
     </ClCompile>
-    <ClCompile Include="..\SiT\Libs\LibWin32\LibWin32.cpp">
-      <Filter>SiT\Libs\LibWin32</Filter>
-    </ClCompile>
     <ClCompile Include="..\SiT\Libs\LibOpenAL\LibOpenAL.cpp">
       <Filter>SiT\Libs\LibOpenAL</Filter>
     </ClCompile>
     <ClCompile Include="..\SiT\Libs\LibOpenAL\SoundObjectOpenAL.cpp">
       <Filter>SiT\Libs\LibOpenAL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SiT\Geometry\Color.cpp">
+      <Filter>SiT\Geometry</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

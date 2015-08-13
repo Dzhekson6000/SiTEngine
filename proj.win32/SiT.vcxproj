@@ -122,7 +122,6 @@
     <ClInclude Include="..\SiT\Graphics\Shader\Shaders\positionTextureF.h" />
     <ClInclude Include="..\SiT\Libs\LibOpenAL\LibOpenAL.h" />
     <ClInclude Include="..\SiT\Libs\LibOpenAL\SoundObjectOpenAL.h" />
-    <ClInclude Include="..\SiT\Libs\LibWin32\LibWin32.h" />
     <ClInclude Include="..\SiT\Libs\SoundLib.h" />
     <ClInclude Include="..\SiT\Macros.h" />
     <ClInclude Include="..\SiT\Platform\MacrosPlatform.h" />
@@ -160,6 +159,7 @@
     <ClCompile Include="..\SiT\Events\EventKeypress.cpp" />
     <ClCompile Include="..\SiT\Events\EventTouch.cpp" />
     <ClCompile Include="..\SiT\Events\EventsManager.cpp" />
+    <ClCompile Include="..\SiT\Geometry\Color.cpp" />
     <ClCompile Include="..\SiT\Geometry\Rotate.cpp" />
     <ClCompile Include="..\SiT\Geometry\Scale.cpp" />
     <ClCompile Include="..\SiT\Geometry\Size.cpp" />
@@ -174,7 +174,6 @@
     <ClCompile Include="..\SiT\Graphics\Shader\Shaders.cpp" />
     <ClCompile Include="..\SiT\Libs\LibOpenAL\LibOpenAL.cpp" />
     <ClCompile Include="..\SiT\Libs\LibOpenAL\SoundObjectOpenAL.cpp" />
-    <ClCompile Include="..\SiT\Libs\LibWin32\LibWin32.cpp" />
     <ClCompile Include="..\SiT\Libs\SoundLib.cpp" />
     <ClCompile Include="..\SiT\Macros.cpp" />
     <ClCompile Include="..\SiT\Platform\Win32\Application.cpp" />
