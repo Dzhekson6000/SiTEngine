@@ -4,7 +4,8 @@ NS_SIT_BEGIN
 
 Scene::Scene()
 {
-
+	EventsManager::getInstance()->clear();
+	SCHEDULE_MANADGER()->clearSchedules();
 }
 
 Scene::~Scene()
