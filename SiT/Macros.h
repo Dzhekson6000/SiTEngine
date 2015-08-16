@@ -1,4 +1,6 @@
 #include "Platform/MacrosPlatform.h"
+#include "Config.h"
+
 
 #define NULL 0
 

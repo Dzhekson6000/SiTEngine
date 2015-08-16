@@ -36,12 +36,12 @@ Node* Node::getScene()
 	return _parent->getScene();
 }
 
-const Scale& Node::getScale() const
+Scale& Node::getScale()
 {
 	return _scale;
 }
 
-const Point& Node::getPosition() const
+Point& Node::getPosition()
 {
 	return _point;
 }

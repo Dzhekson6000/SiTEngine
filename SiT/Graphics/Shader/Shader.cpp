@@ -14,268 +14,116 @@ const char* Shader::ATTRIBUTE_NAME_COLOR = "a_color";
 const char* Shader::ATTRIBUTE_NAME_POSITION = "a_position";
 const char* Shader::ATTRIBUTE_NAME_TEX_COORD = "a_texCoord";
 
-Shader::Shader():_shader(0), _shaderV(0), _shaderF(0)
+Shader::Shader()
 {
-	memset(_uniforms, 0, sizeof(_uniforms));
 }
 
 Shader::~Shader()
 {
-	if(_shader)glDeleteProgram(_shader);
 }
 
-bool Shader::initWithByteArrays(const GLchar* shaderByteArrayV, const GLchar* shaderByteArrayF)
+bool Shader::initWithByteArrays(const char* shaderByteArrayV, const char* shaderByteArrayF)
 {
-	_shader = glCreateProgram();
-	_shaderV = _shaderF = 0;
-	if (shaderByteArrayV)
-	{
-		if (!compileShader(&_shaderV, GL_VERTEX_SHADER, shaderByteArrayV))
-		{
-			return false;
-		}
-	}
-
-	if (shaderByteArrayF)
-	{
-		if (!compileShader(&_shaderF, GL_FRAGMENT_SHADER, shaderByteArrayF))
-		{
-			return false;
-		}
-	}
-
-	if (_shaderV)
-	{
-		glAttachShader(_shader, _shaderV);
-	}
-
-	if (_shaderF)
-	{
-		glAttachShader(_shader, _shaderF);
-	}
 	return true;
 }
 
-std::string Shader::logForOpenGLShader(GLuint shader)
+void Shader::bindAttribLocation(const char* attributeName, unsigned int index) const
 {
-	std::string ret;
-	GLint logLength = 0, charsWritten = 0;
-
-	glGetShaderiv(shader, GL_INFO_LOG_LENGTH, &logLength);
-	if (logLength < 1)
-		return "";
-
-	char *logBytes = (char*)malloc(logLength + 1);
-	glGetShaderInfoLog(shader, logLength, &charsWritten, logBytes);
-	logBytes[logLength] = '\0';
-	ret = logBytes;
-
-	free(logBytes);
-	return ret;
-}
-
-bool Shader::compileShader(GLuint * shader, GLenum type, const GLchar* source)
-{
-	GLint status;
-	if (!source)
-	{
-		return false;
-	}
-
-	const GLchar *sources[] = {
-		//"#version 120\n",
-#if TARGET_PLATFORM == PLATFORM_WIN32
-		(type == GL_VERTEX_SHADER ? "precision mediump float;\n precision mediump int;\n" : "precision mediump float;\n precision mediump int;\n"),
-#elif (TARGET_PLATFORM != PLATFORM_WIN32 && TARGET_PLATFORM != PLATFORM_LINUX && TARGET_PLATFORM != PLATFORM_MAC)
-		(type == GL_VERTEX_SHADER ? "precision highp float;\n precision highp int;\n" : "precision mediump float;\n precision mediump int;\n"),
-#endif
-		"uniform mat4 MVPMatrix;\n",
-		source,
-	};
-
-	*shader = glCreateShader(type);
-
-	GLint lengths = strlen(source);
-	glShaderSource(*shader, sizeof(sources)/sizeof(*sources), sources, nullptr);
-	glCompileShader(*shader);
-
-	glGetShaderiv(*shader, GL_COMPILE_STATUS, &status);
-
-	if (! status)
-	{
-		GLsizei length;
-		glGetShaderiv(*shader, GL_SHADER_SOURCE_LENGTH, &length);
-		GLchar* src = (GLchar *)malloc(sizeof(GLchar) * length);
-
-		glGetShaderSource(*shader, length, nullptr, src);
-		LOG("ERROR: Failed to compile shader:\n%s", src);
-
-		LOG("SiT: %s", logForOpenGLShader(*shader).c_str());
-
-		free(src);
-		//abort();
-	}
-	return (status == GL_TRUE);
-}
-
-
-
-GLint Shader::getAttribLocation(const char* attributeName) const
-{
-	return glGetAttribLocation(_shader, attributeName);
-}
-
-GLint Shader::getUniformLocation(const char* attributeName) const
-{
-	GLint n = glGetUniformLocation(_shader, attributeName);
-	return n;
-}
-
-void Shader::bindAttribLocation(const char* attributeName, GLuint index) const
-{
-	glBindAttribLocation(_shader, index, attributeName);
 }
 
 void Shader::updateUniforms()
 {
-	_uniforms[UNIFORM_MVP_MATRIX]	= glGetUniformLocation(_shader, UNIFORM_NAME_MVP_MATRIX);
-	_uniforms[UNIFORM_SAMPLER]		= glGetUniformLocation(_shader, UNIFORM_NAME_SAMPLER);
-	_uniforms[UNIFORM_COLOR]		= glGetUniformLocation(_shader, UNIFORM_NAME_COLOR);
-
-	this->use();
-
-	this->setUniformLocationWith1i(_uniforms[UNIFORM_SAMPLER], 0);
 }
 
 bool Shader::link()
 {
-	if(_shader == 0)
-	{
-		LOG("Shader link invalid program");
-		return false;
-	}
-
-	glLinkProgram(_shader);
-
-	if (_shaderV)
-	{
-		glDeleteShader(_shaderV);
-	}
-
-	if (_shaderF)
-	{
-		glDeleteShader(_shaderF);
-	}
-
-	_shaderV = _shaderF = 0;
-
-	return true;
+	return false;
 }
 
 void Shader::use()
 {
-	glUseProgram(_shader);
 }
 
-GLint Shader::getUniformLocationForName(const char* name) const
+int Shader::getAttribLocation(const char* attributeName) const
 {
-	if(name == nullptr)LOG("Invalid uniform name");
-	if(_shader == 0)LOG("Invalid operation. Cannot get uniform location when program is not initialized");
-	return glGetUniformLocation(_shader, name);
+	return NULL;
 }
 
-void Shader::setUniformLocationWith1i(GLint location, GLint i1)
+int Shader::getUniformLocation(const char* name) const
 {
-	glUniform1i( (GLint)location, i1);
+	return NULL;
 }
 
-void Shader::setUniformLocationWith2i(GLint location, GLint i1, GLint i2)
+void Shader::setUniformLocationWith1i(int location, int i1)
 {
-	glUniform2i( (GLint)location, i1, i2);
 }
 
-void Shader::setUniformLocationWith3i(GLint location, GLint i1, GLint i2, GLint i3)
+void Shader::setUniformLocationWith2i(int location, int i1, int i2)
 {
-	glUniform3i( (GLint)location, i1, i2, i3);
 }
 
-void Shader::setUniformLocationWith4i(GLint location, GLint i1, GLint i2, GLint i3, GLint i4)
+void Shader::setUniformLocationWith3i(int location, int i1, int i2, int i3)
 {
-	glUniform4i( (GLint)location, i1, i2, i3, i4);
 }
 
-void Shader::setUniformLocationWith2iv(GLint location, GLint* ints, unsigned int numberOfArrays)
+void Shader::setUniformLocationWith4i(int location, int i1, int i2, int i3, int i4)
 {
-	glUniform2iv( (GLint)location, (GLsizei)numberOfArrays, ints );
 }
 
-void Shader::setUniformLocationWith3iv(GLint location, GLint* ints, unsigned int numberOfArrays)
+void Shader::setUniformLocationWith2iv(int location, int* ints, unsigned int numberOfArrays)
 {
-	glUniform3iv( (GLint)location, (GLsizei)numberOfArrays, ints );
 }
 
-void Shader::setUniformLocationWith4iv(GLint location, GLint* ints, unsigned int numberOfArrays)
+void Shader::setUniformLocationWith3iv(int location, int* ints, unsigned int numberOfArrays)
 {
-	glUniform4iv( (GLint)location, (GLsizei)numberOfArrays, ints );
 }
 
-void Shader::setUniformLocationWith1f(GLint location, GLfloat f1)
+void Shader::setUniformLocationWith4iv(int location, int* ints, unsigned int numberOfArrays)
 {
-	glUniform1f( (GLint)location, f1);
 }
 
-void Shader::setUniformLocationWith2f(GLint location, GLfloat f1, GLfloat f2)
+void Shader::setUniformLocationWith1f(int location, float f1)
 {
-	glUniform2f( (GLint)location, f1, f2);
 }
 
-void Shader::setUniformLocationWith3f(GLint location, GLfloat f1, GLfloat f2, GLfloat f3)
+void Shader::setUniformLocationWith2f(int location, float f1, float f2)
 {
-	glUniform3f( (GLint)location, f1, f2, f3);
 }
 
-void Shader::setUniformLocationWith4f(GLint location, GLfloat f1, GLfloat f2, GLfloat f3, GLfloat f4)
+void Shader::setUniformLocationWith3f(int location, float f1, float f2, float f3)
 {
-	glUniform4f( (GLint)location, f1, f2, f3,f4);
 }
 
-void Shader::setUniformLocationWith2fv(GLint location, const GLfloat* floats, unsigned int numberOfArrays)
+void Shader::setUniformLocationWith4f(int location, float f1, float f2, float f3, float f4)
 {
-	glUniform2fv( (GLint)location, (GLsizei)numberOfArrays, floats );
 }
 
-void Shader::setUniformLocationWith3fv(GLint location, const GLfloat* floats, unsigned int numberOfArrays)
+void Shader::setUniformLocationWith2fv(int location, const float* floats, unsigned int numberOfArrays)
 {
-	glUniform3fv( (GLint)location, (GLsizei)numberOfArrays, floats );
 }
 
-void Shader::setUniformLocationWith4fv(GLint location, const GLfloat* floats, unsigned int numberOfArrays)
+void Shader::setUniformLocationWith3fv(int location, const float* floats, unsigned int numberOfArrays)
 {
-	glUniform4fv( (GLint)location, (GLsizei)numberOfArrays, floats );
 }
 
-void Shader::setUniformLocationWithMatrix2fv(GLint location, const GLfloat* matrixArray, unsigned int numberOfMatrices)
+void Shader::setUniformLocationWith4fv(int location, const float* floats, unsigned int numberOfArrays)
 {
-	glUniformMatrix2fv( (GLint)location, (GLsizei)numberOfMatrices, GL_FALSE, matrixArray);
 }
 
-void Shader::setUniformLocationWithMatrix3fv(GLint location, const GLfloat* matrixArray, unsigned int numberOfMatrices) {
-	glUniformMatrix3fv( (GLint)location, (GLsizei)numberOfMatrices, GL_FALSE, matrixArray);
-}
-
-
-void Shader::setUniformLocationWithMatrix4fv(GLint location, const GLfloat* matrixArray, unsigned int numberOfMatrices)
+void Shader::setUniformLocationWithMatrix2fv(int location, const float* matrixArray, unsigned int numberOfMatrices)
 {
-	glUniformMatrix4fv( (GLint)location, (GLsizei)numberOfMatrices, GL_TRUE, matrixArray);
+}
+
+void Shader::setUniformLocationWithMatrix3fv(int location, const float* matrixArray, unsigned int numberOfMatrices) {
+}
+
+
+void Shader::setUniformLocationWithMatrix4fv(int location, const float* matrixArray, unsigned int numberOfMatrices)
+{
 }
 
 void Shader::reset()
 {
-	_shaderV = _shaderF = 0;
-	memset(_uniforms, 0, sizeof(_uniforms));
-
-	if(_shader)glDeleteProgram(_shader);
-	_shader = 0;
 }
 
 NS_SIT_END

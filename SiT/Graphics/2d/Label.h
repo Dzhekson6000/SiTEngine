@@ -6,6 +6,7 @@
 
 #include "Resource/ResourceManager.h"
 #include "Resource/Matrix/MatrixObject.h"
+#include "Resource/FontAtlas.h"
 
 
 NS_SIT_BEGIN

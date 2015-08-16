@@ -33,7 +33,7 @@ SoundObject* SoundManager::createSoundObject(std::string path)
 	std::string ext = extractFileExt(path).data();
 	if (ext == "WAV")
 	{
-		ret = SoundLib::getInstance()->createSoundObject(SoundLib::TypeData::WAV, path, data);
+		ret = SOUND_LIB()->createSoundObject(SoundLib::TypeData::WAV, path, data);
 	}
 	
 	_buffers.push_back(ret);
@@ -59,7 +59,7 @@ void SoundManager::deleteSoundObject(SoundObject* soundObject)
 	}
 	if (n == 0)
 	{
-		SoundLib::getInstance()->deleteObject(name);
+		SOUND_LIB()->deleteObject(name);
 	}
 }
 

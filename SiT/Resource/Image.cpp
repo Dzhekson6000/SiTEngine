@@ -6,7 +6,7 @@ Image::Image(): _data(nullptr)
 , _dataLen(0)
 , _width(0)
 , _height(0)
-, _fileType(Format::UNKOWN)
+, _fileType(DataFormat::UNKOWN)
 {
 }
 
@@ -42,10 +42,10 @@ bool Image::initImageData( const unsigned char * data, size_t dataLen )
 
 		switch (_fileType)
 		{
-		case Format::PNG:
+		case DataFormat::PNG:
 			ret = initPngData(data, dataLen);
 			break;
-		case Format::JPG:
+		case DataFormat::JPG:
 			ret = initJpgData(data, dataLen);
 			break;
 		default:
@@ -102,11 +102,11 @@ bool Image::initJpgData( const unsigned char * data, size_t dataLen )
 
 		if (cinfo.jpeg_color_space == JCS_GRAYSCALE)
 		{
-			_renderFormat = Texture::PixelFormat::I8;
+			_renderFormat = PixelFormat::I8;
 		}else
 		{
 			cinfo.out_color_space = JCS_RGB;
-			_renderFormat = Texture::PixelFormat::RGB888;
+			_renderFormat = PixelFormat::RGB888;
 		}
 
 		jpeg_start_decompress( &cinfo );
@@ -226,16 +226,16 @@ bool Image::initPngData( const unsigned char * data, size_t dataLen )
 		switch (color_type)
 		{
 		case PNG_COLOR_TYPE_GRAY:
-			_renderFormat = Texture::PixelFormat::I8;
+			_renderFormat = PixelFormat::I8;
 			break;
 		case PNG_COLOR_TYPE_GRAY_ALPHA:
-			_renderFormat = Texture::PixelFormat::AI88;
+			_renderFormat = PixelFormat::AI88;
 			break;
 		case PNG_COLOR_TYPE_RGB:
-			_renderFormat = Texture::PixelFormat::RGB888;
+			_renderFormat = PixelFormat::RGB888;
 			break;
 		case PNG_COLOR_TYPE_RGB_ALPHA:
-			_renderFormat = Texture::PixelFormat::RGBA8888;
+			_renderFormat = PixelFormat::RGBA8888;
 			break;
 		default:
 			break;
@@ -290,18 +290,18 @@ bool Image::initPngData( const unsigned char * data, size_t dataLen )
 	return ret;
 }
 
-Image::Format Image::detectFormat( const unsigned char * data, size_t dataLen )
+Image::DataFormat Image::detectFormat( const unsigned char * data, size_t dataLen )
 {
 	if (isPng(data, dataLen))
 	{
-		return Format::PNG;
+		return DataFormat::PNG;
 	}
 	else if (isJpg(data, dataLen))
 	{
-		return Format::JPG;
+		return DataFormat::JPG;
 	}else
 	{
-		return Format::UNKOWN;
+		return DataFormat::UNKOWN;
 	}
 }
 
@@ -327,7 +327,7 @@ bool Image::isJpg( const unsigned char * data, size_t dataLen )
 
 void Image::premultipliedAlpha()
 {
-	if(_renderFormat != Texture::PixelFormat::RGBA8888)
+	if(_renderFormat != PixelFormat::RGBA8888)
 	{
 		LOG("The pixel format should be RGBA8888!");
 	};

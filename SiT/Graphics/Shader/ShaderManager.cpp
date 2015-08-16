@@ -1,4 +1,5 @@
 #include "ShaderManager.h"
+#include "Libs/GraphicsLib.h"
 
 NS_SIT_BEGIN
 
@@ -48,17 +49,19 @@ bool ShaderManager::init()
 	return true;
 }
 
+
+
 void ShaderManager::loadDefaultShaders()
 {
-	Shader* shader = new Shader();
+	Shader* shader = GRAPHICS_LIB()->createNewShader();
 	loadDefaultShader(shader, shaderTypePositionColor);
 	_shaders.insert( std::make_pair( Shader::SHADER_NAME_POSITION_COLOR, shader ) );
 
-	shader = new Shader();
+	shader = GRAPHICS_LIB()->createNewShader();
 	loadDefaultShader(shader, shaderTypePositionTexture);
 	_shaders.insert( std::make_pair( Shader::SHADER_NAME_POSITION_TEXTURE, shader ) );
 
-	shader = new Shader();
+	shader = GRAPHICS_LIB()->createNewShader();
 	loadDefaultShader(shader, shaderTypePositionColorTexture);
 	_shaders.insert(std::make_pair(Shader::SHADER_NAME_POSITION_COLOR_TEXTURE, shader));
 }

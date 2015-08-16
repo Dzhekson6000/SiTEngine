@@ -13,21 +13,22 @@ NS_SIT_BEGIN
 class SIT_DLL ShaderManager: public Ref
 {
 private:
-	bool init();
-	void loadDefaultShader(Shader* program, int type);
+	bool					init();
+	void					loadDefaultShader(Shader* program, int type);
+
 
 	std::unordered_map<std::string, Shader*> _shaders;
 public:
-	ShaderManager();
-	virtual ~ShaderManager();
+							ShaderManager();
+	virtual					~ShaderManager();
 
-	static ShaderManager* getInstance();
-	static void destroyInstance();
+	static ShaderManager*	getInstance();
+	static void				destroyInstance();
 
-	void loadDefaultShaders();
-	void reloadDefaultShaders();
+	void					loadDefaultShaders();
+	void					reloadDefaultShaders();
 
-	Shader* getShader(const std::string &key);
+	Shader*					getShader(const std::string &key);
 
 };
 

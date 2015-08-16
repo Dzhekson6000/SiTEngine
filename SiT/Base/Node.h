@@ -33,10 +33,10 @@ public:
 	static Node* create(void);
 
 	virtual Node*			getScene();
-	virtual const Scale&	getScale() const;
-	virtual const Point&	getPosition() const;
-	virtual Size&		getSize();
-	virtual		Size*		getScreenSize();
+	virtual Scale&			getScale();
+	virtual Point&			getPosition();
+	virtual Size&			getSize();
+	virtual	Size*			getScreenSize();
 	virtual const Rotate&	getRotation() const;
 	virtual const int		getLocalZOrder();
 	virtual const Node*		getParent() const;

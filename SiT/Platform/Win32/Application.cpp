@@ -4,11 +4,10 @@ NS_SIT_BEGIN
 
 Application * Application::_application = nullptr;
 
-Application::Application()
+Application::Application() :_interval(0)
 {
 	assert(!_application);
 	_application = this;
-	_interval = 0;
 }
 
 Application::~Application()
@@ -35,7 +34,7 @@ int Application::run()
 	
 	glview->retain();
 
-	while(!glview->windowShouldClose())
+	while(!glview->isViewClose())
 	{
 		newTime = GetTickCount();
 		dTime =  newTime - oldTime;

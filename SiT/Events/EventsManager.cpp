@@ -65,28 +65,29 @@ bool EventsManager::getMouseStatus()
 void EventsManager::eventTouchBegin( Point point )
 {
 	_mouseStatus = true;
-	for (auto e:_events)
+	for (unsigned int i = 0; i < _events.size(); i++)
 	{
-		EventTouch* a = (EventTouch*)e;
-		if(e->getType() == Event::Type::EVENT_TOUCH &&
-			((EventTouch*)e)->getTouchEventType() == EventTouch::TouchEventType::TOUCH_BEGIN)
+		EventTouch* a = (EventTouch*)_events.at(i);
+		if (a->getType() == Event::Type::EVENT_TOUCH &&
+			a->getTouchEventType() == EventTouch::TouchEventType::TOUCH_BEGIN)
 		{
-			((EventTouch*)e)->execute(point);
+			a->execute(point);
 		}
 	}
 }
 
 void EventsManager::eventTouchMove( Point point )
 {
-	for (auto e:_events)
+	for (unsigned int i = 0; i < _events.size(); i++)
 	{
-		if(e->getType() == Event::Type::EVENT_TOUCH &&
-			(((EventTouch*)e)->getTouchEventType() == EventTouch::TouchEventType::TOUCH_MOVE && _mouseStatus
-			|| ((EventTouch*)e)->getTouchEventType() == EventTouch::TouchEventType::CURSOR_MOVE
+		EventTouch* a = (EventTouch*)_events.at(i);
+		if (a->getType() == Event::Type::EVENT_TOUCH &&
+			(a->getTouchEventType() == EventTouch::TouchEventType::TOUCH_MOVE && _mouseStatus
+			|| a->getTouchEventType() == EventTouch::TouchEventType::CURSOR_MOVE
 			)
-		)
+			)
 		{
-			((EventTouch*)e)->execute(point);
+			a->execute(point);
 		}
 	}
 }
@@ -94,12 +95,13 @@ void EventsManager::eventTouchMove( Point point )
 void EventsManager::eventTouchEnd( Point point )
 {
 	_mouseStatus = false;
-	for (auto e:_events)
+	for (unsigned int i = 0; i < _events.size(); i++)
 	{
-		if(e->getType() == Event::Type::EVENT_TOUCH &&
-			((EventTouch*)e)->getTouchEventType() == EventTouch::TouchEventType::TOUCH_END)
+		EventTouch* a = (EventTouch*)_events.at(i);
+		if (a->getType() == Event::Type::EVENT_TOUCH &&
+			a->getTouchEventType() == EventTouch::TouchEventType::TOUCH_END)
 		{
-			((EventTouch*)e)->execute(point);
+			a->execute(point);
 		}
 	}
 }

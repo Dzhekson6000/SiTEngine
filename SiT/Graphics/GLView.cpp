@@ -2,9 +2,8 @@
 
 NS_SIT_BEGIN
 
-GLView::GLView()
-{	_isFullScreen = false;
-	_viewName = "";
+GLView::GLView() :_isFullScreen(false), _viewName("")
+{
 }
 
 const Size& GLView::getResolutionSize() const

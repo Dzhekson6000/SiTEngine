@@ -1,5 +1,6 @@
 #include "ResourceManager.h"
-#include "Image.h"
+#include "Libs/GraphicsLib.h"
+
 
 NS_SIT_BEGIN
 
@@ -88,7 +89,7 @@ ResourceHandle* ResourceManager::loadHandleFromType(Resource* resource, Resource
 		Image image;
 		image.initImageFile(resource->_name);
 
-		resourceHandle = new Texture(*resource);
+		resourceHandle = GRAPHICS_LIB()->createNewTexture(*resource);
 		((Texture*)resourceHandle)->initImage(&image);
 
 		break;

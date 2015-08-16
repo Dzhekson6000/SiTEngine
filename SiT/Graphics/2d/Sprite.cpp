@@ -1,4 +1,5 @@
 #include "Sprite.h"
+#include "Libs/GraphicsLib.h"
 
 NS_SIT_BEGIN
 
@@ -28,8 +29,8 @@ bool Sprite::init( const std::string& path)
 
 
 	Size* screen = getScreenSize();
-	float scaleX = ((Texture*)_image)->getWidth() / (float)screen->getWidth();
-	float scaleY = ((Texture*)_image)->getHeight() / (float)screen->getHeight();
+	float scaleX = ((Texture*)_image)->getSize().getWidth() / (float)screen->getWidth();
+	float scaleY = ((Texture*)_image)->getSize().getHeight() / (float)screen->getHeight();
 
 	float x = -scaleX;
 	float y = -scaleY;
@@ -42,20 +43,19 @@ bool Sprite::init( const std::string& path)
 	_vertices[3] = Vertex(Vector(x, y+h, 0.0f), Vector(1.0f, 1.0f, 1.0f), Vector(0.0f, 0.0f));
 
 
-	glGenBuffers(1, &_VBO);
-	glBindBuffer(GL_ARRAY_BUFFER, _VBO);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(_vertices), _vertices, GL_STATIC_DRAW);
+	GRAPHICS_LIB()->genBuffers(1, &_VBO);
+	GRAPHICS_LIB()->bindBuffer(GraphicsLib::TargetBuffer::ARRAY_BUFFER, _VBO);
+	GRAPHICS_LIB()->bufferData(GraphicsLib::TargetBuffer::ARRAY_BUFFER, sizeof(_vertices), _vertices, GraphicsLib::UsageStore::STATIC_DRAW);
 
-	glEnableVertexAttribArray(_shader->getAttribLocation(_shader->ATTRIBUTE_NAME_POSITION));
-	glEnableVertexAttribArray(_shader->getAttribLocation(_shader->ATTRIBUTE_NAME_COLOR));
-	glEnableVertexAttribArray(_shader->getAttribLocation(_shader->ATTRIBUTE_NAME_TEX_COORD));
+	GRAPHICS_LIB()->enableVertexAttribArray(_shader->getAttribLocation(_shader->ATTRIBUTE_NAME_POSITION));
+	GRAPHICS_LIB()->enableVertexAttribArray(_shader->getAttribLocation(_shader->ATTRIBUTE_NAME_COLOR));
+	GRAPHICS_LIB()->enableVertexAttribArray(_shader->getAttribLocation(_shader->ATTRIBUTE_NAME_TEX_COORD));
 
-	glGenBuffers(1, &_IBO);
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _IBO);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(_indices), _indices, GL_STATIC_DRAW);
+	GRAPHICS_LIB()->genBuffers(1, &_IBO);
+	GRAPHICS_LIB()->bindBuffer(GraphicsLib::TargetBuffer::ELEMENT_ARRAY_BUFFER, _IBO);
+	GRAPHICS_LIB()->bufferData(GraphicsLib::TargetBuffer::ELEMENT_ARRAY_BUFFER, sizeof(_indices), _indices, GraphicsLib::UsageStore::STATIC_DRAW);
 	return true;
 }
-
 const Matrix<4, 4, float>* Sprite::transform()
 {
 	if (_isUpdated)return &_transformation;
@@ -90,30 +90,23 @@ void Sprite::onDraw()
 {
 	_shader->use();
 
-	if(((Texture*)_image)->getPremultipliedAlpha())
-	{
-		glEnable(GL_BLEND);
-		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	}
+	if(((Texture*)_image)->getPremultipliedAlpha()) GRAPHICS_LIB()->enableAlpha();
 
-	glActiveTexture(GL_TEXTURE0);
-	glBindTexture(GL_TEXTURE_2D, *( ((Texture*)_image)->getTextureId()));
+	GRAPHICS_LIB()->activeTexture(0);
+	GRAPHICS_LIB()->bindTexture((Texture*)_image);
 	_shader->setUniformLocationWith1i(_shader->getUniformLocation(_shader->UNIFORM_NAME_SAMPLER), 0);
 	_shader->setUniformLocationWithMatrix4fv(_shader->getUniformLocation(_shader->UNIFORM_NAME_MVP_MATRIX), (const GLfloat*)transform(), 1);
 
-	glBindBuffer(GL_ARRAY_BUFFER, _VBO);
+	GRAPHICS_LIB()->bindBuffer(GraphicsLib::TargetBuffer::ARRAY_BUFFER, _VBO);
+	
+	GRAPHICS_LIB()->vertexAttribPointer(_shader->VERTEX_ATTRIB_POSITION, 3, GraphicsLib::DataType::FLOAT, false, sizeof(Vertex), nullptr);
+	GRAPHICS_LIB()->vertexAttribPointer(_shader->VERTEX_ATTRIB_COLOR, 3, GraphicsLib::DataType::FLOAT, false, sizeof(Vertex), (void*)offsetof(Vertex, color));
+	GRAPHICS_LIB()->vertexAttribPointer(_shader->VERTEX_ATTRIB_TEX_COORDS, 2, GraphicsLib::DataType::FLOAT, false, sizeof(Vertex), (void*)offsetof(Vertex, uv));
+	
+	GRAPHICS_LIB()->bindBuffer(GraphicsLib::TargetBuffer::ELEMENT_ARRAY_BUFFER, _IBO);
+	GRAPHICS_LIB()->drawElements(GraphicsLib::RenderType::TRIANGLES, 6, GraphicsLib::DataType::UNSIGNED_INT, 0);
 
-	glVertexAttribPointer(_shader->VERTEX_ATTRIB_POSITION, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), nullptr);
-	glVertexAttribPointer(_shader->VERTEX_ATTRIB_COLOR, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)offsetof(Vertex, color));
-	glVertexAttribPointer(_shader->VERTEX_ATTRIB_TEX_COORDS, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)offsetof(Vertex, uv));
-
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _IBO);
-	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
-
-	if(((Texture*)_image)->getPremultipliedAlpha())
-	{
-		glDisable(GL_BLEND);
-	}
+	if(((Texture*)_image)->getPremultipliedAlpha()) GRAPHICS_LIB()->disableAlpha();
 }
 
 NS_SIT_END

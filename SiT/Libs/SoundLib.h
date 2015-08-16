@@ -14,15 +14,15 @@ public:
 		WAV,
 		OGG
 	};
-private:
-
-	#define DEFAULT_SOUND_LIB TypeSoundLib::OpenAL
-
 	enum class TypeSoundLib
 	{
 		OpenAL,
 		Win32
 	};
+private:
+
+	#define DEFAULT_SOUND_LIB TypeSoundLib::OpenAL
+
 	static SoundLib*	_soundLib;
 	TypeSoundLib		_type;
 protected:
@@ -37,6 +37,8 @@ public:
 	virtual int			getNumObject(std::string name);
 	virtual void		deleteObject(std::string name);
 };
+
+#define SOUND_LIB() SoundLib::getInstance()
 
 NS_SIT_END
 

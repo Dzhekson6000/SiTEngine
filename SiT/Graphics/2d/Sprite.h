@@ -9,23 +9,23 @@ NS_SIT_BEGIN
 class SIT_DLL Sprite: public Node
 {
 private:
-	Sprite(){};
-	ResourceHandle * _image;
-	CustomCommand _customCommand;
+								Sprite(){};
+	ResourceHandle*				_image;
+	CustomCommand				_customCommand;
 
-	Vertex			_vertices[4];
-	unsigned int	_indices[6];
-	GLuint			_VBO;
-	GLuint			_IBO;
+	Vertex						_vertices[4];
+	unsigned int				_indices[6];
+	unsigned int				_VBO;
+	unsigned int				_IBO;
 
 public:
-	static Sprite* create(const std::string& path);
-	bool init(const std::string& path);
+	static Sprite*				create(const std::string& path);
+	bool						init(const std::string& path);
 
-	const Matrix<4, 4, float>* transform();
+	const Matrix<4, 4, float>*	transform();
 
-	virtual void	draw(Renderer *renderer);
-	virtual void	onDraw();
+	virtual void				draw(Renderer *renderer);
+	virtual void				onDraw();
 };
 
 NS_SIT_END

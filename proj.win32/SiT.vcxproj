@@ -91,6 +91,7 @@
     <ClInclude Include="..\SiT\Base\Scene.h" />
     <ClInclude Include="..\SiT\Base\Schedule.h" />
     <ClInclude Include="..\SiT\Base\ScheduleManager.h" />
+    <ClInclude Include="..\SiT\Config.h" />
     <ClInclude Include="..\SiT\Director.h" />
     <ClInclude Include="..\SiT\Events\Event.h" />
     <ClInclude Include="..\SiT\Events\EventKeyboard.h" />
@@ -105,7 +106,7 @@
     <ClInclude Include="..\SiT\Geometry\Size.h" />
     <ClInclude Include="..\SiT\Geometry\Vector.h" />
     <ClInclude Include="..\SiT\Geometry\Vertex.h" />
-    <ClInclude Include="..\SiT\Graphics\2d\Label\Label.h" />
+    <ClInclude Include="..\SiT\Graphics\2d\Label.h" />
     <ClInclude Include="..\SiT\Graphics\2d\Sprite.h" />
     <ClInclude Include="..\SiT\Graphics\GLView.h" />
     <ClInclude Include="..\SiT\Graphics\Render\Command\CustomCommand.h" />
@@ -120,8 +121,12 @@
     <ClInclude Include="..\SiT\Graphics\Shader\Shaders\positionColorV.h" />
     <ClInclude Include="..\SiT\Graphics\Shader\Shaders\positionTextureV.h" />
     <ClInclude Include="..\SiT\Graphics\Shader\Shaders\positionTextureF.h" />
+    <ClInclude Include="..\SiT\Libs\GraphicsLib.h" />
     <ClInclude Include="..\SiT\Libs\LibOpenAL\LibOpenAL.h" />
     <ClInclude Include="..\SiT\Libs\LibOpenAL\SoundObjectOpenAL.h" />
+    <ClInclude Include="..\SiT\Libs\LibOpenGL\LibOpenGL.h" />
+    <ClInclude Include="..\SiT\Libs\LibOpenGL\OpenGLShader.h" />
+    <ClInclude Include="..\SiT\Libs\LibOpenGL\OpenGLTexture.h" />
     <ClInclude Include="..\SiT\Libs\SoundLib.h" />
     <ClInclude Include="..\SiT\Macros.h" />
     <ClInclude Include="..\SiT\Platform\MacrosPlatform.h" />
@@ -143,6 +148,7 @@
     <ClInclude Include="..\SiT\Sound\LoaderSound.h" />
     <ClInclude Include="..\SiT\Sound\SoundManager.h" />
     <ClInclude Include="..\SiT\Sound\SoundObject.h" />
+    <ClInclude Include="..\SiT\Utilities\ImageDataConverter.h" />
     <ClInclude Include="main.h" />
   </ItemGroup>
   <ItemGroup>
@@ -163,7 +169,7 @@
     <ClCompile Include="..\SiT\Geometry\Rotate.cpp" />
     <ClCompile Include="..\SiT\Geometry\Scale.cpp" />
     <ClCompile Include="..\SiT\Geometry\Size.cpp" />
-    <ClCompile Include="..\SiT\Graphics\2d\Label\Label.cpp" />
+    <ClCompile Include="..\SiT\Graphics\2d\Label.cpp" />
     <ClCompile Include="..\SiT\Graphics\2d\Sprite.cpp" />
     <ClCompile Include="..\SiT\Graphics\GLView.cpp" />
     <ClCompile Include="..\SiT\Graphics\Render\Command\CustomCommand.cpp" />
@@ -172,8 +178,12 @@
     <ClCompile Include="..\SiT\Graphics\Shader\Shader.cpp" />
     <ClCompile Include="..\SiT\Graphics\Shader\ShaderManager.cpp" />
     <ClCompile Include="..\SiT\Graphics\Shader\Shaders.cpp" />
+    <ClCompile Include="..\SiT\Libs\GraphicsLib.cpp" />
     <ClCompile Include="..\SiT\Libs\LibOpenAL\LibOpenAL.cpp" />
     <ClCompile Include="..\SiT\Libs\LibOpenAL\SoundObjectOpenAL.cpp" />
+    <ClCompile Include="..\SiT\Libs\LibOpenGL\LibOpenGL.cpp" />
+    <ClCompile Include="..\SiT\Libs\LibOpenGL\OpenGLShader.cpp" />
+    <ClCompile Include="..\SiT\Libs\LibOpenGL\OpenGLTexture.cpp" />
     <ClCompile Include="..\SiT\Libs\SoundLib.cpp" />
     <ClCompile Include="..\SiT\Macros.cpp" />
     <ClCompile Include="..\SiT\Platform\Win32\Application.cpp" />
@@ -191,6 +201,7 @@
     <ClCompile Include="..\SiT\Sound\LoaderSound.cpp" />
     <ClCompile Include="..\SiT\Sound\SoundManager.cpp" />
     <ClCompile Include="..\SiT\Sound\SoundObject.cpp" />
+    <ClCompile Include="..\SiT\Utilities\ImageDataConverter.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

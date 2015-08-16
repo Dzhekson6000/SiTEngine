@@ -1,4 +1,3 @@
-#define _CRT_SECURE_NO_WARNINGS
 #ifndef LIB_OPENAL_H_
 #define LIB_OPENAL_H_
 

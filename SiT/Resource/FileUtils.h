@@ -27,8 +27,8 @@ public:
 	virtual bool isAbsolutePath(const std::string& path) const;
 
 	virtual bool createDirectory(const std::string& dirPath);
-    virtual bool removeDirectory(const std::string& dirPath);
-    virtual bool removeFile(const std::string &filepath);
+	virtual bool removeDirectory(const std::string& dirPath);
+	virtual bool removeFile(const std::string &filepath);
 	virtual bool renameFile(const std::string &path, const std::string &oldname, const std::string &name);
 };
 

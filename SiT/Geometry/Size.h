@@ -8,13 +8,11 @@ NS_SIT_BEGIN
 class Size
 {
 private:
-	int _width;
-	int _height;
+	SYNTHESIZE(int, _width, Width);
+	SYNTHESIZE(int, _height, Height);
 public:
 	Size():_width(0),_height(0){}
 	Size(int width, int height):_width(width),_height(height){}
-	int getWidth(){return _width;}
-	int getHeight(){return _height;}
 	bool operator==(const Size& size) const;
 
 	static const Size ZERO;

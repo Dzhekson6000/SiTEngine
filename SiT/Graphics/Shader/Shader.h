@@ -3,60 +3,41 @@
 
 #include "Base/Ref.h"
 
-#if TARGET_PLATFORM == PLATFORM_WIN32
-#include "GL/glew.h"
-#include "glfw3.h"
-#endif
-
-#if TARGET_PLATFORM == PLATFORM_ANDROID
-#include <GLES2/gl2.h>
-#include <GLES2/gl2ext.h>
-#endif
-
-#include <set>
-#include <cstring>
-#include <string>
-
 NS_SIT_BEGIN
 
 class SIT_DLL Shader: public Ref
 {
-private:
-	bool compileShader(GLuint * shader, GLenum type, const GLchar* source);
-	std::string logForOpenGLShader(GLuint shader);
 public:
-	Shader();
-	~Shader();
-	bool link();
-	void use();
-	void updateUniforms();
-	void reset();
-	GLuint getShader(){ return _shader; }
+						Shader();
+	virtual				~Shader();
+	virtual bool		link();
+	virtual void		use();
+	virtual void		updateUniforms();
+	virtual void		reset();
 
-	bool initWithByteArrays(const GLchar* shaderByteArrayV, const GLchar* shaderByteArrayF);
+	virtual bool		initWithByteArrays(const char* shaderByteArrayV, const char* shaderByteArrayF);
+	virtual void		bindAttribLocation(const char* attributeName, unsigned int index) const;
 
-	GLint getAttribLocation(const char* attributeName) const;
-	GLint getUniformLocation(const char* attributeName) const;
-	GLint getUniformLocationForName(const char* name) const;
-	void bindAttribLocation(const char* attributeName, GLuint index) const;
+	virtual int			getAttribLocation(const char* attributeName) const;
+	virtual int			getUniformLocation(const char* name) const;
 
-	void setUniformLocationWith1i(GLint location, GLint i1);
-	void setUniformLocationWith2i(GLint location, GLint i1, GLint i2);
-	void setUniformLocationWith3i(GLint location, GLint i1, GLint i2, GLint i3);
-	void setUniformLocationWith4i(GLint location, GLint i1, GLint i2, GLint i3, GLint i4);
-	void setUniformLocationWith2iv(GLint location, GLint* ints, unsigned int numberOfArrays);
-	void setUniformLocationWith3iv(GLint location, GLint* ints, unsigned int numberOfArrays);
-	void setUniformLocationWith4iv(GLint location, GLint* ints, unsigned int numberOfArrays);
-	void setUniformLocationWith1f(GLint location, GLfloat f1);
-	void setUniformLocationWith2f(GLint location, GLfloat f1, GLfloat f2);
-	void setUniformLocationWith3f(GLint location, GLfloat f1, GLfloat f2, GLfloat f3);
-	void setUniformLocationWith4f(GLint location, GLfloat f1, GLfloat f2, GLfloat f3, GLfloat f4);
-	void setUniformLocationWith2fv(GLint location, const GLfloat* floats, unsigned int numberOfArrays);
-	void setUniformLocationWith3fv(GLint location, const GLfloat* floats, unsigned int numberOfArrays);
-	void setUniformLocationWith4fv(GLint location, const GLfloat* floats, unsigned int numberOfArrays);
-	void setUniformLocationWithMatrix2fv(GLint location, const GLfloat* matrixArray, unsigned int numberOfMatrices);
-	void setUniformLocationWithMatrix3fv(GLint location, const GLfloat* matrixArray, unsigned int numberOfMatrices);
-	void setUniformLocationWithMatrix4fv(GLint location, const GLfloat* matrixArray, unsigned int numberOfMatrices);
+	virtual void		setUniformLocationWith1i(int location, int i1);
+	virtual void		setUniformLocationWith2i(int location, int i1, int i2);
+	virtual void		setUniformLocationWith3i(int location, int i1, int i2, int i3);
+	virtual void		setUniformLocationWith4i(int location, int i1, int i2, int i3, int i4);
+	virtual void		setUniformLocationWith2iv(int location, int* ints, unsigned int numberOfArrays);
+	virtual void		setUniformLocationWith3iv(int location, int* ints, unsigned int numberOfArrays);
+	virtual void		setUniformLocationWith4iv(int location, int* ints, unsigned int numberOfArrays);
+	virtual void		setUniformLocationWith1f(int location, float f1);
+	virtual void		setUniformLocationWith2f(int location, float f1, float f2);
+	virtual void		setUniformLocationWith3f(int location, float f1, float f2, float f3);
+	virtual void		setUniformLocationWith4f(int location, float f1, float f2, float f3, float f4);
+	virtual void		setUniformLocationWith2fv(int location, const float* floats, unsigned int numberOfArrays);
+	virtual void		setUniformLocationWith3fv(int location, const float* floats, unsigned int numberOfArrays);
+	virtual void		setUniformLocationWith4fv(int location, const float* floats, unsigned int numberOfArrays);
+	virtual void		setUniformLocationWithMatrix2fv(int location, const float* matrixArray, unsigned int numberOfMatrices);
+	virtual void		setUniformLocationWithMatrix3fv(int location, const float* matrixArray, unsigned int numberOfMatrices);
+	virtual void		setUniformLocationWithMatrix4fv(int location, const float* matrixArray, unsigned int numberOfMatrices);
 
 	enum
 	{
@@ -86,15 +67,6 @@ public:
 	static const char* ATTRIBUTE_NAME_COLOR;
 	static const char* ATTRIBUTE_NAME_POSITION;
 	static const char* ATTRIBUTE_NAME_TEX_COORD;
-
-private:
-	GLuint				_shader;
-	GLuint				_shaderV;
-	GLuint				_shaderF;
-	GLint				_uniforms[UNIFORM_MAX];
-	bool				_hasShaderCompiler;
-	static const GLuint	_maxMaterialIDNumber;
-
 };
 
 NS_SIT_END

@@ -7,13 +7,21 @@ SoundLib* SoundLib::_soundLib = nullptr;
 
 SoundLib* SoundLib::createLib(TypeSoundLib type)
 {
+	if (_soundLib) delete _soundLib;
+
 	switch (type)
 	{
-	case SiT::SoundLib::TypeSoundLib::OpenAL:
-		return new LibOpenAL();
+	case SoundLib::TypeSoundLib::OpenAL:
+		_soundLib = new LibOpenAL();
+		_soundLib->init();
+		break;
 	default:
-		return new SoundLib();
+		_soundLib = new SoundLib();
+		_soundLib->init();
+		break;
 	}
+
+	return _soundLib;
 }
 
 SoundLib* SoundLib::getInstance()
@@ -21,7 +29,6 @@ SoundLib* SoundLib::getInstance()
 	if (!_soundLib)
 	{
 		_soundLib = createLib(DEFAULT_SOUND_LIB);
-		_soundLib->init();
 	}
 
 	return _soundLib;

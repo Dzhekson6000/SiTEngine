@@ -55,9 +55,6 @@
     <Filter Include="SiT\Platform\Win32">
       <UniqueIdentifier>{4cb3e26a-3eee-4855-ab26-b5ebc41c7cdc}</UniqueIdentifier>
     </Filter>
-    <Filter Include="SiT\Graphics\2d\Label">
-      <UniqueIdentifier>{86faec2a-fb93-4583-9557-bfa3ecd8fc47}</UniqueIdentifier>
-    </Filter>
     <Filter Include="SiT\Resource\Matrix">
       <UniqueIdentifier>{a8dbb8cd-46d9-4283-acae-6a25fa6ba75e}</UniqueIdentifier>
     </Filter>
@@ -70,13 +67,16 @@
     <Filter Include="SiT\Libs\LibOpenAL">
       <UniqueIdentifier>{2b5a2a22-f0e0-446e-af5a-e4a9301c4468}</UniqueIdentifier>
     </Filter>
+    <Filter Include="SiT\Libs\LibOpenGL">
+      <UniqueIdentifier>{1122388a-60b3-4778-bd0b-3b9173c064d3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SiT\Utilities">
+      <UniqueIdentifier>{38982ed8-69e8-4bd1-b45f-204a5b56d6c6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
       <Filter>win32</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\AppDelegate.h">
-      <Filter>Classes</Filter>
     </ClInclude>
     <ClInclude Include="..\SiT\Geometry\Point.h">
       <Filter>SiT\Geometry</Filter>
@@ -189,9 +189,6 @@
     <ClInclude Include="..\SiT\Platform\Win32\FileUtilsImpl.h">
       <Filter>SiT\Platform\Win32</Filter>
     </ClInclude>
-    <ClInclude Include="..\SiT\Graphics\2d\Label\Label.h">
-      <Filter>SiT\Graphics\2d\Label</Filter>
-    </ClInclude>
     <ClInclude Include="..\SiT\Graphics\Shader\Shaders\positionColorTextureF.h">
       <Filter>SiT\Graphics\Shader\Shaders</Filter>
     </ClInclude>
@@ -215,9 +212,6 @@
     </ClInclude>
     <ClInclude Include="..\SiT\Events\EventsManager.h">
       <Filter>SiT\Graphics\Events</Filter>
-    </ClInclude>
-    <ClInclude Include="..\SiT\Platform\Win32\GLFWEventHandler.h">
-      <Filter>SiT\Platform\Win32</Filter>
     </ClInclude>
     <ClInclude Include="..\SiT\Events\EventKeypress.h">
       <Filter>SiT\Graphics\Events</Filter>
@@ -251,6 +245,33 @@
     </ClInclude>
     <ClInclude Include="..\SiT\Libs\LibOpenAL\SoundObjectOpenAL.h">
       <Filter>SiT\Libs\LibOpenAL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\AppDelegate.h">
+      <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SiT\Graphics\2d\Label.h">
+      <Filter>SiT\Graphics\2d</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SiT\Libs\GraphicsLib.h">
+      <Filter>SiT\Libs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SiT\Libs\LibOpenGL\LibOpenGL.h">
+      <Filter>SiT\Libs\LibOpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SiT\Platform\Win32\GLFWEventHandler.h">
+      <Filter>SiT\Platform\Win32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SiT\Config.h">
+      <Filter>SiT</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SiT\Utilities\ImageDataConverter.h">
+      <Filter>SiT\Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SiT\Libs\LibOpenGL\OpenGLTexture.h">
+      <Filter>SiT\Libs\LibOpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SiT\Libs\LibOpenGL\OpenGLShader.h">
+      <Filter>SiT\Libs\LibOpenGL</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -341,12 +362,6 @@
     <ClCompile Include="..\SiT\Platform\Win32\FileUtilsImpl.cpp">
       <Filter>SiT\Platform\Win32</Filter>
     </ClCompile>
-    <ClCompile Include="..\SiT\Graphics\2d\Label\Label.cpp">
-      <Filter>SiT\Graphics\2d\Label</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\AppDelegate.cpp">
-      <Filter>Classes</Filter>
-    </ClCompile>
     <ClCompile Include="..\SiT\Resource\FontAtlas.cpp">
       <Filter>SiT\Resource</Filter>
     </ClCompile>
@@ -355,9 +370,6 @@
     </ClCompile>
     <ClCompile Include="..\SiT\Events\EventsManager.cpp">
       <Filter>SiT\Graphics\Events</Filter>
-    </ClCompile>
-    <ClCompile Include="..\SiT\Platform\Win32\GLFWEventHandler.cpp">
-      <Filter>SiT\Platform\Win32</Filter>
     </ClCompile>
     <ClCompile Include="..\SiT\Events\EventKeypress.cpp">
       <Filter>SiT\Graphics\Events</Filter>
@@ -391,6 +403,30 @@
     </ClCompile>
     <ClCompile Include="..\SiT\Geometry\Color.cpp">
       <Filter>SiT\Geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\AppDelegate.cpp">
+      <Filter>Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SiT\Graphics\2d\Label.cpp">
+      <Filter>SiT\Graphics\2d</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SiT\Libs\GraphicsLib.cpp">
+      <Filter>SiT\Libs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SiT\Libs\LibOpenGL\LibOpenGL.cpp">
+      <Filter>SiT\Libs\LibOpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SiT\Platform\Win32\GLFWEventHandler.cpp">
+      <Filter>SiT\Platform\Win32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SiT\Utilities\ImageDataConverter.cpp">
+      <Filter>SiT\Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SiT\Libs\LibOpenGL\OpenGLTexture.cpp">
+      <Filter>SiT\Libs\LibOpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SiT\Libs\LibOpenGL\OpenGLShader.cpp">
+      <Filter>SiT\Libs\LibOpenGL</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

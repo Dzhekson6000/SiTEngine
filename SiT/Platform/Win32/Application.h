@@ -22,7 +22,7 @@ public:
 	static Application* getInstance();
 	void setFPS(double interval);
 
-	int _fps;
+	unsigned int _fps;
 
 };
 
