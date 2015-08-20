@@ -34,7 +34,7 @@ void ScheduleManager::updateSchedules()
 		time = clock();
 		if (time - schedules->getOldTime() >= schedules->getInterval())
 		{
-			dt = time - schedules->getOldTime() / 1000;
+			dt = time - schedules->getOldTime();
 			schedules->setOldTime(time);
 			schedules->execute(dt);
 		}
