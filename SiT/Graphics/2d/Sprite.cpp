@@ -48,6 +48,13 @@ bool Sprite::init(const std::string& path)
 	return true;
 }
 
+void Sprite::updateSize()
+{
+	Texture* texture = (Texture*)_image;
+	_size.setWidth(texture->getSize().getWidth() * _scale.getX());
+	_size.setWidth(texture->getSize().getHeight() * _scale.getY());
+}
+
 const Matrix<4, 4, float>* Sprite::transform()
 {
 	if (_isUpdated)return &_transformation;
@@ -101,9 +108,14 @@ void Sprite::onDraw()
 	if(((Texture*)_image)->getPremultipliedAlpha()) GRAPHICS_LIB()->disableAlpha();
 }
 
+void Sprite::setScale(const Scale &scale)
+{
+	Node::setScale(scale);
+	updateSize();
+}
+
 void Sprite::setTexture(ResourceHandle* texture)
 {
-	_size = ((Texture*)_image)->getSize();
 	_image = texture;
 
 	Size* screen = getScreenSize();
@@ -122,7 +134,7 @@ void Sprite::setTexture(ResourceHandle* texture)
 
 	GRAPHICS_LIB()->bindBuffer(GraphicsLib::TargetBuffer::ARRAY_BUFFER, _VBO);
 	GRAPHICS_LIB()->bufferData(GraphicsLib::TargetBuffer::ARRAY_BUFFER, sizeof(_vertices), _vertices, GraphicsLib::UsageStore::STATIC_DRAW);
-
+	updateSize();
 }
 
 NS_SIT_END

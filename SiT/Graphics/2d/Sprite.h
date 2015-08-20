@@ -17,7 +17,7 @@ private:
 	unsigned int				_indices[6];
 	unsigned int				_VBO;
 	unsigned int				_IBO;
-
+	void						updateSize();
 public:
 	static Sprite*				create(const std::string& path);
 	virtual						~Sprite();
@@ -28,7 +28,9 @@ public:
 	virtual void				draw(Renderer *renderer);
 	virtual void				onDraw();
 
-	void						setTexture(ResourceHandle* texture);
+	virtual void				setScale(const Scale &scale);
+
+	virtual void				setTexture(ResourceHandle* texture);
 };
 
 NS_SIT_END
