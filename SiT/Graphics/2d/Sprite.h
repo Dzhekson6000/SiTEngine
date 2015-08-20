@@ -20,12 +20,15 @@ private:
 
 public:
 	static Sprite*				create(const std::string& path);
+	virtual						~Sprite();
 	bool						init(const std::string& path);
 
 	const Matrix<4, 4, float>*	transform();
 
 	virtual void				draw(Renderer *renderer);
 	virtual void				onDraw();
+
+	void						setTexture(ResourceHandle* texture);
 };
 
 NS_SIT_END

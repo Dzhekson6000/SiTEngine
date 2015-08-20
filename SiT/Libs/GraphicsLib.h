@@ -99,6 +99,7 @@ public:
 	virtual Shader*		createNewShader();
 	virtual Texture*	createNewTexture(Resource resource);
 	virtual void		genBuffers(unsigned int n, unsigned int* buffers);
+	virtual void		deleteBuffers(unsigned int n, unsigned int* buffers);
 	virtual void		bindBuffer(TargetBuffer target, unsigned int buffer);
 	virtual void		bufferData(TargetBuffer  target, ptrdiff_t  size, const void* data, UsageStore usage);
 	virtual void		bindTexture(Texture* texture);

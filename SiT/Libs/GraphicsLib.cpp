@@ -65,6 +65,11 @@ void GraphicsLib::genBuffers(unsigned int n, unsigned int* buffers)
 
 }
 
+void GraphicsLib::deleteBuffers(unsigned int n, unsigned int* buffers)
+{
+
+}
+
 void GraphicsLib::bindBuffer(TargetBuffer target, unsigned int buffer)
 {
 }

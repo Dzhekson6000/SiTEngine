@@ -24,6 +24,7 @@ public:
 	Shader*		createNewShader();
 	Texture*	createNewTexture(Resource resource);
 	void		genBuffers(unsigned int n, unsigned int* buffers);
+	void		deleteBuffers(unsigned int n, unsigned int* buffers);
 	void		bindBuffer(TargetBuffer target, unsigned int buffer);
 	void		bufferData(TargetBuffer  target, ptrdiff_t  size, const void* data, UsageStore usage);
 

@@ -193,6 +193,11 @@ void LibOpenGL::genBuffers(unsigned int n, unsigned int* buffers)
 	glGenBuffers(n, buffers);
 }
 
+void LibOpenGL::deleteBuffers(unsigned int n, unsigned int* buffers)
+{
+	glDeleteBuffers(n, buffers);
+}
+
 void LibOpenGL::bindBuffer(TargetBuffer target, unsigned int buffer)
 {
 	glBindBuffer(getTargetBufferGL(target), buffer);

@@ -14,7 +14,14 @@ Sprite* Sprite::create( const std::string& path )
 	return nullptr;
 }
 
-bool Sprite::init( const std::string& path)
+Sprite::~Sprite()
+{
+	GRAPHICS_LIB()->deleteBuffers(1, &_VBO);
+	GRAPHICS_LIB()->deleteBuffers(1, &_IBO);
+
+}
+
+bool Sprite::init(const std::string& path)
 {
 	_image = ResourceManager::getInstance()->getHandle(new Resource(path));
 
@@ -26,36 +33,21 @@ bool Sprite::init( const std::string& path)
 	_indices[3] = 2;
 	_indices[4] = 3;
 	_indices[5] = 0;
-
-
-	Size* screen = getScreenSize();
-	float scaleX = ((Texture*)_image)->getSize().getWidth() / (float)screen->getWidth();
-	float scaleY = ((Texture*)_image)->getSize().getHeight() / (float)screen->getHeight();
-
-	float x = -scaleX;
-	float y = -scaleY;
-	float w = 2 * scaleX;
-	float h = 2 * scaleY;
-
-	_vertices[0] = Vertex(Vector(x, y, 0.0f),Vector(1.0f, 1.0f, 1.0f),Vector(0.0f, 1.0f));
-	_vertices[1] = Vertex(Vector(x+w, y, 0.0f), Vector(1.0f, 1.0f, 1.0f), Vector(1.0f, 1.0f));
-	_vertices[2] = Vertex(Vector(x+w, y+h, 0.0f), Vector(1.0f, 1.0f, 1.0f), Vector(1.0f, 0.0f));
-	_vertices[3] = Vertex(Vector(x, y+h, 0.0f), Vector(1.0f, 1.0f, 1.0f), Vector(0.0f, 0.0f));
-
+	GRAPHICS_LIB()->genBuffers(1, &_IBO);
+	GRAPHICS_LIB()->bindBuffer(GraphicsLib::TargetBuffer::ELEMENT_ARRAY_BUFFER, _IBO);
+	GRAPHICS_LIB()->bufferData(GraphicsLib::TargetBuffer::ELEMENT_ARRAY_BUFFER, sizeof(_indices), _indices, GraphicsLib::UsageStore::STATIC_DRAW);
 
 	GRAPHICS_LIB()->genBuffers(1, &_VBO);
-	GRAPHICS_LIB()->bindBuffer(GraphicsLib::TargetBuffer::ARRAY_BUFFER, _VBO);
-	GRAPHICS_LIB()->bufferData(GraphicsLib::TargetBuffer::ARRAY_BUFFER, sizeof(_vertices), _vertices, GraphicsLib::UsageStore::STATIC_DRAW);
 
+	setTexture(_image);
+	
 	GRAPHICS_LIB()->enableVertexAttribArray(_shader->getAttribLocation(_shader->ATTRIBUTE_NAME_POSITION));
 	GRAPHICS_LIB()->enableVertexAttribArray(_shader->getAttribLocation(_shader->ATTRIBUTE_NAME_COLOR));
 	GRAPHICS_LIB()->enableVertexAttribArray(_shader->getAttribLocation(_shader->ATTRIBUTE_NAME_TEX_COORD));
 
-	GRAPHICS_LIB()->genBuffers(1, &_IBO);
-	GRAPHICS_LIB()->bindBuffer(GraphicsLib::TargetBuffer::ELEMENT_ARRAY_BUFFER, _IBO);
-	GRAPHICS_LIB()->bufferData(GraphicsLib::TargetBuffer::ELEMENT_ARRAY_BUFFER, sizeof(_indices), _indices, GraphicsLib::UsageStore::STATIC_DRAW);
 	return true;
 }
+
 const Matrix<4, 4, float>* Sprite::transform()
 {
 	if (_isUpdated)return &_transformation;
@@ -107,6 +99,30 @@ void Sprite::onDraw()
 	GRAPHICS_LIB()->drawElements(GraphicsLib::RenderType::TRIANGLES, 6, GraphicsLib::DataType::UNSIGNED_INT, 0);
 
 	if(((Texture*)_image)->getPremultipliedAlpha()) GRAPHICS_LIB()->disableAlpha();
+}
+
+void Sprite::setTexture(ResourceHandle* texture)
+{
+	_size = ((Texture*)_image)->getSize();
+	_image = texture;
+
+	Size* screen = getScreenSize();
+	float scaleX = ((Texture*)texture)->getSize().getWidth() / (float)screen->getWidth();
+	float scaleY = ((Texture*)texture)->getSize().getHeight() / (float)screen->getHeight();
+
+	float x = -scaleX;
+	float y = -scaleY;
+	float w = 2 * scaleX;
+	float h = 2 * scaleY;
+
+	_vertices[0] = Vertex(Vector(x, y, 0.0f), Vector(1.0f, 1.0f, 1.0f), Vector(0.0f, 1.0f));
+	_vertices[1] = Vertex(Vector(x + w, y, 0.0f), Vector(1.0f, 1.0f, 1.0f), Vector(1.0f, 1.0f));
+	_vertices[2] = Vertex(Vector(x + w, y + h, 0.0f), Vector(1.0f, 1.0f, 1.0f), Vector(1.0f, 0.0f));
+	_vertices[3] = Vertex(Vector(x, y + h, 0.0f), Vector(1.0f, 1.0f, 1.0f), Vector(0.0f, 0.0f));
+
+	GRAPHICS_LIB()->bindBuffer(GraphicsLib::TargetBuffer::ARRAY_BUFFER, _VBO);
+	GRAPHICS_LIB()->bufferData(GraphicsLib::TargetBuffer::ARRAY_BUFFER, sizeof(_vertices), _vertices, GraphicsLib::UsageStore::STATIC_DRAW);
+
 }
 
 NS_SIT_END
