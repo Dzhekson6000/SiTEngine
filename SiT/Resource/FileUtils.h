@@ -2,7 +2,7 @@
 #define FILEUTILS_H_
 
 #include "Macros.h"
-#include "Resource/Data.h"
+#include "Types/Data.h"
 #include <string>
 
 NS_SIT_BEGIN

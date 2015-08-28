@@ -1,9 +1,9 @@
 #ifndef TEXTURE_H_
 #define TEXTURE_H_
 
-#include "ResourceHandle.h"
+#include "Resource/ResourceHandle.h"
 #include <map>
-#include "Geometry/Geometry.h"
+#include "Types/Types.h"
 #include "Utilities/ImageDataConverter.h"
 
 NS_SIT_BEGIN

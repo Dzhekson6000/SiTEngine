@@ -13,9 +13,6 @@
     <Filter Include="SiT\external">
       <UniqueIdentifier>{332a3ddd-5e2d-4841-9b19-44a6c8861106}</UniqueIdentifier>
     </Filter>
-    <Filter Include="SiT\Geometry">
-      <UniqueIdentifier>{ac3bbe9a-9beb-4468-81e6-608ac2b869ce}</UniqueIdentifier>
-    </Filter>
     <Filter Include="SiT\Graphics">
       <UniqueIdentifier>{d85c9652-74b7-425e-9576-eba08f1b62ff}</UniqueIdentifier>
     </Filter>
@@ -40,9 +37,6 @@
     <Filter Include="SiT\Graphics\Render\Command">
       <UniqueIdentifier>{0523e48a-9f7e-4660-baaa-bcd0f00e060a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="SiT\Graphics\Events">
-      <UniqueIdentifier>{8464ead0-83d6-4e4e-8d27-1e806557d48e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="SiT\Platform">
       <UniqueIdentifier>{20cbc513-85e5-4a6c-9995-bb4a5177524e}</UniqueIdentifier>
     </Filter>
@@ -54,9 +48,6 @@
     </Filter>
     <Filter Include="SiT\Platform\Win32">
       <UniqueIdentifier>{4cb3e26a-3eee-4855-ab26-b5ebc41c7cdc}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="SiT\Resource\Matrix">
-      <UniqueIdentifier>{a8dbb8cd-46d9-4283-acae-6a25fa6ba75e}</UniqueIdentifier>
     </Filter>
     <Filter Include="SiT\Sound">
       <UniqueIdentifier>{eb818adf-3152-4047-affd-98bf8f6f0ad2}</UniqueIdentifier>
@@ -73,25 +64,22 @@
     <Filter Include="SiT\Utilities">
       <UniqueIdentifier>{38982ed8-69e8-4bd1-b45f-204a5b56d6c6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="SiT\Types">
+      <UniqueIdentifier>{0750efce-d590-41d6-a193-1712c4e64c06}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SiT\Types\Matrix">
+      <UniqueIdentifier>{0a548af2-bac4-4799-8c82-b2cbb41da663}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SiT\Resource\Texture">
+      <UniqueIdentifier>{30edfa04-bf81-4c12-adc3-826a84247028}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SiT\Events">
+      <UniqueIdentifier>{8464ead0-83d6-4e4e-8d27-1e806557d48e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
       <Filter>win32</Filter>
-    </ClInclude>
-    <ClInclude Include="..\SiT\Geometry\Point.h">
-      <Filter>SiT\Geometry</Filter>
-    </ClInclude>
-    <ClInclude Include="..\SiT\Geometry\Rotate.h">
-      <Filter>SiT\Geometry</Filter>
-    </ClInclude>
-    <ClInclude Include="..\SiT\Geometry\Scale.h">
-      <Filter>SiT\Geometry</Filter>
-    </ClInclude>
-    <ClInclude Include="..\SiT\Geometry\Size.h">
-      <Filter>SiT\Geometry</Filter>
-    </ClInclude>
-    <ClInclude Include="..\SiT\Geometry\Vertex.h">
-      <Filter>SiT\Geometry</Filter>
     </ClInclude>
     <ClInclude Include="..\SiT\Graphics\GLView.h">
       <Filter>SiT\Graphics</Filter>
@@ -113,9 +101,6 @@
     </ClInclude>
     <ClInclude Include="..\SiT\SiT.h">
       <Filter>SiT</Filter>
-    </ClInclude>
-    <ClInclude Include="..\SiT\Geometry\Geometry.h">
-      <Filter>SiT\Geometry</Filter>
     </ClInclude>
     <ClInclude Include="..\SiT\Base\Scene.h">
       <Filter>SiT\Base</Filter>
@@ -159,12 +144,6 @@
     <ClInclude Include="..\SiT\Graphics\Shader\Shaders\positionTextureF.h">
       <Filter>SiT\Graphics\Shader\Shaders</Filter>
     </ClInclude>
-    <ClInclude Include="..\SiT\Events\Event.h">
-      <Filter>SiT\Graphics\Events</Filter>
-    </ClInclude>
-    <ClInclude Include="..\SiT\Events\EventTouch.h">
-      <Filter>SiT\Graphics\Events</Filter>
-    </ClInclude>
     <ClInclude Include="..\SiT\Platform\MacrosPlatform.h">
       <Filter>SiT\Platform</Filter>
     </ClInclude>
@@ -174,16 +153,7 @@
     <ClInclude Include="..\SiT\Platform\Win32\GLViewImpl.h">
       <Filter>SiT\Platform\Win32</Filter>
     </ClInclude>
-    <ClInclude Include="..\SiT\Resource\Data.h">
-      <Filter>SiT\Resource</Filter>
-    </ClInclude>
     <ClInclude Include="..\SiT\Resource\FileUtils.h">
-      <Filter>SiT\Resource</Filter>
-    </ClInclude>
-    <ClInclude Include="..\SiT\Resource\Image.h">
-      <Filter>SiT\Resource</Filter>
-    </ClInclude>
-    <ClInclude Include="..\SiT\Resource\Texture.h">
       <Filter>SiT\Resource</Filter>
     </ClInclude>
     <ClInclude Include="..\SiT\Platform\Win32\FileUtilsImpl.h">
@@ -195,31 +165,7 @@
     <ClInclude Include="..\SiT\Graphics\Shader\Shaders\positionColorTextureV.h">
       <Filter>SiT\Graphics\Shader\Shaders</Filter>
     </ClInclude>
-    <ClInclude Include="..\SiT\Geometry\Color.h">
-      <Filter>SiT\Geometry</Filter>
-    </ClInclude>
     <ClInclude Include="..\SiT\Resource\FontAtlas.h">
-      <Filter>SiT\Resource</Filter>
-    </ClInclude>
-    <ClInclude Include="..\SiT\Resource\Matrix\Matrix.h">
-      <Filter>SiT\Resource\Matrix</Filter>
-    </ClInclude>
-    <ClInclude Include="..\SiT\Resource\Matrix\MatrixObject.h">
-      <Filter>SiT\Resource\Matrix</Filter>
-    </ClInclude>
-    <ClInclude Include="..\SiT\Geometry\Vector.h">
-      <Filter>SiT\Geometry</Filter>
-    </ClInclude>
-    <ClInclude Include="..\SiT\Events\EventsManager.h">
-      <Filter>SiT\Graphics\Events</Filter>
-    </ClInclude>
-    <ClInclude Include="..\SiT\Events\EventKeypress.h">
-      <Filter>SiT\Graphics\Events</Filter>
-    </ClInclude>
-    <ClInclude Include="..\SiT\Events\EventKeyboard.h">
-      <Filter>SiT\Graphics\Events</Filter>
-    </ClInclude>
-    <ClInclude Include="..\SiT\Resource\Keys.h">
       <Filter>SiT\Resource</Filter>
     </ClInclude>
     <ClInclude Include="..\SiT\Base\ScheduleManager.h">
@@ -227,9 +173,6 @@
     </ClInclude>
     <ClInclude Include="..\SiT\Base\Schedule.h">
       <Filter>SiT\Base</Filter>
-    </ClInclude>
-    <ClInclude Include="..\SiT\Sound\LoaderSound.h">
-      <Filter>SiT\Sound</Filter>
     </ClInclude>
     <ClInclude Include="..\SiT\Sound\SoundManager.h">
       <Filter>SiT\Sound</Filter>
@@ -273,16 +216,67 @@
     <ClInclude Include="..\SiT\Libs\LibOpenGL\OpenGLShader.h">
       <Filter>SiT\Libs\LibOpenGL</Filter>
     </ClInclude>
+    <ClInclude Include="..\SiT\Types\Color.h">
+      <Filter>SiT\Types</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SiT\Types\Data.h">
+      <Filter>SiT\Types</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SiT\Types\Keys.h">
+      <Filter>SiT\Types</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SiT\Types\Point.h">
+      <Filter>SiT\Types</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SiT\Types\Rotate.h">
+      <Filter>SiT\Types</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SiT\Types\Scale.h">
+      <Filter>SiT\Types</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SiT\Types\Size.h">
+      <Filter>SiT\Types</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SiT\Types\Vector.h">
+      <Filter>SiT\Types</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SiT\Types\Vertex.h">
+      <Filter>SiT\Types</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SiT\Types\Matrix\Matrix.h">
+      <Filter>SiT\Types\Matrix</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SiT\Types\Matrix\MatrixObject.h">
+      <Filter>SiT\Types\Matrix</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SiT\Types\Types.h">
+      <Filter>SiT\Types</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SiT\Resource\Texture\Image.h">
+      <Filter>SiT\Resource\Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SiT\Resource\Texture\Texture.h">
+      <Filter>SiT\Resource\Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SiT\Events\Event.h">
+      <Filter>SiT\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SiT\Events\EventKeyboard.h">
+      <Filter>SiT\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SiT\Events\EventKeypress.h">
+      <Filter>SiT\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SiT\Events\EventsManager.h">
+      <Filter>SiT\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SiT\Events\EventTouch.h">
+      <Filter>SiT\Events</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>win32</Filter>
-    </ClCompile>
-    <ClCompile Include="..\SiT\Geometry\Rotate.cpp">
-      <Filter>SiT\Geometry</Filter>
-    </ClCompile>
-    <ClCompile Include="..\SiT\Geometry\Scale.cpp">
-      <Filter>SiT\Geometry</Filter>
     </ClCompile>
     <ClCompile Include="..\SiT\Graphics\GLView.cpp">
       <Filter>SiT\Graphics</Filter>
@@ -329,17 +323,8 @@
     <ClCompile Include="..\SiT\Graphics\Render\Command\CustomCommand.cpp">
       <Filter>SiT\Graphics\Render\Command</Filter>
     </ClCompile>
-    <ClCompile Include="..\SiT\Geometry\Size.cpp">
-      <Filter>SiT\Geometry</Filter>
-    </ClCompile>
     <ClCompile Include="..\SiT\Macros.cpp">
       <Filter>SiT</Filter>
-    </ClCompile>
-    <ClCompile Include="..\SiT\Events\Event.cpp">
-      <Filter>SiT\Graphics\Events</Filter>
-    </ClCompile>
-    <ClCompile Include="..\SiT\Events\EventTouch.cpp">
-      <Filter>SiT\Graphics\Events</Filter>
     </ClCompile>
     <ClCompile Include="..\SiT\Platform\Win32\Application.cpp">
       <Filter>SiT\Platform\Win32</Filter>
@@ -347,16 +332,7 @@
     <ClCompile Include="..\SiT\Platform\Win32\GLViewImpl.cpp">
       <Filter>SiT\Platform\Win32</Filter>
     </ClCompile>
-    <ClCompile Include="..\SiT\Resource\Data.cpp">
-      <Filter>SiT\Resource</Filter>
-    </ClCompile>
     <ClCompile Include="..\SiT\Resource\FileUtils.cpp">
-      <Filter>SiT\Resource</Filter>
-    </ClCompile>
-    <ClCompile Include="..\SiT\Resource\Image.cpp">
-      <Filter>SiT\Resource</Filter>
-    </ClCompile>
-    <ClCompile Include="..\SiT\Resource\Texture.cpp">
       <Filter>SiT\Resource</Filter>
     </ClCompile>
     <ClCompile Include="..\SiT\Platform\Win32\FileUtilsImpl.cpp">
@@ -365,26 +341,11 @@
     <ClCompile Include="..\SiT\Resource\FontAtlas.cpp">
       <Filter>SiT\Resource</Filter>
     </ClCompile>
-    <ClCompile Include="..\SiT\Resource\Matrix\MatrixObject.cpp">
-      <Filter>SiT\Resource\Matrix</Filter>
-    </ClCompile>
-    <ClCompile Include="..\SiT\Events\EventsManager.cpp">
-      <Filter>SiT\Graphics\Events</Filter>
-    </ClCompile>
-    <ClCompile Include="..\SiT\Events\EventKeypress.cpp">
-      <Filter>SiT\Graphics\Events</Filter>
-    </ClCompile>
-    <ClCompile Include="..\SiT\Events\EventKeyboard.cpp">
-      <Filter>SiT\Graphics\Events</Filter>
-    </ClCompile>
     <ClCompile Include="..\SiT\Base\ScheduleManager.cpp">
       <Filter>SiT\Base</Filter>
     </ClCompile>
     <ClCompile Include="..\SiT\Base\Schedule.cpp">
       <Filter>SiT\Base</Filter>
-    </ClCompile>
-    <ClCompile Include="..\SiT\Sound\LoaderSound.cpp">
-      <Filter>SiT\Sound</Filter>
     </ClCompile>
     <ClCompile Include="..\SiT\Sound\SoundManager.cpp">
       <Filter>SiT\Sound</Filter>
@@ -400,9 +361,6 @@
     </ClCompile>
     <ClCompile Include="..\SiT\Libs\LibOpenAL\SoundObjectOpenAL.cpp">
       <Filter>SiT\Libs\LibOpenAL</Filter>
-    </ClCompile>
-    <ClCompile Include="..\SiT\Geometry\Color.cpp">
-      <Filter>SiT\Geometry</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\AppDelegate.cpp">
       <Filter>Classes</Filter>
@@ -427,6 +385,45 @@
     </ClCompile>
     <ClCompile Include="..\SiT\Libs\LibOpenGL\OpenGLShader.cpp">
       <Filter>SiT\Libs\LibOpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SiT\Types\Color.cpp">
+      <Filter>SiT\Types</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SiT\Types\Data.cpp">
+      <Filter>SiT\Types</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SiT\Types\Rotate.cpp">
+      <Filter>SiT\Types</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SiT\Types\Scale.cpp">
+      <Filter>SiT\Types</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SiT\Types\Size.cpp">
+      <Filter>SiT\Types</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SiT\Types\Matrix\MatrixObject.cpp">
+      <Filter>SiT\Types\Matrix</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SiT\Resource\Texture\Image.cpp">
+      <Filter>SiT\Resource\Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SiT\Resource\Texture\Texture.cpp">
+      <Filter>SiT\Resource\Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SiT\Events\Event.cpp">
+      <Filter>SiT\Events</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SiT\Events\EventKeyboard.cpp">
+      <Filter>SiT\Events</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SiT\Events\EventKeypress.cpp">
+      <Filter>SiT\Events</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SiT\Events\EventsManager.cpp">
+      <Filter>SiT\Events</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SiT\Events\EventTouch.cpp">
+      <Filter>SiT\Events</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

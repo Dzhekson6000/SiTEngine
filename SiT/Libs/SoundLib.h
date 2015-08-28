@@ -2,7 +2,7 @@
 #define SOUND_LIB_H_
 
 #include "Sound\SoundObject.h"
-#include "Resource\Data.h"
+#include "Types\Data.h"
 
 NS_SIT_BEGIN
 

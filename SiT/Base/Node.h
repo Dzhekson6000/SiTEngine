@@ -4,10 +4,10 @@
 #include "Director.h"
 #include "Ref.h"
 #include <vector>
-#include "Geometry/Geometry.h"
+#include "Types/Types.h"
 #include "Base/PoolManager.h"
 #include "Graphics/Shader/ShaderManager.h"
-#include "Resource/Matrix/MatrixObject.h"
+#include "Types/Matrix/MatrixObject.h"
 
 NS_SIT_BEGIN
 

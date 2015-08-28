@@ -2,7 +2,7 @@
 #define IMAGE_DATA_CONVERTER_H_
 
 #include "Macros.h"
-#include "Resource/Image.h"
+#include "Resource/Texture/Image.h"
 
 NS_SIT_BEGIN
 

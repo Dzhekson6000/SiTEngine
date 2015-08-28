@@ -2,9 +2,9 @@
 #define GRAPHICS_LIB_H_
 
 #include "Macros.h"
-#include "Geometry/Geometry.h"
+#include "Types/Types.h"
 #include "Graphics/Shader/Shader.h"
-#include "Resource/Texture.h"
+#include "Resource/Texture/Texture.h"
 
 #if (TARGET_PLATFORM == PLATFORM_WIN32 && USE_GRAPHICS_LIB == LIB_GRAPHICS_OPENGL)
 	#include "GL/glew.h"

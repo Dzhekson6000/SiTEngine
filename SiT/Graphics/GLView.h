@@ -2,7 +2,7 @@
 #define GLVIEW_H_
 #include "Base/Ref.h"
 #include <string>
-#include "Geometry/Geometry.h"
+#include "Types/Types.h"
 
 NS_SIT_BEGIN
 

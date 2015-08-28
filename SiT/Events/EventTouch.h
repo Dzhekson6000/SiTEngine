@@ -2,7 +2,7 @@
 #define EVENTTOUCH_H_
 
 #include "Event.h"
-#include "Geometry/Geometry.h"
+#include "Types/Types.h"
 
 NS_SIT_BEGIN
 

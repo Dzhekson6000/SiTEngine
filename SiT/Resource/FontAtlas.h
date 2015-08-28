@@ -14,7 +14,7 @@
 #endif
 
 #include <map>
-#include "Geometry/Geometry.h"
+#include "Types/Types.h"
 #include "Graphics/Shader/ShaderManager.h"
 
 #include <ft2build.h>

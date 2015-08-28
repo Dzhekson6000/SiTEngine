@@ -2,7 +2,7 @@
 #define OPENGL_TEXTURE_H_
 
 #include "Libs/GraphicsLib.h"
-#include "Resource/Texture.h"
+#include "Resource/Texture/Texture.h"
 
 
 NS_SIT_BEGIN

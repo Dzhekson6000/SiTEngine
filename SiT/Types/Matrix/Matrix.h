@@ -2,7 +2,7 @@
 #define MATRIX_H_
 
 #include "Macros.h"
-#include "Geometry/Geometry.h"
+#include "Types/Types.h"
 
 NS_SIT_BEGIN
 

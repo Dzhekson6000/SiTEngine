@@ -2,7 +2,7 @@
 #define EVENTKEYPRESS_H_
 
 #include "Event.h"
-#include "Resource/Keys.h"
+#include "Types/Keys.h"
 
 NS_SIT_BEGIN
 
