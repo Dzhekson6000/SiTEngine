@@ -20,6 +20,8 @@ private:
 	const Matrix<4, 4, float>*	transform();
 	Matrix<4, 4, float>			transformCharacter(Point point, CharacterInfo* info);
 
+	void						calculationSize();
+	unsigned int				calculationWidthLine(int position);
 	
 	CustomCommand				_customCommand;
 	Matrix<4, 4, float>*		_transformCharacters;

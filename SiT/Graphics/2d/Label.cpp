@@ -113,6 +113,53 @@ Matrix<4, 4, float> Label::transformCharacter(Point point, CharacterInfo* info)
 	return translation * scale * *transform();
 }
 
+void Label::calculationSize()
+{
+	unsigned int widthLine = 0;
+	unsigned int maxWidthLine = 0;
+	
+	float scaleSizeFont = (float)_sizeFont / (float)_font->getSizeFont();
+	Scale scale(scaleSizeFont, scaleSizeFont);
+
+	unsigned int heightLabel = _font->getLineSpacing()*scale.getY();
+
+	for (unsigned int i = 0; i < _text.size(); i++)
+	{
+		if (widthLine == 0)
+		{
+			for (unsigned int j = i; j < _text.size(); j++)
+			{
+				unsigned int char_ = _text[j];
+				if (char_ == '\n')
+				{
+					heightLabel += _font->getLineSpacing()*scale.getY();
+					if (maxWidthLine < widthLine)maxWidthLine = widthLine;
+					break;
+				}
+				CharacterInfo* info = _font->getInfoChar(char_);
+				widthLine += info->advance.getX()*scale.getX();
+			}
+			if (maxWidthLine == 0)maxWidthLine = widthLine;
+		}
+	}
+
+	_size.setWidth(maxWidthLine);
+	_size.setHeight(heightLabel);
+}
+
+unsigned int Label::calculationWidthLine(int position)
+{
+	unsigned int widthLine = 0;
+	for (unsigned int j = position; j < _text.size(); j++)
+	{
+		unsigned int char_ = _text[j];
+		if (char_ == '\n')break;
+		CharacterInfo* info = _font->getInfoChar(char_);
+		widthLine += info->advance.getX();
+	}
+	return widthLine;
+}
+
 void Label::onDraw()
 {
 	_shader->use();
@@ -131,22 +178,7 @@ void Label::onDraw()
 
 	for (unsigned int i = 0; i < _text.size(); i++)
 	{
-		if (widthLine == 0)
-		{
-			for (unsigned int j = i; j < _text.size(); j++)
-			{
-				unsigned int char_ = _text[j];
-				CharacterInfo* info = _font->getInfoChar(char_);
-				if (char_ == '\n')
-				{
-					heightLabel += maxHeightLine;
-					if (maxWidthLine < widthLine)maxWidthLine = widthLine;
-					break;
-				}
-				widthLine += info->advance.getX();
-				if (maxHeightLine < info->size.getHeight())maxHeightLine = info->size.getHeight();
-			}
-		}
+		if (widthLine == 0)widthLine = calculationWidthLine(i);
 
 		unsigned int char_ = _text[i];
 		CharacterInfo* info = _font->getInfoChar(char_);
@@ -154,7 +186,6 @@ void Label::onDraw()
 		if (char_ == '\n')
 		{
 			widthLine = 0;
-			maxHeightLine = 0;
 			offsetX = 0;
 			offsetY += _font->getLineSpacing();
 			continue;
@@ -164,22 +195,22 @@ void Label::onDraw()
 
 		switch (_textAlignmentHorizontal)
 		{
-		case SiT::Label::TEXT_ALIGN_LEFT:
+		case Label::TEXT_ALIGN_LEFT:
 			point = Point(
 				offsetX + info->bearing.getX() + info->size.getWidth() / 2,
 				-offsetY + (-info->size.getHeight() / 2 + info->bearing.getY()));
 			break;
-		case SiT::Label::TEXT_ALIGN_CENTER:
+		case Label::TEXT_ALIGN_CENTER:
 			point = Point(
 				offsetX + info->bearing.getX() + info->size.getWidth() / 2 - widthLine/2,
 				-offsetY + (-info->size.getHeight() / 2 + info->bearing.getY()));
 			break;
-		case SiT::Label::TEXT_ALIGN_RIGHT:
+		case Label::TEXT_ALIGN_RIGHT:
 			point = Point(
 				offsetX + info->bearing.getX() + info->size.getWidth() / 2 - widthLine,
 				-offsetY + (-info->size.getHeight() / 2 + info->bearing.getY()));
 			break;
-		case SiT::Label::TEXT_ALIGN_MAX:
+		case Label::TEXT_ALIGN_MAX:
 			break;
 		default:
 			break;
@@ -190,9 +221,6 @@ void Label::onDraw()
 		offsetX += info->advance.getX();
 		offsetY += info->advance.getY();
 	}
-
-	_size.setWidth(maxWidthLine);
-	_size.setHeight(heightLabel);
 	
 	GRAPHICS_LIB()->disableAlpha();
 }
@@ -200,13 +228,14 @@ void Label::onDraw()
 void Label::setSize(unsigned int sizeFont)
 {
 	_sizeFont = sizeFont;
+	calculationSize();
 	_isUpdated = false;
 }
 
 void Label::setText(std::string text)
 {
 	_text = text;
-
+	calculationSize();
 	if(!_transformCharacters) delete[] _transformCharacters;
 	_transformCharacters = new Matrix<4, 4, float>[_text.size()];
 
