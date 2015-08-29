@@ -32,10 +32,17 @@ private:
 
 	SYNTHESIZE_READONLY(GLuint, _textureId, TextureId);
 
+	void	pixelStoreiFromPixelFormat(unsigned int pixelsWide, Image::PixelFormat pixelFormat);
+
 public:
-			OpenGLTexture(Resource resource);
-	void	releaseTexture();
-	bool	initData(const void *data, size_t dataLen, Image::PixelFormat pixelFormat, int pixelsWide, int pixelsHigh);
+					OpenGLTexture(Resource resource);
+	void			releaseTexture();
+	void			texImage(Size size, Image::PixelFormat pixelFormat, const void *data);
+	void			texSubImage(Point point, Size size, Image::PixelFormat pixelFormat, const void *data);
+
+	bool			init();
+	bool			initEmpty(unsigned int width, unsigned int height);
+	bool			initData(const void *data, size_t dataLen, Image::PixelFormat pixelFormat, int pixelsWide, int pixelsHigh);
 };
 
 NS_SIT_END

@@ -23,7 +23,7 @@ Sprite::~Sprite()
 
 bool Sprite::init(const std::string& path)
 {
-	_image = ResourceManager::getInstance()->getHandle(new Resource(path));
+	_texture = ResourceManager::getInstance()->getHandle(new Resource(path));
 
 	_shader = ShaderManager::getInstance()->getShader(Shader::SHADER_NAME_POSITION_TEXTURE);
 
@@ -39,7 +39,7 @@ bool Sprite::init(const std::string& path)
 
 	GRAPHICS_LIB()->genBuffers(1, &_VBO);
 
-	setTexture(_image);
+	setTexture(_texture);
 	
 	GRAPHICS_LIB()->enableVertexAttribArray(_shader->getAttribLocation(_shader->ATTRIBUTE_NAME_POSITION));
 	GRAPHICS_LIB()->enableVertexAttribArray(_shader->getAttribLocation(_shader->ATTRIBUTE_NAME_COLOR));
@@ -50,7 +50,7 @@ bool Sprite::init(const std::string& path)
 
 void Sprite::updateSize()
 {
-	Texture* texture = (Texture*)_image;
+	Texture* texture = (Texture*)_texture;
 	_size.setWidth(texture->getSize().getWidth() * _scale.getX());
 	_size.setWidth(texture->getSize().getHeight() * _scale.getY());
 }
@@ -89,10 +89,10 @@ void Sprite::onDraw()
 {
 	_shader->use();
 
-	if(((Texture*)_image)->getPremultipliedAlpha()) GRAPHICS_LIB()->enableAlpha();
+	if(((Texture*)_texture)->getPremultipliedAlpha()) GRAPHICS_LIB()->enableAlpha();
 
 	GRAPHICS_LIB()->activeTexture(0);
-	GRAPHICS_LIB()->bindTexture((Texture*)_image);
+	GRAPHICS_LIB()->bindTexture((Texture*)_texture);
 	_shader->setUniformLocationWith1i(_shader->getUniformLocation(_shader->UNIFORM_NAME_SAMPLER), 0);
 	_shader->setUniformLocationWithMatrix4fv(_shader->getUniformLocation(_shader->UNIFORM_NAME_MVP_MATRIX), (const GLfloat*)transform(), 1);
 
@@ -105,7 +105,7 @@ void Sprite::onDraw()
 	GRAPHICS_LIB()->bindBuffer(GraphicsLib::TargetBuffer::ELEMENT_ARRAY_BUFFER, _IBO);
 	GRAPHICS_LIB()->drawElements(GraphicsLib::RenderType::TRIANGLES, 6, GraphicsLib::DataType::UNSIGNED_INT, 0);
 
-	if(((Texture*)_image)->getPremultipliedAlpha()) GRAPHICS_LIB()->disableAlpha();
+	if(((Texture*)_texture)->getPremultipliedAlpha()) GRAPHICS_LIB()->disableAlpha();
 }
 
 void Sprite::setScale(const Scale &scale)
@@ -116,7 +116,7 @@ void Sprite::setScale(const Scale &scale)
 
 void Sprite::setTexture(ResourceHandle* texture)
 {
-	_image = texture;
+	_texture = texture;
 
 	Size* screen = getScreenSize();
 	float scaleX = ((Texture*)texture)->getSize().getWidth() / (float)screen->getWidth();

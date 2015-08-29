@@ -15,30 +15,34 @@ private:
 	GLenum		getUsageStoreGL(UsageStore usage);
 	GLenum		getDataTypeGl(DataType type);
 	GLenum		getRenderTypeGL(RenderType mode);
+	GLenum		getPackingParameter(PackingParameter packingParameter);
 	GLboolean	getBool(bool boolean);
 protected:
 
 public:
-				LibOpenGL();
-	void		clearView(Color color);
-	Shader*		createNewShader();
-	Texture*	createNewTexture(Resource resource);
-	void		genBuffers(unsigned int n, unsigned int* buffers);
-	void		deleteBuffers(unsigned int n, unsigned int* buffers);
-	void		bindBuffer(TargetBuffer target, unsigned int buffer);
-	void		bufferData(TargetBuffer  target, ptrdiff_t  size, const void* data, UsageStore usage);
+					LibOpenGL();
+	void			clearView(Color color);
+	Shader*			createNewShader();
+	Texture*		createNewTexture(Resource resource);
+	void			genBuffers(unsigned int n, unsigned int* buffers);
+	void			deleteBuffers(unsigned int n, unsigned int* buffers);
+	void			bindBuffer(TargetBuffer target, unsigned int buffer);
+	void			bufferData(TargetBuffer  target, ptrdiff_t  size, const void* data, UsageStore usage);
 
-	void		bindTexture(Texture* texture);
-	void		activeTexture(unsigned int id);
+	void			bindTexture(Texture* texture);
+	void			activeTexture(unsigned int id);
 
-	void		enableVertexAttribArray(unsigned int index);
-	void		vertexAttribPointer(unsigned int index, unsigned int size, DataType type, bool normalized, int stride, const void * pointer);
+	void			enableVertexAttribArray(unsigned int index);
+	void			vertexAttribPointer(unsigned int index, unsigned int size, DataType type, bool normalized, int stride, const void * pointer);
 
-	void		drawElements(RenderType mode, unsigned int count, DataType type, const void * indices);
+	void			drawElements(RenderType mode, unsigned int count, DataType type, const void * indices);
 
-	void		enableAlpha();
-	void		disableAlpha();
+	void			enableAlpha();
+	void			disableAlpha();
 
+	void			pixelStorei(PackingParameter packingParameter, unsigned int param);
+
+	unsigned int	getMaxSizeTexture();
 };
 
 NS_SIT_END

@@ -1,20 +1,13 @@
 #ifndef FONTATLAS_H_
 #define FONTATLAS_H_
 
-#include "Resource/ResourceHandle.h"
-
-#if TARGET_PLATFORM == PLATFORM_WIN32
-#include "Platform/Win32/FileUtilsImpl.h"
-#include "GL/glew.h"
-#include "glfw3.h"
-#endif
-
-#if TARGET_PLATFORM == PLATFORM_ANDROID
-#include "Platform/Android/FileUtilsImpl.h"
-#endif
-
 #include <map>
 #include "Types/Types.h"
+
+#include "Platform/FileUtilsImpl.h"
+#include "Resource/ResourceHandle.h"
+
+#include "Libs/GraphicsLib.h"
 #include "Graphics/Shader/ShaderManager.h"
 
 #include <ft2build.h>
@@ -32,7 +25,7 @@ struct CharacterInfo {
 	Size	size;
 	Point	bearing;
 	Point	positionInTexture;
-	GLuint _VBO;
+	unsigned int _VBO;
 
 	CharacterInfo(float ax, float ay, unsigned int bw, unsigned int bh, float bl, float bt, unsigned int x, unsigned int y)
 		:advance(ax, ay), size(bw, bh), bearing(bl, bt), positionInTexture(x, y)
@@ -41,42 +34,34 @@ struct CharacterInfo {
 
 class FontAtlas : public ResourceHandle
 {
-public:
-	FontAtlas(Resource resource);
-	FontAtlas(Resource resource, unsigned int sizeFont);
-	void init();
-	void resize();
-	CharacterInfo* getInfoChar(unsigned int char_);
-	CharacterInfo* findChar(unsigned int char_);
-	CharacterInfo* loadChar(unsigned int char_);
-	Shader*	getShader();
-	GLuint* getTextureId();
-
-	unsigned int getWidth();
-	unsigned int getHeight();
-	unsigned int getSizeFont();
-	unsigned int getLineSpacing();
 private:
-
 	FT_Library _library;
 	FT_Face _face;
 	FT_GlyphSlot _glyph;
 
 	Data data;
-	GLuint _texure;
-	Shader*	_shader;
-	unsigned int _width;
-	unsigned int _height;
-	unsigned int _sizeFont;
 
 	std::map<unsigned int, CharacterInfo*> _characters;
 
-	struct LoadInfo
-	{
-		unsigned int _x;
-		unsigned int _y;
-		LoadInfo():_x(0),_y(0){}
-	} _loadInfo;
+	Point _loadInfo;
+	void				clearCharacters();
+public:
+	static FontAtlas*	create(Resource resource);
+	static FontAtlas*	create(Resource resource, unsigned int sizeFont);
+
+						FontAtlas(Resource resource, unsigned int sizeFont);
+	bool				init();
+	void				resize();
+
+	CharacterInfo*		getInfoChar(unsigned int char_);
+	CharacterInfo*		findChar(unsigned int char_);
+	CharacterInfo*		loadChar(unsigned int char_);
+	
+	unsigned int getLineSpacing();
+
+	SYNTHESIZE_READONLY(Texture*, _texture, Texture);
+	SYNTHESIZE_READONLY(Shader*, _shader, Shader);
+	SYNTHESIZE_READONLY(unsigned int, _sizeFont, SizeFont);
 };
 
 NS_SIT_END

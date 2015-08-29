@@ -5,36 +5,42 @@ NS_SIT_BEGIN
 Label* Label::create(std::string pathFont)
 {
 	auto ret = new Label("", pathFont, DEFAULT_SIZE_FONT);
-
-	if (ret)
+	if (ret && ret->init())
 	{
 		ret->autorelease();
+		return ret;
 	}
-
-	return ret;
+	return nullptr;
 }
 
 Label* Label::create(std::string text, std::string pathFont)
 {
 	auto ret = new Label(text, pathFont, DEFAULT_SIZE_FONT);
-	if (ret)
+	if (ret && ret->init())
 	{
 		ret->autorelease();
+		return ret;
 	}
-	return ret;
+	return nullptr;
 }
+
 Label* Label::create(std::string text, std::string pathFont, unsigned int sizeFont)
 {
 	auto ret = new Label(text, pathFont, sizeFont);
-	if (ret)
+	if (ret && ret->init())
 	{
 		ret->autorelease();
+		return ret;
 	}
-	return ret;
+	return nullptr;
 }
 
 Label::Label(std::string text, std::string pathFont, unsigned int sizeFont) :
-_text(text), _pathFont(pathFont), _sizeFont(sizeFont)
+_text(text), _pathFont(pathFont), _sizeFont(sizeFont), _transformCharacters(nullptr)
+{
+}
+
+bool Label::init()
 {
 	_font = (FontAtlas *)ResourceManager::getInstance()->getHandle(new Resource(_pathFont));
 
@@ -47,13 +53,18 @@ _text(text), _pathFont(pathFont), _sizeFont(sizeFont)
 	_indices[4] = 3;
 	_indices[5] = 0;
 
-	glGenBuffers(1, &_IBO);
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _IBO);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(_indices), _indices, GL_STATIC_DRAW);
+	GRAPHICS_LIB()->genBuffers(1, &_IBO);
+	GRAPHICS_LIB()->bindBuffer(GraphicsLib::TargetBuffer::ELEMENT_ARRAY_BUFFER, _IBO);
+	GRAPHICS_LIB()->bufferData(GraphicsLib::TargetBuffer::ELEMENT_ARRAY_BUFFER, sizeof(_indices), _indices, GraphicsLib::UsageStore::STATIC_DRAW);
 
 	_shader = _font->getShader();
+	setText(_text);
+	return true;
+}
 
-	_transformCharacters = new Matrix<4, 4, float>[_text.size()];
+Label::~Label()
+{
+	GRAPHICS_LIB()->deleteBuffers(1, &_IBO);
 }
 
 const Matrix<4, 4, float>* Label::transform()
@@ -102,20 +113,14 @@ Matrix<4, 4, float> Label::transformCharacter(Point point, CharacterInfo* info)
 	return translation * scale * *transform();
 }
 
-Label::~Label()
-{
-
-}
-
 void Label::onDraw()
 {
 	_shader->use();
 
-	glEnable(GL_BLEND);
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	GRAPHICS_LIB()->enableAlpha();
 
-	glActiveTexture(GL_TEXTURE0);
-	glBindTexture(GL_TEXTURE_2D, *(_font->getTextureId()));
+	GRAPHICS_LIB()->activeTexture(0);
+	GRAPHICS_LIB()->bindTexture((Texture*)_font->getTexture());
 
 	int offsetX = 0;
 	int offsetY = 0;
@@ -189,27 +194,29 @@ void Label::onDraw()
 	_size.setWidth(maxWidthLine);
 	_size.setHeight(heightLabel);
 	
-	glDisable(GL_BLEND);
-}
-
-void Label::setColor(Color color)
-{
-	_color = color;
+	GRAPHICS_LIB()->disableAlpha();
 }
 
 void Label::setSize(unsigned int sizeFont)
 {
 	_sizeFont = sizeFont;
+	_isUpdated = false;
 }
 
 void Label::setText(std::string text)
 {
 	_text = text;
+
+	if(!_transformCharacters) delete[] _transformCharacters;
+	_transformCharacters = new Matrix<4, 4, float>[_text.size()];
+
+	_isUpdated = false;
 }
 
 void Label::setAlignmentHorizontal(TextAlignmentHorizontal textAlignmentHorizontal)
 {
 	_textAlignmentHorizontal = textAlignmentHorizontal;
+	_isUpdated = false;
 }
 
 void Label::drawChar(Point point, CharacterInfo* info)
@@ -220,13 +227,14 @@ void Label::drawChar(Point point, CharacterInfo* info)
 	_shader->setUniformLocationWith4fv(_shader->getUniformLocation(_shader->UNIFORM_NAME_COLOR), (const GLfloat*) color, 1);
 	_shader->setUniformLocationWithMatrix4fv(_shader->getUniformLocation(_shader->UNIFORM_NAME_MVP_MATRIX), (const GLfloat*)&transformCharacter(point, info), 1);
 	
-	glBindBuffer(GL_ARRAY_BUFFER, info->_VBO);
-	glVertexAttribPointer(_shader->VERTEX_ATTRIB_POSITION, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), nullptr);
-	glVertexAttribPointer(_shader->VERTEX_ATTRIB_COLOR, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)offsetof(Vertex, color));
-	glVertexAttribPointer(_shader->VERTEX_ATTRIB_TEX_COORDS, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)offsetof(Vertex, uv));
+	GRAPHICS_LIB()->bindBuffer(GraphicsLib::TargetBuffer::ARRAY_BUFFER, info->_VBO);
 
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _IBO);
-	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+	GRAPHICS_LIB()->vertexAttribPointer(_shader->VERTEX_ATTRIB_POSITION, 3, GraphicsLib::DataType::FLOAT, false, sizeof(Vertex), nullptr);
+	GRAPHICS_LIB()->vertexAttribPointer(_shader->VERTEX_ATTRIB_COLOR, 3, GraphicsLib::DataType::FLOAT, false, sizeof(Vertex), (void*)offsetof(Vertex, color));
+	GRAPHICS_LIB()->vertexAttribPointer(_shader->VERTEX_ATTRIB_TEX_COORDS, 2, GraphicsLib::DataType::FLOAT, false, sizeof(Vertex), (void*)offsetof(Vertex, uv));
+
+	GRAPHICS_LIB()->bindBuffer(GraphicsLib::TargetBuffer::ELEMENT_ARRAY_BUFFER, _IBO);
+	GRAPHICS_LIB()->drawElements(GraphicsLib::RenderType::TRIANGLES, 6, GraphicsLib::DataType::UNSIGNED_INT, 0);
 }
 
 void Label::draw(Renderer *renderer)

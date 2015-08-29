@@ -163,6 +163,49 @@ GLenum LibOpenGL::getRenderTypeGL(RenderType mode)
 	}
 }
 
+GLenum LibOpenGL::getPackingParameter(PackingParameter packingParameter)
+{
+	switch (packingParameter)
+	{
+	case SiT::GraphicsLib::PackingParameter::PACK_SWAP_BYTES:
+		return GL_PACK_SWAP_BYTES;
+	case SiT::GraphicsLib::PackingParameter::PACK_LSB_FIRST:
+		return GL_PACK_LSB_FIRST;
+	case SiT::GraphicsLib::PackingParameter::PACK_ROW_LENGTH:
+		return GL_PACK_ROW_LENGTH;
+	case SiT::GraphicsLib::PackingParameter::PACK_IMAGE_HEIGHT:
+		return GL_PACK_IMAGE_HEIGHT;
+	case SiT::GraphicsLib::PackingParameter::PACK_SKIP_PIXELS:
+		return GL_PACK_SKIP_PIXELS;
+	case SiT::GraphicsLib::PackingParameter::PACK_SKIP_ROWS:
+		return GL_PACK_SKIP_ROWS;
+	case SiT::GraphicsLib::PackingParameter::PACK_SKIP_IMAGES:
+		return GL_PACK_SKIP_IMAGES;
+	case SiT::GraphicsLib::PackingParameter::PACK_ALIGNMENT:
+		return GL_PACK_ALIGNMENT;
+	case SiT::GraphicsLib::PackingParameter::UNPACK_SWAP_BYTES:
+		return GL_UNPACK_SWAP_BYTES;
+	case SiT::GraphicsLib::PackingParameter::UNPACK_LSB_FIRST:
+		return GL_UNPACK_LSB_FIRST;
+	case SiT::GraphicsLib::PackingParameter::UNPACK_ROW_LENGTH:
+		return GL_UNPACK_ROW_LENGTH;
+	case SiT::GraphicsLib::PackingParameter::UNPACK_IMAGE_HEIGHT:
+		return GL_UNPACK_IMAGE_HEIGHT;
+	case SiT::GraphicsLib::PackingParameter::UNPACK_SKIP_PIXELS:
+		return GL_UNPACK_SKIP_PIXELS;
+	case SiT::GraphicsLib::PackingParameter::UNPACK_SKIP_ROWS:
+		return GL_UNPACK_SKIP_ROWS;
+	case SiT::GraphicsLib::PackingParameter::UNPACK_SKIP_IMAGES:
+		return GL_UNPACK_SKIP_IMAGES;
+	case SiT::GraphicsLib::PackingParameter::UNPACK_ALIGNMENT:
+		return GL_UNPACK_ALIGNMENT;
+	case SiT::GraphicsLib::PackingParameter::UNKOWN:
+		return 0;
+	default:
+		return 0;
+	}
+}
+
 GLboolean LibOpenGL::getBool(bool boolean)
 {
 	if (boolean)
@@ -244,6 +287,18 @@ void LibOpenGL::disableAlpha()
 {
 	glDisable(GL_BLEND);
 	glDisable(GL_ALPHA_TEST);
+}
+
+void LibOpenGL::pixelStorei(PackingParameter packingParameter, unsigned int param)
+{
+	glPixelStorei(getPackingParameter(packingParameter), param);
+}
+
+unsigned int LibOpenGL::getMaxSizeTexture()
+{
+	int maxSize;
+	glGetIntegerv(GL_MAX_TEXTURE_SIZE, &maxSize);
+	return maxSize;
 }
 
 NS_SIT_END

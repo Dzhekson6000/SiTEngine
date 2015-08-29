@@ -10,7 +10,7 @@ class SIT_DLL Sprite: public Node
 {
 private:
 								Sprite(){};
-	ResourceHandle*				_image;
+	ResourceHandle*				_texture;
 	CustomCommand				_customCommand;
 
 	Vertex						_vertices[4];

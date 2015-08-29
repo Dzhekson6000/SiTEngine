@@ -7,68 +7,59 @@
 #include <ftoutln.h>
 #include <fttrigon.h>
 
-
-
 NS_SIT_BEGIN
 
-FontAtlas::FontAtlas(Resource resource) :ResourceHandle(resource, Type::FONT),
-_sizeFont(DEFAULT_SIZE_FONT),
-_width(DEFAULT_SIZE_TEXTURE),
-_height(DEFAULT_SIZE_TEXTURE)
+FontAtlas* FontAtlas::create(Resource resource)
 {
-	init();
+	auto ret = new FontAtlas(resource, DEFAULT_SIZE_FONT);
+	if (ret && ret->init())
+	{
+		return ret;
+	}
+	return nullptr;
+}
+
+FontAtlas* FontAtlas::create(Resource resource, unsigned int sizeFont)
+{
+	auto ret = new FontAtlas(resource, sizeFont);
+	if (ret && ret->init())
+	{
+		return ret;
+	}
+	return nullptr;
 }
 
 FontAtlas::FontAtlas(Resource resource, unsigned int sizeFont) :ResourceHandle(resource, Type::FONT),
-_sizeFont(sizeFont),
-_width(DEFAULT_SIZE_TEXTURE),
-_height(DEFAULT_SIZE_TEXTURE)
+_sizeFont(sizeFont)
 {
-	init();
 }
 
-void FontAtlas::init()
+bool FontAtlas::init()
 {
 	if (FT_Init_FreeType(&_library)) {
 		LOG("FT init error");
-		return;
+		return false;
 	}
 
 	data = FileUtils::getInstance()->getDataFromFile(getResource()._name);
 
 	if (FT_New_Memory_Face(_library, data.getBytes(), data.getSize(), 0, &_face)) {
 		LOG("Could not font");
-		return;
+		return false;
 	}
 
 	FT_Set_Pixel_Sizes(_face, 0, _sizeFont);
 
 	_shader = ShaderManager::getInstance()->getShader(Shader::SHADER_NAME_POSITION_COLOR_TEXTURE);
 
-	glActiveTexture(GL_TEXTURE0);
-	glGenTextures(1, &_texure);
-	glBindTexture(GL_TEXTURE_2D, _texure);
-	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+	std::string name = "FontAtlas[" + _sizeFont;
+	name += "]" + getResource()._name;
 
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+	_texture = GRAPHICS_LIB()->createNewTexture(Resource(name));
+	_texture->initEmpty(DEFAULT_SIZE_TEXTURE, DEFAULT_SIZE_TEXTURE);
 
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-
-	unsigned int* data = (unsigned int*)new GLuint[((_width * _height) * 4 * sizeof(unsigned int))];
-	ZeroMemory(data, ((_width * _height) * 4 * sizeof(unsigned int)));
-
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_ALPHA, _width, _height, 0, GL_ALPHA, GL_UNSIGNED_BYTE, data);
-	delete[] data;
+	return true;
 }
-
-unsigned int FontAtlas::getSizeFont()
-{
-	return _sizeFont;
-}
-
-
 
 unsigned int FontAtlas::getLineSpacing()
 {
@@ -77,25 +68,26 @@ unsigned int FontAtlas::getLineSpacing()
 
 void FontAtlas::resize()
 {
-	GLuint oldTexture = _texure;
-	int newWidth = _width;
-	int newHeight = _height;
+	Size textureSize = _texture->getSize();
+	unsigned int newWidth = 0;
+	unsigned int newHeight = 0;
 
-	int maxSize;
-	glGetIntegerv(GL_MAX_TEXTURE_SIZE, &maxSize);
+	int maxSize = GRAPHICS_LIB()->getMaxSizeTexture();
 
-	if (_height < maxSize)
+	if (textureSize.getHeight() < maxSize)
 	{
-		newHeight = maxSize-_height;
-		if (newHeight > DEFAULT_SIZE_TEXTURE){
-			newHeight = _height + DEFAULT_SIZE_TEXTURE;
+		newHeight = maxSize - textureSize.getHeight();
+		if (newHeight > DEFAULT_SIZE_TEXTURE)
+		{
+			newHeight = textureSize.getHeight() + DEFAULT_SIZE_TEXTURE;
 		}
 	}
-	else if (_width < maxSize)
+	else if (textureSize.getWidth() < maxSize)
 	{
-		newWidth = maxSize - _width;
-		if (newWidth > DEFAULT_SIZE_TEXTURE){
-			newWidth = _width + DEFAULT_SIZE_TEXTURE;
+		newWidth = maxSize - textureSize.getWidth();
+		if (newWidth > DEFAULT_SIZE_TEXTURE)
+		{
+			newWidth = textureSize.getWidth() + DEFAULT_SIZE_TEXTURE;
 		}
 	}
 	else
@@ -103,37 +95,51 @@ void FontAtlas::resize()
 		return;//error size texture
 	}
 
-	glActiveTexture(GL_TEXTURE0);
-	glBindTexture(GL_TEXTURE_2D, _texure);
+	delete _texture;
 
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_ALPHA, newWidth, newHeight, 0, GL_ALPHA, GL_UNSIGNED_BYTE, NULL);
+	std::string name = "FontAtlas[" + _sizeFont;
+	name += "]" + getResource()._name;
 
+	_texture = GRAPHICS_LIB()->createNewTexture(Resource(name));
+	_texture->initEmpty(DEFAULT_SIZE_TEXTURE, DEFAULT_SIZE_TEXTURE);
+
+	clearCharacters();
+}
+
+void FontAtlas::clearCharacters()
+{
+	for (auto character: _characters)
+	{
+		GRAPHICS_LIB()->deleteBuffers(1, &character.second->_VBO);
+	}
 	_characters.clear();
-	_width = newWidth;
-	_height = newHeight;
 }
 
 CharacterInfo* FontAtlas::loadChar(unsigned int char_)
 {
+	Size textureSize = _texture->getSize();
 	_glyph = _face->glyph;
 
-	if (FT_Load_Char(_face, char_, FT_LOAD_RENDER))
-		return nullptr;	
+	if (FT_Load_Char(_face, char_, FT_LOAD_RENDER)) return nullptr;	
 
-	if (_loadInfo._x + _glyph->bitmap.width > _width && _loadInfo._y + _glyph->bitmap.rows > _height)
+	if (_loadInfo.getX() + _glyph->bitmap.width > textureSize.getWidth() &&
+		_loadInfo.getY() + _glyph->bitmap.rows > textureSize.getHeight())
 	{
 		resize();
 		return loadChar(char_);
 	} else
-	if (_loadInfo._x + _glyph->bitmap.width > _width)
+	if(_loadInfo.getX() + _glyph->bitmap.width > textureSize.getWidth())
 	{
-		_loadInfo._x = 0;
-		_loadInfo._y += _glyph->bitmap.rows + DEFAULT_OFFSET;
+		_loadInfo.setX(0);
+		_loadInfo.setY(_loadInfo.getY() + _glyph->bitmap.rows + DEFAULT_OFFSET);
 	}
 
-	glActiveTexture(GL_TEXTURE0);
-	glBindTexture(GL_TEXTURE_2D, _texure);
-	glTexSubImage2D(GL_TEXTURE_2D, 0, _loadInfo._x, _loadInfo._y, _glyph->bitmap.width, _glyph->bitmap.rows, GL_ALPHA, GL_UNSIGNED_BYTE, _glyph->bitmap.buffer);
+	_texture->texSubImage(_loadInfo, 
+		Size(_glyph->bitmap.width, _glyph->bitmap.rows),
+		Image::PixelFormat::A8,
+		_glyph->bitmap.buffer
+		);
+
 
 	CharacterInfo* characterInfo = new CharacterInfo(
 		_glyph->advance.x >>6,
@@ -142,14 +148,14 @@ CharacterInfo* FontAtlas::loadChar(unsigned int char_)
 		_glyph->bitmap.rows,
 		_glyph->bitmap_left,
 		_glyph->bitmap_top,
-		_loadInfo._x,
-		_loadInfo._y
+		_loadInfo.getX(),
+		_loadInfo.getY()
 	);
 
-	float charX = (float)characterInfo->positionInTexture.getX() / _width;
-	float charY = (float)characterInfo->positionInTexture.getY() / _height;
-	float charWidth = (float)characterInfo->size.getWidth() / _width;
-	float charHeight = (float)characterInfo->size.getHeight() / _height;
+	float charX = (float)characterInfo->positionInTexture.getX() / textureSize.getWidth();
+	float charY = (float)characterInfo->positionInTexture.getY() / textureSize.getHeight();
+	float charWidth = (float)characterInfo->size.getWidth() / textureSize.getWidth();
+	float charHeight = (float)characterInfo->size.getHeight() / textureSize.getHeight();
 
 	Size* screen = Director::getInstance()->getWinSize();
 	float scaleX = characterInfo->size.getWidth() / (float)screen->getWidth();
@@ -166,39 +172,19 @@ CharacterInfo* FontAtlas::loadChar(unsigned int char_)
 	vertices[2] = Vertex(Vector(x + w, y + h, 0.0f), Vector(1.0f, 1.0f, 1.0f), Vector(charX + charWidth, charY));
 	vertices[3] = Vertex(Vector(x, y + h, 0.0f), Vector(1.0f, 1.0f, 1.0f), Vector(charX, charY));
 
-	glGenBuffers(1, &characterInfo->_VBO);
-	glBindBuffer(GL_ARRAY_BUFFER, characterInfo->_VBO);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+	GRAPHICS_LIB()->genBuffers(1, &characterInfo->_VBO);
+	GRAPHICS_LIB()->bindBuffer(GraphicsLib::TargetBuffer::ARRAY_BUFFER, characterInfo->_VBO);
+	GRAPHICS_LIB()->bufferData(GraphicsLib::TargetBuffer::ARRAY_BUFFER, sizeof(vertices), vertices, GraphicsLib::UsageStore::STATIC_DRAW);
 
-	glEnableVertexAttribArray(_shader->getAttribLocation(_shader->ATTRIBUTE_NAME_POSITION));
-	glEnableVertexAttribArray(_shader->getAttribLocation(_shader->ATTRIBUTE_NAME_COLOR));
-	glEnableVertexAttribArray(_shader->getAttribLocation(_shader->ATTRIBUTE_NAME_TEX_COORD));
+	GRAPHICS_LIB()->enableVertexAttribArray(_shader->getAttribLocation(_shader->ATTRIBUTE_NAME_POSITION));
+	GRAPHICS_LIB()->enableVertexAttribArray(_shader->getAttribLocation(_shader->ATTRIBUTE_NAME_COLOR));
+	GRAPHICS_LIB()->enableVertexAttribArray(_shader->getAttribLocation(_shader->ATTRIBUTE_NAME_TEX_COORD));
 
 	_characters.insert(std::make_pair(char_, characterInfo));
 
-	_loadInfo._x += _glyph->bitmap.width + DEFAULT_OFFSET;
+	_loadInfo.setX(_loadInfo.getX() + _glyph->bitmap.width + DEFAULT_OFFSET);
 
 	return characterInfo;
-}
-
-Shader* FontAtlas::getShader()
-{
-	return _shader;
-}
-
-GLuint* FontAtlas::getTextureId()
-{
-	return &_texure;
-}
-
-unsigned int FontAtlas::getWidth()
-{
-	return _width;
-}
-
-unsigned int FontAtlas::getHeight()
-{
-	return _height;
 }
 
 CharacterInfo* FontAtlas::getInfoChar(unsigned int char_)

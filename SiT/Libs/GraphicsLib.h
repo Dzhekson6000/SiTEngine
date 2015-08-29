@@ -85,33 +85,58 @@ public:
 		UNKOWN
 	};
 
+	enum class PackingParameter
+	{
+		PACK_SWAP_BYTES,
+		PACK_LSB_FIRST,
+		PACK_ROW_LENGTH,
+		PACK_IMAGE_HEIGHT,
+		PACK_SKIP_PIXELS,
+		PACK_SKIP_ROWS,
+		PACK_SKIP_IMAGES,
+		PACK_ALIGNMENT,
+		UNPACK_SWAP_BYTES,
+		UNPACK_LSB_FIRST,
+		UNPACK_ROW_LENGTH,
+		UNPACK_IMAGE_HEIGHT,
+		UNPACK_SKIP_PIXELS,
+		UNPACK_SKIP_ROWS,
+		UNPACK_SKIP_IMAGES,
+		UNPACK_ALIGNMENT,
+		UNKOWN
+	};
+
 private:
-	static GraphicsLib*	_graphicsLib;
+	static GraphicsLib*		_graphicsLib;
 protected:
-	GraphicsLib();
-	virtual bool		init();
-	virtual void		destroy();
+							GraphicsLib();
+	virtual bool			init();
+	virtual void			destroy();
 public:
-	static GraphicsLib*	createLib();
-	static GraphicsLib*	getInstance();
+	static GraphicsLib*		createLib();
+	static GraphicsLib*		getInstance();
 
-	virtual void		clearView(Color color);
-	virtual Shader*		createNewShader();
-	virtual Texture*	createNewTexture(Resource resource);
-	virtual void		genBuffers(unsigned int n, unsigned int* buffers);
-	virtual void		deleteBuffers(unsigned int n, unsigned int* buffers);
-	virtual void		bindBuffer(TargetBuffer target, unsigned int buffer);
-	virtual void		bufferData(TargetBuffer  target, ptrdiff_t  size, const void* data, UsageStore usage);
-	virtual void		bindTexture(Texture* texture);
-	virtual void		activeTexture(unsigned int id);
+	virtual void			clearView(Color color);
+	virtual Shader*			createNewShader();
+	virtual Texture*		createNewTexture(Resource resource);
+	virtual void			genBuffers(unsigned int n, unsigned int* buffers);
+	virtual void			deleteBuffers(unsigned int n, unsigned int* buffers);
+	virtual void			bindBuffer(TargetBuffer target, unsigned int buffer);
+	virtual void			bufferData(TargetBuffer  target, ptrdiff_t  size, const void* data, UsageStore usage);
+	virtual void			bindTexture(Texture* texture);
+	virtual void			activeTexture(unsigned int id);
 
-	virtual void		enableVertexAttribArray(unsigned int index);
-	virtual void		vertexAttribPointer(unsigned int index, unsigned int size, DataType type, bool normalized, int stride, const void * pointer);
+	virtual void			enableVertexAttribArray(unsigned int index);
+	virtual void			vertexAttribPointer(unsigned int index, unsigned int size, DataType type, bool normalized, int stride, const void * pointer);
 	
-	virtual void		drawElements(RenderType mode, unsigned int count, DataType type, const void * indices);
+	virtual void			drawElements(RenderType mode, unsigned int count, DataType type, const void * indices);
 
-	virtual void		enableAlpha();
-	virtual void		disableAlpha();
+	virtual void			enableAlpha();
+	virtual void			disableAlpha();
+
+	virtual void			pixelStorei(PackingParameter packingParameter, unsigned int param);
+
+	virtual unsigned int	getMaxSizeTexture();
 };
 
 #define GRAPHICS_LIB() GraphicsLib::getInstance()

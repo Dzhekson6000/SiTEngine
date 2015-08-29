@@ -16,7 +16,26 @@ void Texture::releaseTexture()
 {
 }
 
-bool Texture::initImage( Image *image )
+void Texture::texSubImage(Point point, Size size, Image::PixelFormat pixelFormat, const void *data)
+{
+}
+
+void Texture::texImage(Size size, Image::PixelFormat pixelFormat, const void *data)
+{
+
+}
+
+bool Texture::init()
+{
+	return false;
+}
+
+bool Texture::initEmpty(unsigned int width, unsigned int height)
+{
+	return false;
+}
+
+bool Texture::initImage(Image *image)
 {
 	return initImage(image, Image::PixelFormat::DEFAULT);
 }
@@ -42,7 +61,7 @@ bool Texture::initImage(Image * image, Image::PixelFormat format)
 
 	pixelFormat = ImageDataConverter::convertDataToFormat(tempData, tempDataLen, renderFormat, pixelFormat, &outTempData, &outTempDataLen);
 
-	initData(outTempData, outTempDataLen, pixelFormat, imageWidth, imageHeight);
+	if (!initData(outTempData, outTempDataLen, pixelFormat, imageWidth, imageHeight))return false;
 
 
 	if (outTempData != nullptr && outTempData != tempData)

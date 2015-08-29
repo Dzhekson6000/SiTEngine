@@ -4,14 +4,14 @@
 #include "Base/Ref.h"
 #include <string>
 
+#include "Platform/FileUtilsImpl.h"
+
 #if TARGET_PLATFORM == PLATFORM_WIN32
-#include "Platform/Win32/FileUtilsImpl.h"
 #include "external/jpeg/include/win32/jpeglib.h"
 #include "external/png/include/win32/png.h"
 #endif
 
 #if TARGET_PLATFORM == PLATFORM_ANDROID
-#include "Platform/Android/FileUtilsImpl.h"
 #endif
 
 

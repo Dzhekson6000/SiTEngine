@@ -273,6 +273,9 @@
     <ClInclude Include="..\SiT\Events\EventTouch.h">
       <Filter>SiT\Events</Filter>
     </ClInclude>
+    <ClInclude Include="..\SiT\Platform\FileUtilsImpl.h">
+      <Filter>SiT\Platform</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">

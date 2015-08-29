@@ -39,7 +39,7 @@ GraphicsLib::GraphicsLib()
 
 bool GraphicsLib::init()
 {
-	return true;
+	return false;
 }
 
 void GraphicsLib::destroy()
@@ -50,7 +50,7 @@ void GraphicsLib::clearView(Color color)
 {
 }
 
-Shader* SiT::GraphicsLib::createNewShader()
+Shader* GraphicsLib::createNewShader()
 {
 	return new Shader();
 }
@@ -96,16 +96,25 @@ void GraphicsLib::vertexAttribPointer(unsigned int index, unsigned int size, Dat
 
 }
 
-void SiT::GraphicsLib::drawElements(RenderType mode, unsigned int count, DataType type, const void * indices)
+void GraphicsLib::pixelStorei(PackingParameter packingParameter, unsigned int param)
+{
+}
+
+unsigned int GraphicsLib::getMaxSizeTexture()
+{
+	return NULL;
+}
+
+void GraphicsLib::drawElements(RenderType mode, unsigned int count, DataType type, const void * indices)
 {
 
 }
 
-void SiT::GraphicsLib::enableAlpha()
+void GraphicsLib::enableAlpha()
 {
 }
 
-void SiT::GraphicsLib::disableAlpha()
+void GraphicsLib::disableAlpha()
 {
 }
 

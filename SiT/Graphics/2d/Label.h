@@ -5,7 +5,6 @@
 #include <string>
 
 #include "Resource/ResourceManager.h"
-#include "Types/Matrix/MatrixObject.h"
 #include "Resource/FontAtlas.h"
 
 
@@ -13,6 +12,27 @@ NS_SIT_BEGIN
 
 class SIT_DLL Label : public Node
 {
+private:
+								Label(std::string text, std::string pathFont, unsigned int sizeFont);
+	void						drawChar(Point point, CharacterInfo* info);
+
+	
+	const Matrix<4, 4, float>*	transform();
+	Matrix<4, 4, float>			transformCharacter(Point point, CharacterInfo* info);
+
+	
+	CustomCommand				_customCommand;
+	Matrix<4, 4, float>*		_transformCharacters;
+
+	unsigned int				_indices[6];
+	GLuint						_IBO;
+
+	std::string					_text;
+	std::string					_pathFont;
+	unsigned int				_sizeFont;
+	FontAtlas*					_font;
+
+	SYNTHESIZE(Color, _color, Color);
 public:
 
 	enum TextAlignmentHorizontal {
@@ -22,41 +42,23 @@ public:
 		TEXT_ALIGN_MAX
 	};
 
-	static Label* create(std::string pathFont);
-	static Label* create(std::string text, std::string pathFont);
-	static Label* create(std::string text, std::string pathFont, unsigned int sizeFont);
+	static Label*				create(std::string pathFont);
+	static Label*				create(std::string text, std::string pathFont);
+	static Label*				create(std::string text, std::string pathFont, unsigned int sizeFont);
+	virtual bool				init();
 
-	virtual ~Label();
+	virtual						~Label();
 
-	virtual void	draw(Renderer *renderer);
-	virtual void	onDraw();
-	void setColor(Color color);
-	void setSize(unsigned int sizeFont);
-	void setText(std::string text);
-	void setAlignmentHorizontal(TextAlignmentHorizontal textAlignmentHorizontal);
-	void drawFont();
+	virtual void				draw(Renderer *renderer);
+	virtual void				onDraw();
+	void						setSize(unsigned int sizeFont);
+	void						setText(std::string text);
+	void						setAlignmentHorizontal(TextAlignmentHorizontal textAlignmentHorizontal);
+	void						drawFont();
 protected:
 	
 private:
-	Label(std::string text, std::string pathFont, unsigned int sizeFont);
-	CustomCommand _customCommand;
-
-	FontAtlas * _font;
-	Color _color;
-	unsigned int _sizeFont;
 	TextAlignmentHorizontal _textAlignmentHorizontal;
-	std::string _text;
-	std::string _pathFont;
-
-	void	drawChar(Point point, CharacterInfo* info);
-
-	Matrix<4, 4, float>* _transformCharacters;
-	const Matrix<4, 4, float>* transform();
-	Matrix<4, 4, float> transformCharacter(Point point, CharacterInfo* info);
-
-	unsigned int	_indices[6];
-	GLuint			_IBO;
-	
 };
 
 

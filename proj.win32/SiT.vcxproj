@@ -121,6 +121,7 @@
     <ClInclude Include="..\SiT\Libs\LibOpenGL\OpenGLTexture.h" />
     <ClInclude Include="..\SiT\Libs\SoundLib.h" />
     <ClInclude Include="..\SiT\Macros.h" />
+    <ClInclude Include="..\SiT\Platform\FileUtilsImpl.h" />
     <ClInclude Include="..\SiT\Platform\MacrosPlatform.h" />
     <ClInclude Include="..\SiT\Platform\Win32\Application.h" />
     <ClInclude Include="..\SiT\Platform\Win32\FileUtilsImpl.h" />

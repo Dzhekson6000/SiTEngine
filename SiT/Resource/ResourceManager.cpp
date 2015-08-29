@@ -96,7 +96,7 @@ ResourceHandle* ResourceManager::loadHandleFromType(Resource* resource, Resource
 	}
 	case ResourceHandle::Type::FONT:
 	{
-		resourceHandle = new FontAtlas(*resource);
+		resourceHandle = FontAtlas::create(*resource);
 
 		break;
 	}
