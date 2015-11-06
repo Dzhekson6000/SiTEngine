@@ -3,6 +3,8 @@
 
 #include "Macros.h"
 #include "Types/Types.h"
+#include <memory.h>
+#include <cstdlib>
 
 NS_SIT_BEGIN
 
@@ -152,9 +154,11 @@ public:
 
 	Matrix& operator= (const Matrix& other)
 	{
-		Matrix < rangeY, rangeY, Element > ret;
+		if (this == &other) {
+			return *this;
+		}
 		memcpy(&_matrix, &other._matrix, sizeof(other._matrix));
-		return  ret;
+		return *this;
 	}
 
 	float determinant()

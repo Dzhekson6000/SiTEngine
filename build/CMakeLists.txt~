@@ -1,0 +1,14 @@
+cmake_minimum_required(VERSION 2.8)
+
+set( BIN MainProject )
+set( SOURCE_ROOT .. )
+aux_source_directory( ${SOURCE_ROOT}/Classes SOURCES )
+
+include_directories( "${SOURCE_ROOT}" )
+
+add_executable( ${BIN} ${SOURCES} )
+
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/../SiT/build ${CMAKE_CURRENT_BINARY_DIR}/SiT/build)
+#link_directories()
+target_link_libraries(${BIN} SiT)
+

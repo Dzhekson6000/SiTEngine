@@ -27,8 +27,8 @@ struct CharacterInfo {
 	Point	positionInTexture;
 	unsigned int _VBO;
 
-	CharacterInfo(float ax, float ay, unsigned int bw, unsigned int bh, float bl, float bt, unsigned int x, unsigned int y)
-		:advance(ax, ay), size(bw, bh), bearing(bl, bt), positionInTexture(x, y)
+	CharacterInfo(float ax, float ay, unsigned int bw, unsigned int bh, float bl, float bt, Point positionInTexture)
+		:advance(ax, ay), size(bw, bh), bearing(bl, bt), positionInTexture(positionInTexture)
 	{}
 };
 

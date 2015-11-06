@@ -1,4 +1,5 @@
 #include "OpenGLTexture.h"
+#include <memory.h>
 
 NS_SIT_BEGIN
 
@@ -41,7 +42,7 @@ bool OpenGLTexture::initEmpty(unsigned int width, unsigned int height)
 
 	glBindTexture(GL_TEXTURE_2D, _textureId);
 	unsigned int* data = (unsigned int*)new GLuint[((width * height) * 4 * sizeof(unsigned int))];
-	ZeroMemory(data, ((width * height) * 4 * sizeof(unsigned int)));
+        memset((data), 0, (((width * height) * 4 * sizeof(unsigned int))));
 
 	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
@@ -59,7 +60,7 @@ bool OpenGLTexture::initData(const void *data, size_t dataLen, Image::PixelForma
 {
 	GLenum error = glGetError();
 	if (error != GL_NO_ERROR) {
-		LOG("OpenGL error 0x%04X in %s %s %d\n", error, __FILE__, __FUNCTION__, __LINE__);
+		//LOG("OpenGL error 0x%04X in %s %s %d\n", error, __FILE__, __FUNCTION__, __LINE__);
 	}
 
 	if (pixelFormat == Image::PixelFormat::NONE || pixelFormat == Image::PixelFormat::AUTO)
@@ -97,7 +98,7 @@ bool OpenGLTexture::initData(const void *data, size_t dataLen, Image::PixelForma
 
 	error = glGetError();
 	if (error != GL_NO_ERROR) {
-		LOG("OpenGL error 0x%04X in %s %s %d\n", error, __FILE__, __FUNCTION__, __LINE__);
+		//LOG("OpenGL error 0x%04X in %s %s %d\n", error, __FILE__, __FUNCTION__, __LINE__);
 		return false;
 	}
 

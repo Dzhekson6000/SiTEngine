@@ -15,7 +15,7 @@ public:
 
 	Color() :_r(0), _g(0), _b(0){}
 	Color(float r, float g, float b) :_r(r), _g(g), _b(b){}
-	Color(int r, int g, int b):_r(r/255),_g(g / 255),_b(b/255){}
+	Color(int r, int g, int b) :_r((float)r / 255), _g((float)g / 255), _b((float)b / 255){}
 
 	const static Color WHITE;
 	const static Color YELLOW;

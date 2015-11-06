@@ -1,4 +1,5 @@
 #include "LibOpenAL.h"
+#include <memory.h>
 
 NS_SIT_BEGIN
 

@@ -1,9 +1,9 @@
 #ifndef SOUND_OBJECT_OPENAL_H_
 #define SOUND_OBJECT_OPENAL_H_
 
-#include "al.h"
-#include "alc.h"
-#include "Sound\SoundObject.h"
+#include "AL/al.h"
+#include "AL/alc.h"
+#include "Sound/SoundObject.h"
 
 NS_SIT_BEGIN
 

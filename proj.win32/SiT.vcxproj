@@ -85,6 +85,29 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="..\Classes\AppDelegate.h" />
+    <ClInclude Include="..\Classes\Controller\MenuController.h" />
+    <ClInclude Include="..\Classes\Controller\WorldController.h" />
+    <ClInclude Include="..\Classes\Model\Brick.h" />
+    <ClInclude Include="..\Classes\Model\Direction.h" />
+    <ClInclude Include="..\Classes\Model\ETexture.h" />
+    <ClInclude Include="..\Classes\Model\Level.h" />
+    <ClInclude Include="..\Classes\Model\LevelMenu.h" />
+    <ClInclude Include="..\Classes\Model\PButton.h" />
+    <ClInclude Include="..\Classes\Model\Player.h" />
+    <ClInclude Include="..\Classes\Model\Point.h" />
+    <ClInclude Include="..\Classes\Model\ReadLevel.h" />
+    <ClInclude Include="..\Classes\Model\Rectangle.h" />
+    <ClInclude Include="..\Classes\Model\Spirit\Blinky.h" />
+    <ClInclude Include="..\Classes\Model\Spirit\Clyde.h" />
+    <ClInclude Include="..\Classes\Model\Spirit\Inky.h" />
+    <ClInclude Include="..\Classes\Model\Spirit\Pinky.h" />
+    <ClInclude Include="..\Classes\Model\Spirit\Spirit.h" />
+    <ClInclude Include="..\Classes\Model\State.h" />
+    <ClInclude Include="..\Classes\Model\World.h" />
+    <ClInclude Include="..\Classes\Model\WorldObject.h" />
+    <ClInclude Include="..\Classes\Model\WorldObjectMove.h" />
+    <ClInclude Include="..\Classes\View\MainMenuScene.h" />
+    <ClInclude Include="..\Classes\View\WorldScene.h" />
     <ClInclude Include="..\SiT\Base\Node.h" />
     <ClInclude Include="..\SiT\Base\PoolManager.h" />
     <ClInclude Include="..\SiT\Base\Ref.h" />
@@ -153,6 +176,26 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Classes\AppDelegate.cpp" />
+    <ClCompile Include="..\Classes\Controller\MenuController.cpp" />
+    <ClCompile Include="..\Classes\Controller\WorldController.cpp" />
+    <ClCompile Include="..\Classes\Model\Brick.cpp" />
+    <ClCompile Include="..\Classes\Model\Level.cpp" />
+    <ClCompile Include="..\Classes\Model\LevelMenu.cpp" />
+    <ClCompile Include="..\Classes\Model\PButton.cpp" />
+    <ClCompile Include="..\Classes\Model\Player.cpp" />
+    <ClCompile Include="..\Classes\Model\Point.cpp" />
+    <ClCompile Include="..\Classes\Model\ReadLevel.cpp" />
+    <ClCompile Include="..\Classes\Model\Rectangle.cpp" />
+    <ClCompile Include="..\Classes\Model\Spirit\Blinky.cpp" />
+    <ClCompile Include="..\Classes\Model\Spirit\Clyde.cpp" />
+    <ClCompile Include="..\Classes\Model\Spirit\Inky.cpp" />
+    <ClCompile Include="..\Classes\Model\Spirit\Pinky.cpp" />
+    <ClCompile Include="..\Classes\Model\Spirit\Spirit.cpp" />
+    <ClCompile Include="..\Classes\Model\World.cpp" />
+    <ClCompile Include="..\Classes\Model\WorldObject.cpp" />
+    <ClCompile Include="..\Classes\Model\WorldObjectMove.cpp" />
+    <ClCompile Include="..\Classes\View\MainMenuScene.cpp" />
+    <ClCompile Include="..\Classes\View\WorldScene.cpp" />
     <ClCompile Include="..\SiT\Base\Node.cpp" />
     <ClCompile Include="..\SiT\Base\PoolManager.cpp" />
     <ClCompile Include="..\SiT\Base\Ref.cpp" />

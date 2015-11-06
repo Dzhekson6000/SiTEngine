@@ -36,6 +36,11 @@
 #define TARGET_PLATFORM         PLATFORM_LINUX
 #endif
 
+#if (defined __linux__)
+#undef TARGET_PLATFORM
+#define TARGET_PLATFORM         PLATFORM_LINUX
+#endif
+
 #if defined(TARGET_OS_MAC) || defined(__APPLE__)
 #undef  TARGET_PLATFORM
 #define TARGET_PLATFORM         PLATFORM_MAC

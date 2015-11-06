@@ -10,10 +10,10 @@ NS_SIT_BEGIN
 class SIT_DLL FileUtilsImpl: public FileUtils
 {
 public:
-	FileUtilsImpl();
-	virtual bool init();
-	virtual Data getData(const std::string& filename);
-	bool isAbsolutePath(const std::string& path) const;
+					FileUtilsImpl();
+	virtual bool	init();
+	virtual Data	getData(const std::string& filename);
+	bool			isAbsolutePath(const std::string& path) const;
 };
 
 

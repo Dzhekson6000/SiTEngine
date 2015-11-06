@@ -8,6 +8,11 @@
 #include "Platform/Win32/GLViewImpl.h"
 #endif
 
+#if TARGET_PLATFORM == PLATFORM_LINUX
+#include "Platform/Linux/Application.h"
+#include "Platform/Linux/GLViewImpl.h"
+#endif
+
 #if TARGET_PLATFORM == PLATFORM_ANDROID
 #include "Platform/Android/Application.h"
 #include "Platform/Android/GLViewImpl.h"

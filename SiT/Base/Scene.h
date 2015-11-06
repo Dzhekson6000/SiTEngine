@@ -1,7 +1,6 @@
 #ifndef SCENE_H_
 #define SCENE_H_
 
-#include "Macros.h"
 #include "Node.h"
 
 NS_SIT_BEGIN
@@ -19,6 +18,7 @@ public:
 	const Matrix<4, 4, float>* transform();
 
 	using Node::addChild;
+        CREATE_FUNC(Scene);
 };
 
 NS_SIT_END

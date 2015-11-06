@@ -2,22 +2,22 @@
 
 NS_SIT_BEGIN
 
-const GLchar * positionColorV =
+const char * positionColorV =
 #include "Shaders/positionColorV.h"
 
-const GLchar * positionColorF =
+const char * positionColorF =
 #include "Shaders/positionColorF.h"
 
-const GLchar * positionTextureV =
+const char * positionTextureV =
 #include "Shaders/positionTextureV.h"
 
-const GLchar * positionTextureF =
+const char * positionTextureF =
 #include "Shaders/positionTextureF.h"
 
-const GLchar * positionColorTextureV =
+const char * positionColorTextureV =
 #include "Shaders/positionColorTextureV.h"
 
-const GLchar * positionColorTextureF =
+const char * positionColorTextureF =
 #include "Shaders/positionColorTextureF.h"
 
 NS_SIT_END

@@ -1,5 +1,5 @@
 #include "LibOpenGL.h"
-#include "OpenGlShader.h"
+#include "OpenGLShader.h"
 #include "OpenGLTexture.h"
 
 NS_SIT_BEGIN

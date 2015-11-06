@@ -16,14 +16,14 @@
 
 NS_SIT_BEGIN
 
-extern SIT_DLL const GLchar * positionColorV;
-extern SIT_DLL const GLchar * positionColorF;
+extern SIT_DLL const char * positionColorV;
+extern SIT_DLL const char * positionColorF;
 
-extern SIT_DLL const GLchar * positionColorTextureV;
-extern SIT_DLL const GLchar * positionColorTextureF;
+extern SIT_DLL const char * positionColorTextureV;
+extern SIT_DLL const char * positionColorTextureF;
 
-extern SIT_DLL const GLchar * positionTextureV;
-extern SIT_DLL const GLchar * positionTextureF;
+extern SIT_DLL const char * positionTextureV;
+extern SIT_DLL const char * positionTextureF;
 
 NS_SIT_END
 

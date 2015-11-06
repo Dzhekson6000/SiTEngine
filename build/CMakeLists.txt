@@ -1,0 +1,60 @@
+cmake_minimum_required(VERSION 2.8)
+
+SET(CMAKE_INSTALL_PREFIX ${CMAKE_SOURCE_DIR}/bin/${CMAKE_SYSTEM})
+SET(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/Modules" ${CMAKE_MODULE_PATH})
+
+SET( BIN MainProject )
+SET( PROJECT_ROOT "${CMAKE_SOURCE_DIR}/../" )
+
+IF(UNIX AND NOT APPLE)
+    SET(LINUX ON)
+ENDIF(UNIX AND NOT APPLE)
+
+IF(WIN32)
+	MESSAGE(SEND_ERROR "WINDOWS is unsupported yet ;)")
+ENDIF(WIN32)
+
+#--------------------------------------------------------------------
+# Set source files.
+#--------------------------------------------------------------------
+AUX_SOURCE_DIRECTORY( ${PROJECT_ROOT}/Classes URL_CLASSES )
+AUX_SOURCE_DIRECTORY( ${PROJECT_ROOT}/Classes/Controller URL_CLASSES_CONTROLLER )
+AUX_SOURCE_DIRECTORY( ${PROJECT_ROOT}/Classes/Model URL_CLASSES_MODEL )
+AUX_SOURCE_DIRECTORY( ${PROJECT_ROOT}/Classes/Model/Spirit URL_CLASSES_MODEL_SPIRIT )
+AUX_SOURCE_DIRECTORY( ${PROJECT_ROOT}/Classes/View URL_CLASSES_VIEW )
+
+AUX_SOURCE_DIRECTORY( ${PROJECT_ROOT}/proj.linux PROJECT_SOURCES_START )
+
+SET(PROJECT_SOURCES
+    ${PROJECT_SOURCES_START}
+    ${URL_CLASSES}
+    ${URL_CLASSES_CONTROLLER}
+    ${URL_CLASSES_MODEL}
+    ${URL_CLASSES_MODEL_SPIRIT}
+    ${URL_CLASSES_VIEW}
+)
+
+# Set up GLFW
+SET(INCLUDE_LIB_DIR ${INCLUDE_LIB_DIR} ${PROJECT_ROOT}/SiT/external/glfw/include/)
+# Set up GLEW
+SET(INCLUDE_LIB_DIR ${INCLUDE_LIB_DIR} ${PROJECT_ROOT}/SiT/external/glew/include/)
+# Set up Freetype
+FIND_PACKAGE(Freetype REQUIRED)
+SET(INCLUDE_LIB_DIR ${INCLUDE_LIB_DIR} ${FREETYPE_INCLUDE_DIRS})
+
+#--------------------------------------------------------------------
+# Compile
+#--------------------------------------------------------------------
+SET (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -o0 -g3 -std=c++11")
+
+INCLUDE_DIRECTORIES(
+    ${PROJECT_ROOT}/Classes/
+    ${PROJECT_ROOT}/SiT/
+    ${INCLUDE_LIB_DIR}
+)
+
+ADD_SUBDIRECTORY(${CMAKE_CURRENT_SOURCE_DIR}/../SiT/build/ ${CMAKE_CURRENT_BINARY_DIR}/lib/)
+
+ADD_EXECUTABLE( ${BIN} ${PROJECT_SOURCES} )
+
+TARGET_LINK_LIBRARIES(${BIN} SiT)

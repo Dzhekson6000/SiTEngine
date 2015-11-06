@@ -1,4 +1,5 @@
 #include "OpenGLShader.h"
+#include <memory.h>
 
 NS_SIT_BEGIN
 

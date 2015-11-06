@@ -61,7 +61,7 @@ void Director::setOpenGLView( GLViewImpl *openGLView )
 void Director::setFPS( double interval )
 {
 	_intervalFPS = interval;
-	Application::getInstance()->setFPS(interval);
+	Application::getInstance()->setFPS(_intervalFPS);
 }
 
 void Director::mainLoop()

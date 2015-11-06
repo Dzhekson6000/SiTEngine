@@ -14,17 +14,17 @@ class SIT_DLL Label : public Node
 {
 private:
 								Label(std::string text, std::string pathFont, unsigned int sizeFont);
-	void						drawChar(Point point, CharacterInfo* info);
+	void						drawChar(unsigned int position, Point point, CharacterInfo* info);
 
 	
 	const Matrix<4, 4, float>*	transform();
-	Matrix<4, 4, float>			transformCharacter(Point point, CharacterInfo* info);
+	Matrix<4, 4, float>*		transformCharacter(unsigned int position, Point point, CharacterInfo* info);
 
-	void						calculationSize();
-	unsigned int				calculationWidthLine(int position);
+	void						computeSize();
+	unsigned int				computeWidthLine(unsigned int position);
 	
 	CustomCommand				_customCommand;
-	Matrix<4, 4, float>*		_transformCharacters;
+	Matrix<4, 4, float>**		_transformCharacters;
 
 	unsigned int				_indices[6];
 	GLuint						_IBO;
@@ -33,6 +33,7 @@ private:
 	std::string					_pathFont;
 	unsigned int				_sizeFont;
 	FontAtlas*					_font;
+	bool						_isUpdatedCharacters;
 
 	SYNTHESIZE(Color, _color, Color);
 public:

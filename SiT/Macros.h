@@ -1,12 +1,20 @@
+#ifndef MACROS_H_
+#define MACROS_H_
+
 #include "Platform/MacrosPlatform.h"
 #include "Config.h"
 
 
-#define NULL 0
-
+#ifdef __cplusplus
 #define NS_SIT_BEGIN                     namespace SiT {
 #define NS_SIT_END                       }
 #define USING_NS_SIT                     using namespace SiT;
+#else
+#define NS_SIT_BEGIN                     
+#define NS_SIT_END                       
+#define USING_NS_SIT                     
+#endif
+
 
 //#if defined(_USRDLL)
 //    #define SIT_DLL     __declspec(dllexport)
@@ -16,9 +24,14 @@
 
 #define SIT_DLL
 
+#define LOG(format, ...)
 void log(const char * format, ...);
 
 #if TARGET_PLATFORM == PLATFORM_WIN32
+#undef LOG
+#define LOG(format, ...) log(format, ##__VA_ARGS__);
+#elif TARGET_PLATFORM == PLATFORM_LINUX
+#undef LOG
 #define LOG(format, ...) log(format, ##__VA_ARGS__);
 #endif
 
@@ -66,3 +79,5 @@ public: virtual void set##funName(varType var){ varName = var; }
 #define SYNTHESIZE_READONLY(varType, varName, funName)\
 protected: varType varName;\
 public: virtual varType get##funName(void) const { return varName; }
+
+#endif// MACROS_H_

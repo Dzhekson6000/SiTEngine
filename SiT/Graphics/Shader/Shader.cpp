@@ -1,4 +1,5 @@
 #include "Shader.h"
+#include <cstddef>
 
 NS_SIT_BEGIN
 

@@ -53,7 +53,11 @@ void ScheduleManager::clearSchedules()
 
 void ScheduleManager::addSchedule(std::function<void(float)> func, float interval)
 {
-	_schedules.push_back(new Schedule(func, interval));
+#if TARGET_PLATFORM == PLATFORM_WIN32
+    _schedules.push_back(new Schedule(func, interval));
+#elif TARGET_PLATFORM == PLATFORM_LINUX 
+    _schedules.push_back(new Schedule(func, interval * 1000));
+#endif
 }
 
 NS_SIT_END

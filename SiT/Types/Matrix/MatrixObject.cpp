@@ -1,5 +1,6 @@
 #include "MatrixObject.h"
 #include <string>
+#include <math.h>
 
 NS_SIT_BEGIN
 

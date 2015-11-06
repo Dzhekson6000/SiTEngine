@@ -142,14 +142,13 @@ CharacterInfo* FontAtlas::loadChar(unsigned int char_)
 
 
 	CharacterInfo* characterInfo = new CharacterInfo(
-		_glyph->advance.x >>6,
-		_glyph->advance.y >> 6,
+		(float)(_glyph->advance.x >>6),
+		(float)(_glyph->advance.y >> 6),
 		_glyph->bitmap.width,
 		_glyph->bitmap.rows,
-		_glyph->bitmap_left,
-		_glyph->bitmap_top,
-		_loadInfo.getX(),
-		_loadInfo.getY()
+		(float)_glyph->bitmap_left,
+		(float)_glyph->bitmap_top,
+		_loadInfo
 	);
 
 	float charX = (float)characterInfo->positionInTexture.getX() / textureSize.getWidth();

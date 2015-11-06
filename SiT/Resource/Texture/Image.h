@@ -11,6 +11,11 @@
 #include "external/png/include/win32/png.h"
 #endif
 
+#if TARGET_PLATFORM == PLATFORM_LINUX
+#include "jpeglib.h"
+#include "png.h"
+#endif
+
 #if TARGET_PLATFORM == PLATFORM_ANDROID
 #endif
 

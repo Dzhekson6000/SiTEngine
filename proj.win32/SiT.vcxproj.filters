@@ -76,6 +76,18 @@
     <Filter Include="SiT\Events">
       <UniqueIdentifier>{8464ead0-83d6-4e4e-8d27-1e806557d48e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Classes\Controller">
+      <UniqueIdentifier>{9d2e2a51-f943-481a-b568-7dda053e83ce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\View">
+      <UniqueIdentifier>{78b7cc53-7341-49fe-8b92-07fb2f21d409}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\Model">
+      <UniqueIdentifier>{7782468c-5a50-4331-9030-12fd1a0ebc92}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\Model\Spirit">
+      <UniqueIdentifier>{ed627843-aedb-43bd-b133-4a57037bf911}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -276,6 +288,75 @@
     <ClInclude Include="..\SiT\Platform\FileUtilsImpl.h">
       <Filter>SiT\Platform</Filter>
     </ClInclude>
+    <ClInclude Include="..\Classes\Controller\MenuController.h">
+      <Filter>Classes\Controller</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Controller\WorldController.h">
+      <Filter>Classes\Controller</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\View\MainMenuScene.h">
+      <Filter>Classes\View</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\View\WorldScene.h">
+      <Filter>Classes\View</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Model\Brick.h">
+      <Filter>Classes\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Model\Direction.h">
+      <Filter>Classes\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Model\ETexture.h">
+      <Filter>Classes\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Model\Level.h">
+      <Filter>Classes\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Model\LevelMenu.h">
+      <Filter>Classes\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Model\PButton.h">
+      <Filter>Classes\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Model\Player.h">
+      <Filter>Classes\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Model\Point.h">
+      <Filter>Classes\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Model\ReadLevel.h">
+      <Filter>Classes\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Model\Rectangle.h">
+      <Filter>Classes\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Model\State.h">
+      <Filter>Classes\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Model\World.h">
+      <Filter>Classes\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Model\WorldObject.h">
+      <Filter>Classes\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Model\WorldObjectMove.h">
+      <Filter>Classes\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Model\Spirit\Blinky.h">
+      <Filter>Classes\Model\Spirit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Model\Spirit\Clyde.h">
+      <Filter>Classes\Model\Spirit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Model\Spirit\Inky.h">
+      <Filter>Classes\Model\Spirit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Model\Spirit\Pinky.h">
+      <Filter>Classes\Model\Spirit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Model\Spirit\Spirit.h">
+      <Filter>Classes\Model\Spirit</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -427,6 +508,66 @@
     </ClCompile>
     <ClCompile Include="..\SiT\Events\EventTouch.cpp">
       <Filter>SiT\Events</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Controller\MenuController.cpp">
+      <Filter>Classes\Controller</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Controller\WorldController.cpp">
+      <Filter>Classes\Controller</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\View\MainMenuScene.cpp">
+      <Filter>Classes\View</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\View\WorldScene.cpp">
+      <Filter>Classes\View</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Model\Brick.cpp">
+      <Filter>Classes\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Model\Level.cpp">
+      <Filter>Classes\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Model\LevelMenu.cpp">
+      <Filter>Classes\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Model\PButton.cpp">
+      <Filter>Classes\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Model\Player.cpp">
+      <Filter>Classes\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Model\Point.cpp">
+      <Filter>Classes\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Model\ReadLevel.cpp">
+      <Filter>Classes\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Model\Rectangle.cpp">
+      <Filter>Classes\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Model\World.cpp">
+      <Filter>Classes\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Model\WorldObject.cpp">
+      <Filter>Classes\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Model\WorldObjectMove.cpp">
+      <Filter>Classes\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Model\Spirit\Blinky.cpp">
+      <Filter>Classes\Model\Spirit</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Model\Spirit\Clyde.cpp">
+      <Filter>Classes\Model\Spirit</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Model\Spirit\Inky.cpp">
+      <Filter>Classes\Model\Spirit</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Model\Spirit\Pinky.cpp">
+      <Filter>Classes\Model\Spirit</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Model\Spirit\Spirit.cpp">
+      <Filter>Classes\Model\Spirit</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

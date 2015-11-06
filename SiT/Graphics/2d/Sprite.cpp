@@ -80,7 +80,7 @@ const Matrix<4, 4, float>* Sprite::transform()
 
 void Sprite::draw( Renderer *renderer )
 {
-	_customCommand.init(1);
+	_customCommand.init(_localZOrder);
 	_customCommand.func = CALLBACK_0(Sprite::onDraw, this);
 	renderer->addCommand(&_customCommand);
 }
