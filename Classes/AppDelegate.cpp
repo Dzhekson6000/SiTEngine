@@ -23,18 +23,6 @@ bool AppDelegate::applicationLaunching()
 
 	Scene* scene = Scene::create();
 
-	Sprite * sprite1 = Sprite::create("2.png");
-	sprite1->setPosition(Point(-200,-200));
-	scene->addChild(sprite1);
-
-	Sprite * sprite2 = Sprite::create("2.png");
-	sprite2->setPosition(Point(0, 0));
-	scene->addChild(sprite2);
-
-	Label* label = Label::create();
-	label->setPosition(Point(0,0));
-	scene->addChild(label);
-
 	director->runScene(scene);
 
 	return true;
